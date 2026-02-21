@@ -21,769 +21,313 @@
 <meta name="theme-color" content="#6750A4">
 <meta name="msapplication-TileColor" content="#6750A4">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236750A4'/%3E%3Cstop offset='100%25' stop-color='%23D0BCFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='50' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-size='55' text-anchor='middle' fill='white' font-family='Arial'%3E♪%3C/text%3E%3C/svg%3E">
-
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "MusicPlatforme",
-  "url": "https://vriskasYT.github.io/musicplatforme",
-  "description": "Бесплатная музыкальная платформа с умной ИИ-модерацией. Слушай, публикуй и открывай новую музыку.",
-  "applicationCategory": "MusicApplication",
-  "operatingSystem": "Web",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" }
-}
+{"@context":"https://schema.org","@type":"WebApplication","name":"MusicPlatforme","url":"https://vriskasYT.github.io/musicplatforme","description":"Бесплатная музыкальная платформа с умной ИИ-модерацией.","applicationCategory":"MusicApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"}}
 </script>
-
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
 <style>
-:root {
-  --md-primary: #6750A4;
-  --md-on-primary: #FFFFFF;
-  --md-primary-container: #EADDFF;
-  --md-on-primary-container: #21005D;
-  --md-secondary: #625B71;
-  --md-on-secondary: #FFFFFF;
-  --md-secondary-container: #E8DEF8;
-  --md-tertiary: #7D5260;
-  --md-tertiary-container: #FFD8E4;
-  --md-surface: #FEF7FF;
-  --md-surface-dim: #DED8E1;
-  --md-surface-bright: #FEF7FF;
-  --md-surface-container-lowest: #FFFFFF;
-  --md-surface-container-low: #F7F2FA;
-  --md-surface-container: #F3EDF7;
-  --md-surface-container-high: #ECE6F0;
-  --md-surface-container-highest: #E6E0E9;
-  --md-on-surface: #1D1B20;
-  --md-on-surface-variant: #49454F;
-  --md-outline: #79747E;
-  --md-outline-variant: #CAC4D0;
-  --md-error: #B3261E;
-  --md-error-container: #F9DEDC;
-  --md-on-error: #FFFFFF;
-  --md-inverse-surface: #322F35;
-  --md-inverse-on-surface: #F5EFF7;
-  --md-elevation-1: 0 1px 3px 1px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.3);
-  --md-elevation-2: 0 2px 6px 2px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.3);
-  --md-elevation-3: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.3);
-  --md-shape-sm: 8px;
-  --md-shape-md: 12px;
-  --md-shape-lg: 16px;
-  --md-shape-xl: 28px;
-  --md-shape-full: 9999px;
-  --player-height: 72px;
-  --nav-height: 56px;
-  --sidebar-width: 280px;
-}
-
-[data-theme="dark"] {
-  --md-primary: #D0BCFF;
-  --md-on-primary: #381E72;
-  --md-primary-container: #4F378B;
-  --md-on-primary-container: #EADDFF;
-  --md-secondary: #CCC2DC;
-  --md-on-secondary: #332D41;
-  --md-secondary-container: #4A4458;
-  --md-tertiary: #EFB8C8;
-  --md-tertiary-container: #633B48;
-  --md-surface: #141218;
-  --md-surface-dim: #141218;
-  --md-surface-bright: #3B383E;
-  --md-surface-container-lowest: #0F0D13;
-  --md-surface-container-low: #1D1B20;
-  --md-surface-container: #211F26;
-  --md-surface-container-high: #2B2930;
-  --md-surface-container-highest: #36343B;
-  --md-on-surface: #E6E0E9;
-  --md-on-surface-variant: #CAC4D0;
-  --md-outline: #938F99;
-  --md-outline-variant: #49454F;
-  --md-error: #F2B8B5;
-  --md-error-container: #8C1D18;
-  --md-on-error: #601410;
-  --md-inverse-surface: #E6E0E9;
-  --md-inverse-on-surface: #322F35;
-}
-
-*, *::before, *::after {
-  margin: 0; padding: 0; box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent !important;
-  -webkit-touch-callout: none;
-}
-*:focus { outline: none !important; }
-*:focus-visible { outline: 2px solid var(--md-primary); outline-offset: 2px; border-radius: 4px; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: var(--md-surface);
-  color: var(--md-on-surface);
-  overflow-x: hidden;
-  transition: background .3s, color .3s;
-  min-height: 100vh;
-  min-height: 100dvh;
-  -webkit-font-smoothing: antialiased;
-}
-
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--md-outline-variant); border-radius: 3px; }
-
-.material-symbols-rounded {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  user-select: none; -webkit-user-select: none;
-}
-.material-symbols-rounded.filled {
-  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
-
-button, a, [onclick], input, select, textarea {
-  outline: none !important;
-  -webkit-tap-highlight-color: transparent !important;
-  -webkit-touch-callout: none;
-}
-
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 24px;
-  background: var(--md-primary); color: var(--md-on-primary);
-  border: none; border-radius: var(--md-shape-full);
-  font: 500 14px/20px 'Inter', sans-serif;
-  letter-spacing: .1px; cursor: pointer;
-  transition: all .2s; box-shadow: var(--md-elevation-1);
-  user-select: none;
-}
-.btn-primary:hover { box-shadow: var(--md-elevation-2); filter: brightness(1.08); }
-.btn-primary:active { transform: scale(.97); }
-.btn-primary:disabled { opacity: .5; pointer-events: none; }
-
-.btn-tonal {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 24px;
-  background: var(--md-secondary-container); color: var(--md-on-surface);
-  border: none; border-radius: var(--md-shape-full);
-  font: 500 14px/20px 'Inter', sans-serif;
-  cursor: pointer; transition: all .2s; user-select: none;
-}
-.btn-tonal:hover { box-shadow: var(--md-elevation-1); }
-
-.btn-outlined {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 24px;
-  background: transparent; color: var(--md-primary);
-  border: 1px solid var(--md-outline); border-radius: var(--md-shape-full);
-  font: 500 14px/20px 'Inter', sans-serif;
-  cursor: pointer; transition: all .2s; user-select: none;
-}
-.btn-outlined:hover { background: rgba(103,80,164,.08); }
-
-.btn-text {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 16px;
-  background: transparent; color: var(--md-primary);
-  border: none; border-radius: var(--md-shape-full);
-  font: 500 14px/20px 'Inter', sans-serif;
-  cursor: pointer; transition: all .2s; user-select: none;
-}
-.btn-text:hover { background: rgba(103,80,164,.08); }
-
-.btn-icon {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 40px; height: 40px;
-  background: transparent; color: var(--md-on-surface-variant);
-  border: none; border-radius: var(--md-shape-full);
-  cursor: pointer; transition: all .2s;
-  position: relative; overflow: hidden; user-select: none;
-}
-.btn-icon:hover { background: var(--md-surface-container-highest); }
-.btn-icon.active { color: var(--md-primary); }
-
-.chip {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 6px 16px;
-  border: 1px solid var(--md-outline-variant); border-radius: var(--md-shape-sm);
-  font: 500 13px/18px 'Inter', sans-serif;
-  color: var(--md-on-surface-variant); cursor: pointer;
-  transition: all .2s; white-space: nowrap; user-select: none;
-}
-.chip:hover { background: var(--md-surface-container-high); }
-.chip.active { background: var(--md-secondary-container); color: var(--md-on-surface); border-color: transparent; }
-
-.md-input {
-  width: 100%; padding: 16px;
-  background: var(--md-surface-container-highest);
-  border: none; border-radius: var(--md-shape-xl);
-  font: 400 16px/24px 'Inter', sans-serif;
-  color: var(--md-on-surface); outline: none;
-  transition: all .2s;
-}
-.md-input:focus { outline: 2px solid var(--md-primary) !important; }
-.md-input::placeholder { color: var(--md-on-surface-variant); }
-
-.md-card {
-  background: var(--md-surface-container-low);
-  border-radius: var(--md-shape-md);
-  overflow: hidden; transition: all .3s; cursor: pointer;
-}
-.md-card:hover { box-shadow: var(--md-elevation-2); transform: translateY(-2px); }
-.md-card .card-img {
-  width: 100%; aspect-ratio: 1; object-fit: cover;
-  background: var(--md-surface-container-highest);
-  display: flex; align-items: center; justify-content: center;
-}
-.md-card .card-img .material-symbols-rounded { font-size: 48px; color: var(--md-outline); }
-.md-card .card-body { padding: 12px; }
-.md-card .card-title {
-  font: 500 14px/20px 'Inter', sans-serif; color: var(--md-on-surface);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.md-card .card-sub {
-  font: 400 12px/16px 'Inter', sans-serif; color: var(--md-on-surface-variant);
-  margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-
-.explicit-badge {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 18px; height: 18px; border-radius: 50%;
-  background: var(--md-error); color: white;
-  font-size: 12px; font-weight: 700; flex-shrink: 0; line-height: 1;
-}
-
-/* SIDEBAR */
-.sidebar {
-  width: var(--sidebar-width); background: var(--md-surface-container);
-  display: flex; flex-direction: column;
-  position: fixed; top: 0; left: 0; bottom: 0;
-  z-index: 100; transition: transform .3s cubic-bezier(.2,0,0,1);
-  overflow-y: auto;
-}
-.sidebar-header { padding: 16px 20px; display: flex; align-items: center; gap: 10px; }
-.sidebar-logo {
-  width: 36px; height: 36px; border-radius: var(--md-shape-full);
-  background: linear-gradient(135deg, var(--md-primary), var(--md-tertiary));
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-size: 20px; flex-shrink: 0;
-}
-.sidebar-brand { font: 700 18px/24px 'Inter', sans-serif; color: var(--md-on-surface); }
-.sidebar nav { flex: 1; padding: 8px 12px; }
-.nav-item {
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px 16px; border-radius: var(--md-shape-full);
-  font: 500 14px/20px 'Inter', sans-serif;
-  color: var(--md-on-surface-variant); cursor: pointer;
-  transition: all .2s; margin-bottom: 2px; text-decoration: none;
-  user-select: none;
-}
-.nav-item:hover { background: var(--md-surface-container-high); }
-.nav-item.active { background: var(--md-secondary-container); color: var(--md-on-surface); }
-.nav-item.active .material-symbols-rounded { font-variation-settings: 'FILL' 1; }
-.nav-divider { height: 1px; background: var(--md-outline-variant); margin: 8px 16px; }
-.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 99; }
-
-/* MAIN */
-.main-content { flex: 1; margin-left: var(--sidebar-width); padding-bottom: 100px; transition: margin .3s; }
-.top-bar {
-  position: sticky; top: 0; z-index: 50;
-  display: flex; align-items: center; gap: 12px;
-  padding: 8px 24px; background: var(--md-surface);
-  backdrop-filter: blur(20px); transition: box-shadow .3s, background .3s;
-}
-.top-bar.scrolled { box-shadow: var(--md-elevation-2); background: color-mix(in srgb, var(--md-surface) 90%, transparent); }
-.top-bar .menu-btn { display: none; }
-.search-bar { flex: 1; max-width: 720px; position: relative; }
-.search-bar .material-symbols-rounded {
-  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
-  color: var(--md-on-surface-variant); font-size: 20px;
-}
-.search-bar input {
-  width: 100%; padding: 10px 16px 10px 48px;
-  background: var(--md-surface-container-highest);
-  border: none; border-radius: var(--md-shape-full);
-  font: 400 14px/20px 'Inter', sans-serif; color: var(--md-on-surface);
-}
-.search-bar input:focus { outline: 2px solid var(--md-primary) !important; }
-
-.user-area { display: flex; align-items: center; gap: 4px; margin-left: auto; }
-.user-avatar {
-  width: 36px; height: 36px; border-radius: var(--md-shape-full);
-  background: var(--md-primary-container);
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden; cursor: pointer; flex-shrink: 0;
-}
-.user-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.user-avatar .material-symbols-rounded { font-size: 20px; color: var(--md-primary); }
-
-/* PAGE */
-.page { display: none; padding: 16px 24px; animation: fadeIn .3s ease; }
-.page.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
-
-.section-title { font: 700 22px/28px 'Inter', sans-serif; color: var(--md-on-surface); margin-bottom: 16px; }
-.section-sub { font: 400 14px/20px 'Inter', sans-serif; color: var(--md-on-surface-variant); margin-bottom: 24px; }
-
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; margin-bottom: 32px; }
-
-/* TRACK LIST */
-.track-list { margin-bottom: 32px; }
-.track-item {
-  display: flex; align-items: center; gap: 12px;
-  padding: 8px 12px; border-radius: var(--md-shape-md);
-  cursor: pointer; transition: background .2s;
-}
-.track-item:hover { background: var(--md-surface-container-high); }
-.track-item.playing { background: var(--md-primary-container); }
-.track-num { width: 24px; text-align: center; font: 400 14px/20px 'Inter', sans-serif; color: var(--md-on-surface-variant); }
-.track-thumb {
-  width: 48px; height: 48px; border-radius: var(--md-shape-sm);
-  background: var(--md-surface-container-highest);
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden; flex-shrink: 0; position: relative;
-}
-.track-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.track-thumb .play-overlay {
-  position: absolute; inset: 0; background: rgba(0,0,0,.4);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transition: opacity .2s;
-}
-.track-item:hover .play-overlay { opacity: 1; }
-.track-info { flex: 1; min-width: 0; }
-.track-title-row { display: flex; align-items: center; gap: 6px; }
-.track-name { font: 500 14px/20px 'Inter', sans-serif; color: var(--md-on-surface); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.track-artist { font: 400 12px/16px 'Inter', sans-serif; color: var(--md-on-surface-variant); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.track-duration { font: 400 12px/16px 'Inter', sans-serif; color: var(--md-on-surface-variant); margin-left: auto; flex-shrink: 0; }
-.track-actions { display: flex; align-items: center; gap: 2px; opacity: 0; transition: opacity .2s; }
-.track-item:hover .track-actions { opacity: 1; }
-
-/* PLAYER BAR */
-.player-bar {
-  position: fixed; left: 0; right: 0; bottom: 0;
-  height: var(--player-height);
-  background: var(--md-surface-container-high);
-  border-top: 1px solid var(--md-outline-variant);
-  display: none; align-items: center;
-  padding: 0 16px; z-index: 210; gap: 12px;
-}
-.player-bar.visible { display: flex; }
-
-.player-track-info { display: flex; align-items: center; gap: 12px; min-width: 200px; max-width: 300px; flex: 1; }
-.player-thumb {
-  width: 48px; height: 48px; border-radius: var(--md-shape-sm);
-  background: var(--md-surface-container-highest);
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden; flex-shrink: 0;
-}
-.player-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.player-meta { min-width: 0; }
-.player-title-row { display: flex; align-items: center; gap: 6px; }
-.player-song { font: 500 14px/20px 'Inter', sans-serif; color: var(--md-on-surface); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.player-artist-name { font: 400 12px/16px 'Inter', sans-serif; color: var(--md-on-surface-variant); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-.player-controls { display: flex; flex-direction: column; align-items: center; gap: 2px; flex: 2; max-width: 600px; }
-.player-buttons { display: flex; align-items: center; gap: 8px; }
-.player-play-btn {
-  width: 40px; height: 40px; border-radius: var(--md-shape-full);
-  background: var(--md-primary); color: var(--md-on-primary);
-  border: none; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all .2s;
-}
-.player-play-btn:hover { transform: scale(1.08); box-shadow: var(--md-elevation-2); }
-
-.progress-bar { display: flex; align-items: center; gap: 8px; width: 100%; }
-.progress-time { font: 400 11px/16px 'Inter', sans-serif; color: var(--md-on-surface-variant); min-width: 36px; text-align: center; }
-.progress-track { flex: 1; height: 4px; background: var(--md-outline-variant); border-radius: 2px; cursor: pointer; position: relative; }
-.progress-track:hover { height: 6px; }
-.progress-fill { height: 100%; background: var(--md-primary); border-radius: 2px; width: 0%; transition: width .1s linear; position: relative; }
-.progress-fill::after {
-  content: ''; position: absolute; right: -6px; top: 50%;
-  transform: translateY(-50%) scale(0);
-  width: 12px; height: 12px; background: var(--md-primary); border-radius: 50%;
-  transition: transform .2s;
-}
-.progress-track:hover .progress-fill::after { transform: translateY(-50%) scale(1); }
-
-.player-volume { display: flex; align-items: center; gap: 4px; flex: 1; max-width: 200px; justify-content: flex-end; }
-.volume-slider { width: 100px; height: 4px; background: var(--md-outline-variant); border-radius: 2px; cursor: pointer; position: relative; }
-.volume-fill { height: 100%; width: 80%; background: var(--md-primary); border-radius: 2px; }
-
-/* WAVE */
-.wave-container { text-align: center; padding: 40px 20px; }
-.wave-circle {
-  width: 200px; height: 200px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--md-primary), var(--md-tertiary));
-  margin: 0 auto 24px;
-  display: flex; align-items: center; justify-content: center;
-  position: relative; animation: pulse 3s ease-in-out infinite;
-}
-.wave-circle.playing-anim { animation: pulse 1.5s ease-in-out infinite; }
-@keyframes pulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(103,80,164,.3); }
-  50% { box-shadow: 0 0 0 20px rgba(103,80,164,0); }
-}
-.wave-circle .material-symbols-rounded { font-size: 64px; color: white; }
-
-/* MODAL */
-.modal-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,.5); z-index: 500;
-  align-items: center; justify-content: center; padding: 16px;
-}
-.modal-overlay.open { display: flex; }
-.modal {
-  background: var(--md-surface-container-high);
-  border-radius: var(--md-shape-xl);
-  width: 100%; max-width: 480px; max-height: 90vh;
-  overflow-y: auto; padding: 24px;
-  animation: modalIn .3s cubic-bezier(.2,0,0,1);
-}
-@keyframes modalIn { from { opacity: 0; transform: scale(.9) } to { opacity: 1; transform: none } }
-.modal-title { font: 700 22px/28px 'Inter', sans-serif; color: var(--md-on-surface); margin-bottom: 16px; }
-.modal-label { font: 500 12px/16px 'Inter', sans-serif; color: var(--md-on-surface-variant); margin-bottom: 6px; display: block; }
-.modal .md-input { margin-bottom: 16px; border-radius: var(--md-shape-md); }
-.modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
-
-/* UPLOAD ZONE */
-.upload-zone {
-  border: 2px dashed var(--md-outline-variant); border-radius: var(--md-shape-lg);
-  padding: 32px; text-align: center; cursor: pointer; transition: all .2s; margin-bottom: 16px;
-}
-.upload-zone:hover, .upload-zone.dragover { border-color: var(--md-primary); background: rgba(103,80,164,.05); }
-.upload-zone .material-symbols-rounded { font-size: 48px; color: var(--md-primary); margin-bottom: 8px; }
-
-/* PROFILE */
-.profile-header { display: flex; align-items: center; gap: 24px; padding: 32px 0; }
-.profile-avatar {
-  width: 120px; height: 120px; border-radius: 50%;
-  background: var(--md-primary-container);
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden; flex-shrink: 0;
-}
-.profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.profile-avatar .material-symbols-rounded { font-size: 48px; color: var(--md-primary); }
-.profile-info { flex: 1; }
-.profile-name { font: 700 28px/36px 'Inter', sans-serif; color: var(--md-on-surface); }
-.profile-stats {
-  display: flex; gap: 24px; margin-top: 8px;
-  font: 400 14px/20px 'Inter', sans-serif; color: var(--md-on-surface-variant);
-}
-.profile-stats strong { color: var(--md-on-surface); font-weight: 600; }
-
-/* BOTTOM NAV */
-.bottom-nav {
-  display: none; position: fixed; bottom: 0; left: 0; right: 0;
-  height: var(--nav-height);
-  background: var(--md-surface-container);
-  border-top: 1px solid var(--md-outline-variant);
-  z-index: 200; align-items: center; justify-content: space-around;
-}
-.bottom-nav .nav-tab {
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  padding: 4px 0; cursor: pointer; color: var(--md-on-surface-variant);
-  transition: color .2s; border: none; background: none;
-  font: 500 11px/16px 'Inter', sans-serif; user-select: none;
-}
-.bottom-nav .nav-tab.active { color: var(--md-primary); }
-.bottom-nav .nav-tab.active .material-symbols-rounded { font-variation-settings: 'FILL' 1; }
-.nav-tab-indicator {
-  width: 64px; height: 32px; border-radius: var(--md-shape-full);
-  display: flex; align-items: center; justify-content: center; transition: background .2s;
-}
-.nav-tab.active .nav-tab-indicator { background: var(--md-secondary-container); }
-
-/* SNACKBAR */
-.snackbar {
-  position: fixed; bottom: 100px; left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: var(--md-inverse-surface); color: var(--md-inverse-on-surface);
-  padding: 14px 24px; border-radius: var(--md-shape-md);
-  font: 400 14px/20px 'Inter', sans-serif;
-  box-shadow: var(--md-elevation-3); z-index: 999;
-  transition: transform .3s cubic-bezier(.2,0,0,1);
-  white-space: nowrap; max-width: 90vw;
-  overflow: hidden; text-overflow: ellipsis;
-}
-.snackbar.show { transform: translateX(-50%) translateY(0); }
-
-.genre-pills {
-  display: flex; gap: 8px; overflow-x: auto;
-  padding-bottom: 8px; margin-bottom: 24px; -webkit-overflow-scrolling: touch;
-}
-.genre-pills::-webkit-scrollbar { display: none; }
-
-.artist-card { text-align: center; cursor: pointer; }
-.artist-img {
-  width: 100%; aspect-ratio: 1; border-radius: 50%;
-  background: var(--md-surface-container-highest);
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden; transition: transform .3s; margin-bottom: 8px;
-}
-.artist-card:hover .artist-img { transform: scale(1.05); }
-.artist-img img { width: 100%; height: 100%; object-fit: cover; }
-
-/* AUTH PAGES */
-.auth-container {
-  display: flex; flex-direction: column; align-items: center;
-  justify-content: center; min-height: 60vh; text-align: center; gap: 24px;
-}
-.auth-form {
-  width: 100%; max-width: 400px; padding: 0 16px;
-}
-.auth-form .md-input {
-  margin-bottom: 12px; border-radius: var(--md-shape-md);
-}
-.auth-tabs {
-  display: flex; margin-bottom: 24px; border-radius: var(--md-shape-full);
-  overflow: hidden; border: 1px solid var(--md-outline-variant);
-}
-.auth-tab {
-  flex: 1; padding: 10px 16px;
-  font: 500 14px/20px 'Inter', sans-serif;
-  cursor: pointer; background: transparent;
-  color: var(--md-on-surface-variant); border: none;
-  transition: all .2s; text-align: center; user-select: none;
-}
-.auth-tab.active {
-  background: var(--md-primary); color: var(--md-on-primary);
-}
-.auth-divider {
-  display: flex; align-items: center; gap: 16px; margin: 20px 0;
-  font: 400 13px/18px 'Inter', sans-serif; color: var(--md-on-surface-variant);
-}
-.auth-divider::before, .auth-divider::after {
-  content: ''; flex: 1; height: 1px; background: var(--md-outline-variant);
-}
-.telegram-btn-wrap {
-  display: flex; justify-content: center; margin-top: 8px;
-}
-.tg-login-btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 12px 28px; border-radius: var(--md-shape-full);
-  background: #54A9EB; color: white; border: none;
-  font: 500 14px/20px 'Inter', sans-serif;
-  cursor: pointer; transition: all .2s; box-shadow: var(--md-elevation-1);
-  user-select: none;
-}
-.tg-login-btn:hover { box-shadow: var(--md-elevation-2); filter: brightness(1.08); }
-.tg-login-btn:active { transform: scale(.97); }
-.tg-login-btn svg { width: 22px; height: 22px; }
-
-.password-wrap {
-  position: relative;
-}
-.password-wrap .md-input { padding-right: 48px; }
-.password-toggle {
-  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
-  width: 40px; height: 40px; border: none; background: none;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: var(--md-on-surface-variant); border-radius: 50%;
-}
-.password-toggle:hover { background: var(--md-surface-container); }
-
-/* SKELETON / LOADING */
-.skeleton {
-  background: linear-gradient(90deg, var(--md-surface-container-high) 25%, var(--md-surface-container-highest) 50%, var(--md-surface-container-high) 75%);
-  background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: var(--md-shape-sm);
-}
-@keyframes shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
-.loading-spinner {
-  width: 40px; height: 40px;
-  border: 3px solid var(--md-outline-variant); border-top-color: var(--md-primary);
-  border-radius: 50%; animation: spin .8s linear infinite; margin: 40px auto;
-}
-@keyframes spin { to { transform: rotate(360deg) } }
-
-.user-menu {
-  position: absolute; top: 56px; right: 16px;
-  background: var(--md-surface-container); border-radius: var(--md-shape-md);
-  box-shadow: var(--md-elevation-3); min-width: 220px;
-  overflow: hidden; z-index: 300; display: none;
-}
-.user-menu.open { display: block; animation: fadeIn .2s ease; }
-.user-menu-item {
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px 16px; font: 400 14px/20px 'Inter', sans-serif;
-  color: var(--md-on-surface); cursor: pointer; transition: background .2s;
-}
-.user-menu-item:hover { background: var(--md-surface-container-high); }
-
-.hero-banner {
-  background: linear-gradient(135deg, var(--md-primary-container), var(--md-tertiary-container));
-  border-radius: var(--md-shape-xl); padding: 40px; margin-bottom: 32px;
-  position: relative; overflow: hidden;
-}
-.hero-banner::before {
-  content: '♪'; position: absolute; right: 40px; top: -20px;
-  font-size: 200px; opacity: .1; color: var(--md-primary);
-}
-.hero-title { font: 800 32px/40px 'Inter', sans-serif; color: var(--md-on-primary-container); margin-bottom: 8px; }
-.hero-sub { font: 400 16px/24px 'Inter', sans-serif; color: var(--md-on-primary-container); opacity: .8; margin-bottom: 24px; }
-
-.artist-page-header { display: flex; align-items: flex-end; gap: 24px; padding: 32px 0 24px; flex-wrap: wrap; }
-.artist-page-avatar {
-  width: 180px; height: 180px; border-radius: 50%;
-  background: var(--md-primary-container);
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden; flex-shrink: 0; box-shadow: var(--md-elevation-3);
-}
-.artist-page-avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-.tab-bar {
-  display: flex; gap: 0; border-bottom: 1px solid var(--md-outline-variant);
-  margin-bottom: 24px; overflow-x: auto;
-}
-.tab-item {
-  padding: 12px 24px; font: 500 14px/20px 'Inter', sans-serif;
-  color: var(--md-on-surface-variant); cursor: pointer;
-  border-bottom: 2px solid transparent; transition: all .2s; white-space: nowrap;
-  user-select: none;
-}
-.tab-item:hover { color: var(--md-on-surface); background: var(--md-surface-container); }
-.tab-item.active { color: var(--md-primary); border-bottom-color: var(--md-primary); }
-
-.empty-state { text-align: center; padding: 60px 20px; color: var(--md-on-surface-variant); }
-.empty-state .material-symbols-rounded { font-size: 64px; margin-bottom: 16px; opacity: .5; }
-.empty-state h3 { font: 600 18px/24px 'Inter', sans-serif; margin-bottom: 8px; color: var(--md-on-surface); }
-.empty-state p { font: 400 14px/20px 'Inter', sans-serif; max-width: 400px; margin: 0 auto; }
-
-/* Auth error msg */
-.auth-error {
-  color: var(--md-error);
-  font: 400 13px/18px 'Inter', sans-serif;
-  margin-bottom: 12px;
-  min-height: 18px;
-}
-
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
-@media (max-width: 1024px) {
-  .sidebar { transform: translateX(-100%); }
-  .sidebar.open { transform: translateX(0); }
-  .sidebar-overlay.open { display: block; }
-  .main-content {
-    margin-left: 0;
-    padding-bottom: calc(var(--player-height) + var(--nav-height) + 24px);
-  }
-  .top-bar .menu-btn { display: flex; }
-  .bottom-nav { display: flex; }
-  .player-bar { bottom: var(--nav-height); }
-  .player-volume { display: none; }
-  .player-track-info { min-width: 100px; max-width: 160px; }
-  .snackbar { bottom: calc(var(--player-height) + var(--nav-height) + 16px); }
-}
-
-@media (max-width: 600px) {
-  .page { padding: 12px 16px; }
-  .top-bar { padding: 8px 12px; }
-  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
-  .hero-banner { padding: 24px; }
-  .hero-title { font-size: 24px; line-height: 32px; }
-  .profile-header { flex-direction: column; text-align: center; }
-  .profile-stats { justify-content: center; }
-  .player-controls { flex: 3; }
-  .player-track-info { min-width: 70px; max-width: 120px; }
-  .progress-time { display: none; }
-  .artist-page-header { flex-direction: column; align-items: center; text-align: center; }
-  .artist-page-avatar { width: 120px; height: 120px; }
-  .wave-circle { width: 150px; height: 150px; }
-  .wave-circle .material-symbols-rounded { font-size: 48px; }
-  .modal { padding: 20px; max-width: 100%; }
+:root{--md-primary:#6750A4;--md-on-primary:#FFF;--md-primary-container:#EADDFF;--md-on-primary-container:#21005D;--md-secondary:#625B71;--md-on-secondary:#FFF;--md-secondary-container:#E8DEF8;--md-tertiary:#7D5260;--md-tertiary-container:#FFD8E4;--md-surface:#FEF7FF;--md-surface-dim:#DED8E1;--md-surface-bright:#FEF7FF;--md-surface-container-lowest:#FFF;--md-surface-container-low:#F7F2FA;--md-surface-container:#F3EDF7;--md-surface-container-high:#ECE6F0;--md-surface-container-highest:#E6E0E9;--md-on-surface:#1D1B20;--md-on-surface-variant:#49454F;--md-outline:#79747E;--md-outline-variant:#CAC4D0;--md-error:#B3261E;--md-error-container:#F9DEDC;--md-on-error:#FFF;--md-inverse-surface:#322F35;--md-inverse-on-surface:#F5EFF7;--md-elevation-1:0 1px 3px 1px rgba(0,0,0,.15),0 1px 2px rgba(0,0,0,.3);--md-elevation-2:0 2px 6px 2px rgba(0,0,0,.15),0 1px 2px rgba(0,0,0,.3);--md-elevation-3:0 4px 8px 3px rgba(0,0,0,.15),0 1px 3px rgba(0,0,0,.3);--md-shape-sm:8px;--md-shape-md:12px;--md-shape-lg:16px;--md-shape-xl:28px;--md-shape-full:9999px;--player-height:72px;--nav-height:56px;--sidebar-width:280px}
+[data-theme="dark"]{--md-primary:#D0BCFF;--md-on-primary:#381E72;--md-primary-container:#4F378B;--md-on-primary-container:#EADDFF;--md-secondary:#CCC2DC;--md-on-secondary:#332D41;--md-secondary-container:#4A4458;--md-tertiary:#EFB8C8;--md-tertiary-container:#633B48;--md-surface:#141218;--md-surface-dim:#141218;--md-surface-bright:#3B383E;--md-surface-container-lowest:#0F0D13;--md-surface-container-low:#1D1B20;--md-surface-container:#211F26;--md-surface-container-high:#2B2930;--md-surface-container-highest:#36343B;--md-on-surface:#E6E0E9;--md-on-surface-variant:#CAC4D0;--md-outline:#938F99;--md-outline-variant:#49454F;--md-error:#F2B8B5;--md-error-container:#8C1D18;--md-on-error:#601410;--md-inverse-surface:#E6E0E9;--md-inverse-on-surface:#322F35}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent!important;-webkit-touch-callout:none}
+*:focus{outline:none!important}
+*:focus-visible{outline:2px solid var(--md-primary);outline-offset:2px;border-radius:4px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--md-surface);color:var(--md-on-surface);overflow-x:hidden;transition:background .3s,color .3s;min-height:100vh;min-height:100dvh;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--md-outline-variant);border-radius:3px}
+.material-symbols-rounded{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;user-select:none;-webkit-user-select:none}
+.material-symbols-rounded.filled{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24}
+button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-highlight-color:transparent!important;-webkit-touch-callout:none}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--md-primary);color:var(--md-on-primary);border:none;border-radius:var(--md-shape-full);font:500 14px/20px 'Inter',sans-serif;letter-spacing:.1px;cursor:pointer;transition:all .2s;box-shadow:var(--md-elevation-1);user-select:none}
+.btn-primary:hover{box-shadow:var(--md-elevation-2);filter:brightness(1.08)}.btn-primary:active{transform:scale(.97)}.btn-primary:disabled{opacity:.5;pointer-events:none}
+.btn-tonal{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--md-secondary-container);color:var(--md-on-surface);border:none;border-radius:var(--md-shape-full);font:500 14px/20px 'Inter',sans-serif;cursor:pointer;transition:all .2s;user-select:none}
+.btn-tonal:hover{box-shadow:var(--md-elevation-1)}
+.btn-outlined{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:transparent;color:var(--md-primary);border:1px solid var(--md-outline);border-radius:var(--md-shape-full);font:500 14px/20px 'Inter',sans-serif;cursor:pointer;transition:all .2s;user-select:none}
+.btn-outlined:hover{background:rgba(103,80,164,.08)}
+.btn-text{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:transparent;color:var(--md-primary);border:none;border-radius:var(--md-shape-full);font:500 14px/20px 'Inter',sans-serif;cursor:pointer;transition:all .2s;user-select:none}
+.btn-text:hover{background:rgba(103,80,164,.08)}
+.btn-icon{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:transparent;color:var(--md-on-surface-variant);border:none;border-radius:var(--md-shape-full);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;user-select:none;flex-shrink:0}
+.btn-icon:hover{background:var(--md-surface-container-highest)}.btn-icon.active{color:var(--md-primary)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border:1px solid var(--md-outline-variant);border-radius:var(--md-shape-sm);font:500 13px/18px 'Inter',sans-serif;color:var(--md-on-surface-variant);cursor:pointer;transition:all .2s;white-space:nowrap;user-select:none}
+.chip:hover{background:var(--md-surface-container-high)}.chip.active{background:var(--md-secondary-container);color:var(--md-on-surface);border-color:transparent}
+.md-input{width:100%;padding:16px;background:var(--md-surface-container-highest);border:none;border-radius:var(--md-shape-xl);font:400 16px/24px 'Inter',sans-serif;color:var(--md-on-surface);outline:none;transition:all .2s}
+.md-input:focus{outline:2px solid var(--md-primary)!important}.md-input::placeholder{color:var(--md-on-surface-variant)}
+.md-card{background:var(--md-surface-container-low);border-radius:var(--md-shape-md);overflow:hidden;transition:all .3s;cursor:pointer}
+.md-card:hover{box-shadow:var(--md-elevation-2);transform:translateY(-2px)}
+.md-card .card-img{width:100%;aspect-ratio:1;object-fit:cover;background:var(--md-surface-container-highest);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.md-card .card-img img{width:100%;height:100%;object-fit:cover}
+.md-card .card-img .material-symbols-rounded{font-size:48px;color:var(--md-outline)}
+.md-card .card-body{padding:12px}
+.md-card .card-title{font:500 14px/20px 'Inter',sans-serif;color:var(--md-on-surface);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.md-card .card-sub{font:400 12px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.explicit-badge{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--md-error);color:white;font-size:12px;font-weight:700;flex-shrink:0;line-height:1}
+.sidebar{width:var(--sidebar-width);background:var(--md-surface-container);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform .3s cubic-bezier(.2,0,0,1);overflow-y:auto}
+.sidebar-header{padding:16px 20px;display:flex;align-items:center;gap:10px}
+.sidebar-logo{width:36px;height:36px;border-radius:var(--md-shape-full);background:linear-gradient(135deg,var(--md-primary),var(--md-tertiary));display:flex;align-items:center;justify-content:center;color:white;font-size:20px;flex-shrink:0}
+.sidebar-brand{font:700 18px/24px 'Inter',sans-serif;color:var(--md-on-surface)}
+.sidebar nav{flex:1;padding:8px 12px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--md-shape-full);font:500 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);cursor:pointer;transition:all .2s;margin-bottom:2px;text-decoration:none;user-select:none}
+.nav-item:hover{background:var(--md-surface-container-high)}
+.nav-item.active{background:var(--md-secondary-container);color:var(--md-on-surface)}
+.nav-item.active .material-symbols-rounded{font-variation-settings:'FILL' 1}
+.nav-divider{height:1px;background:var(--md-outline-variant);margin:8px 16px}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:99}
+.main-content{flex:1;margin-left:var(--sidebar-width);padding-bottom:100px;transition:margin .3s}
+.top-bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:12px;padding:8px 24px;background:var(--md-surface);backdrop-filter:blur(20px);transition:box-shadow .3s,background .3s}
+.top-bar.scrolled{box-shadow:var(--md-elevation-2);background:color-mix(in srgb,var(--md-surface) 90%,transparent)}
+.top-bar .menu-btn{display:none}
+.search-bar{flex:1;max-width:720px;position:relative}
+.search-bar .material-symbols-rounded{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--md-on-surface-variant);font-size:20px}
+.search-bar input{width:100%;padding:10px 16px 10px 48px;background:var(--md-surface-container-highest);border:none;border-radius:var(--md-shape-full);font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface)}
+.search-bar input:focus{outline:2px solid var(--md-primary)!important}
+.user-area{display:flex;align-items:center;gap:4px;margin-left:auto}
+.user-avatar{width:36px;height:36px;border-radius:var(--md-shape-full);background:var(--md-primary-container);display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;flex-shrink:0}
+.user-avatar img{width:100%;height:100%;object-fit:cover}.user-avatar .material-symbols-rounded{font-size:20px;color:var(--md-primary)}
+.page{display:none;padding:16px 24px;animation:fadeIn .3s ease}.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.section-title{font:700 22px/28px 'Inter',sans-serif;color:var(--md-on-surface);margin-bottom:16px}
+.section-sub{font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-bottom:24px}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:32px}
+.track-list{margin-bottom:32px}
+.track-item{display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:var(--md-shape-md);cursor:pointer;transition:background .2s}
+.track-item:hover{background:var(--md-surface-container-high)}
+.track-item.playing{background:var(--md-primary-container)}
+.track-num{width:24px;text-align:center;font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);flex-shrink:0}
+.track-thumb{width:48px;height:48px;border-radius:var(--md-shape-sm);background:var(--md-surface-container-highest);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;position:relative}
+.track-thumb img{width:100%;height:100%;object-fit:cover}
+.track-thumb .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+.track-item:hover .play-overlay{opacity:1}
+.track-info{flex:1;min-width:0}
+.track-title-row{display:flex;align-items:center;gap:6px}
+.track-name{font:500 14px/20px 'Inter',sans-serif;color:var(--md-on-surface);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.track-artist{font:400 12px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.track-duration{font:400 12px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);flex-shrink:0}
+.track-actions{display:flex;align-items:center;gap:2px;flex-shrink:0}
+@media(hover:hover){.track-actions{opacity:0;transition:opacity .2s}.track-item:hover .track-actions{opacity:1}}
+.player-bar{position:fixed;left:0;right:0;bottom:0;height:var(--player-height);background:var(--md-surface-container-high);border-top:1px solid var(--md-outline-variant);display:none;align-items:center;padding:0 16px;z-index:210;gap:12px}
+.player-bar.visible{display:flex}
+.player-track-info{display:flex;align-items:center;gap:12px;min-width:200px;max-width:300px;flex:1;cursor:pointer}
+.player-thumb{width:48px;height:48px;border-radius:var(--md-shape-sm);background:var(--md-surface-container-highest);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.player-thumb img{width:100%;height:100%;object-fit:cover}
+.player-meta{min-width:0}
+.player-title-row{display:flex;align-items:center;gap:6px}
+.player-song{font:500 14px/20px 'Inter',sans-serif;color:var(--md-on-surface);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.player-artist-name{font:400 12px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
+.player-controls{display:flex;flex-direction:column;align-items:center;gap:2px;flex:2;max-width:600px}
+.player-buttons{display:flex;align-items:center;gap:8px}
+.player-play-btn{width:40px;height:40px;border-radius:var(--md-shape-full);background:var(--md-primary);color:var(--md-on-primary);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.player-play-btn:hover{transform:scale(1.08);box-shadow:var(--md-elevation-2)}
+.progress-bar{display:flex;align-items:center;gap:8px;width:100%}
+.progress-time{font:400 11px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);min-width:36px;text-align:center}
+.progress-track{flex:1;height:4px;background:var(--md-outline-variant);border-radius:2px;cursor:pointer;position:relative}
+.progress-track:hover{height:6px}
+.progress-fill{height:100%;background:var(--md-primary);border-radius:2px;width:0%;transition:width .1s linear;position:relative}
+.progress-fill::after{content:'';position:absolute;right:-6px;top:50%;transform:translateY(-50%) scale(0);width:12px;height:12px;background:var(--md-primary);border-radius:50%;transition:transform .2s}
+.progress-track:hover .progress-fill::after{transform:translateY(-50%) scale(1)}
+.player-volume{display:flex;align-items:center;gap:4px;flex:1;max-width:200px;justify-content:flex-end}
+.volume-slider{width:100px;height:4px;background:var(--md-outline-variant);border-radius:2px;cursor:pointer;position:relative}
+.volume-fill{height:100%;width:80%;background:var(--md-primary);border-radius:2px}
+.wave-container{text-align:center;padding:40px 20px}
+.wave-circle{width:200px;height:200px;border-radius:50%;background:linear-gradient(135deg,var(--md-primary),var(--md-tertiary));margin:0 auto 24px;display:flex;align-items:center;justify-content:center;position:relative;animation:pulse 3s ease-in-out infinite}
+.wave-circle.playing-anim{animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(103,80,164,.3)}50%{box-shadow:0 0 0 20px rgba(103,80,164,0)}}
+.wave-circle .material-symbols-rounded{font-size:64px;color:white}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--md-surface-container-high);border-radius:var(--md-shape-xl);width:100%;max-width:480px;max-height:90vh;overflow-y:auto;padding:24px;animation:modalIn .3s cubic-bezier(.2,0,0,1)}
+@keyframes modalIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.modal-title{font:700 22px/28px 'Inter',sans-serif;color:var(--md-on-surface);margin-bottom:16px}
+.modal-label{font:500 12px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-bottom:6px;display:block}
+.modal .md-input{margin-bottom:16px;border-radius:var(--md-shape-md)}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
+.upload-zone{border:2px dashed var(--md-outline-variant);border-radius:var(--md-shape-lg);padding:32px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:16px}
+.upload-zone:hover,.upload-zone.dragover{border-color:var(--md-primary);background:rgba(103,80,164,.05)}
+.upload-zone .material-symbols-rounded{font-size:48px;color:var(--md-primary);margin-bottom:8px}
+.profile-header{display:flex;align-items:center;gap:24px;padding:32px 0}
+.profile-avatar{width:120px;height:120px;border-radius:50%;background:var(--md-primary-container);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;position:relative}
+.profile-avatar img{width:100%;height:100%;object-fit:cover}
+.profile-avatar .material-symbols-rounded{font-size:48px;color:var(--md-primary)}
+.profile-info{flex:1}
+.profile-name{font:700 28px/36px 'Inter',sans-serif;color:var(--md-on-surface)}
+.profile-stats{display:flex;gap:24px;margin-top:8px;font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant)}
+.profile-stats strong{color:var(--md-on-surface);font-weight:600}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:var(--nav-height);background:var(--md-surface-container);border-top:1px solid var(--md-outline-variant);z-index:200;align-items:center;justify-content:space-around}
+.bottom-nav .nav-tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0;cursor:pointer;color:var(--md-on-surface-variant);transition:color .2s;border:none;background:none;font:500 11px/16px 'Inter',sans-serif;user-select:none}
+.bottom-nav .nav-tab.active{color:var(--md-primary)}
+.bottom-nav .nav-tab.active .material-symbols-rounded{font-variation-settings:'FILL' 1}
+.nav-tab-indicator{width:64px;height:32px;border-radius:var(--md-shape-full);display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nav-tab.active .nav-tab-indicator{background:var(--md-secondary-container)}
+/* SNACKBAR - FIXED */
+.snackbar{position:fixed;left:50%;transform:translateX(-50%) translateY(100px);background:var(--md-inverse-surface);color:var(--md-inverse-on-surface);padding:14px 24px;border-radius:var(--md-shape-md);font:400 14px/20px 'Inter',sans-serif;box-shadow:var(--md-elevation-3);z-index:9999;transition:transform .3s cubic-bezier(.2,0,0,1),opacity .3s;white-space:nowrap;max-width:90vw;overflow:hidden;text-overflow:ellipsis;pointer-events:none;opacity:0;bottom:24px}
+.snackbar.show{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:auto}
+.genre-pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:24px;-webkit-overflow-scrolling:touch}
+.genre-pills::-webkit-scrollbar{display:none}
+.artist-card{text-align:center;cursor:pointer}
+.artist-img{width:100%;aspect-ratio:1;border-radius:50%;background:var(--md-surface-container-highest);display:flex;align-items:center;justify-content:center;overflow:hidden;transition:transform .3s;margin-bottom:8px}
+.artist-card:hover .artist-img{transform:scale(1.05)}
+.artist-img img{width:100%;height:100%;object-fit:cover}
+.auth-container{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;text-align:center;gap:24px}
+.auth-form{width:100%;max-width:400px;padding:0 16px}
+.auth-form .md-input{margin-bottom:12px;border-radius:var(--md-shape-md)}
+.auth-tabs{display:flex;margin-bottom:24px;border-radius:var(--md-shape-full);overflow:hidden;border:1px solid var(--md-outline-variant)}
+.auth-tab{flex:1;padding:10px 16px;font:500 14px/20px 'Inter',sans-serif;cursor:pointer;background:transparent;color:var(--md-on-surface-variant);border:none;transition:all .2s;text-align:center;user-select:none}
+.auth-tab.active{background:var(--md-primary);color:var(--md-on-primary)}
+.auth-divider{display:flex;align-items:center;gap:16px;margin:20px 0;font:400 13px/18px 'Inter',sans-serif;color:var(--md-on-surface-variant)}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--md-outline-variant)}
+.telegram-btn-wrap{display:flex;justify-content:center;margin-top:8px}
+.tg-login-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 28px;border-radius:var(--md-shape-full);background:#54A9EB;color:white;border:none;font:500 14px/20px 'Inter',sans-serif;cursor:pointer;transition:all .2s;box-shadow:var(--md-elevation-1);user-select:none}
+.tg-login-btn:hover{box-shadow:var(--md-elevation-2);filter:brightness(1.08)}.tg-login-btn:active{transform:scale(.97)}
+.tg-login-btn svg{width:22px;height:22px}
+.password-wrap{position:relative}.password-wrap .md-input{padding-right:48px}
+.password-toggle{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:40px;height:40px;border:none;background:none;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--md-on-surface-variant);border-radius:50%}
+.password-toggle:hover{background:var(--md-surface-container)}
+.skeleton{background:linear-gradient(90deg,var(--md-surface-container-high) 25%,var(--md-surface-container-highest) 50%,var(--md-surface-container-high) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--md-shape-sm)}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.loading-spinner{width:40px;height:40px;border:3px solid var(--md-outline-variant);border-top-color:var(--md-primary);border-radius:50%;animation:spin .8s linear infinite;margin:40px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+.user-menu{position:absolute;top:56px;right:16px;background:var(--md-surface-container);border-radius:var(--md-shape-md);box-shadow:var(--md-elevation-3);min-width:220px;overflow:hidden;z-index:300;display:none}
+.user-menu.open{display:block;animation:fadeIn .2s ease}
+.user-menu-item{display:flex;align-items:center;gap:12px;padding:12px 16px;font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface);cursor:pointer;transition:background .2s}
+.user-menu-item:hover{background:var(--md-surface-container-high)}
+.hero-banner{background:linear-gradient(135deg,var(--md-primary-container),var(--md-tertiary-container));border-radius:var(--md-shape-xl);padding:40px;margin-bottom:32px;position:relative;overflow:hidden}
+.hero-banner::before{content:'♪';position:absolute;right:40px;top:-20px;font-size:200px;opacity:.1;color:var(--md-primary)}
+.hero-title{font:800 32px/40px 'Inter',sans-serif;color:var(--md-on-primary-container);margin-bottom:8px}
+.hero-sub{font:400 16px/24px 'Inter',sans-serif;color:var(--md-on-primary-container);opacity:.8;margin-bottom:24px}
+.artist-page-header{display:flex;align-items:flex-end;gap:24px;padding:32px 0 24px;flex-wrap:wrap}
+.artist-page-avatar{width:180px;height:180px;border-radius:50%;background:var(--md-primary-container);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;box-shadow:var(--md-elevation-3)}
+.artist-page-avatar img{width:100%;height:100%;object-fit:cover}
+.tab-bar{display:flex;gap:0;border-bottom:1px solid var(--md-outline-variant);margin-bottom:24px;overflow-x:auto}
+.tab-item{padding:12px 24px;font:500 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;user-select:none}
+.tab-item:hover{color:var(--md-on-surface);background:var(--md-surface-container)}
+.tab-item.active{color:var(--md-primary);border-bottom-color:var(--md-primary)}
+.empty-state{text-align:center;padding:60px 20px;color:var(--md-on-surface-variant)}
+.empty-state .material-symbols-rounded{font-size:64px;margin-bottom:16px;opacity:.5}
+.empty-state h3{font:600 18px/24px 'Inter',sans-serif;margin-bottom:8px;color:var(--md-on-surface)}
+.empty-state p{font:400 14px/20px 'Inter',sans-serif;max-width:400px;margin:0 auto}
+.auth-error{color:var(--md-error);font:400 13px/18px 'Inter',sans-serif;margin-bottom:12px;min-height:18px}
+/* FULLSCREEN PLAYER */
+.fs-player-overlay{display:none;position:fixed;inset:0;background:var(--md-surface);z-index:600;flex-direction:column;overflow-y:auto}
+.fs-player-overlay.open{display:flex}
+.fs-top{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+.fs-cover-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:24px}
+.fs-cover{width:100%;max-width:360px;aspect-ratio:1;border-radius:var(--md-shape-lg);background:var(--md-surface-container-highest);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:var(--md-elevation-3)}
+.fs-cover img{width:100%;height:100%;object-fit:cover}
+.fs-cover .material-symbols-rounded{font-size:96px;color:var(--md-outline)}
+.fs-info{padding:0 24px;text-align:center}
+.fs-title{font:700 24px/32px 'Inter',sans-serif;color:var(--md-on-surface);margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:8px}
+.fs-artist{font:500 16px/24px 'Inter',sans-serif;color:var(--md-primary);cursor:pointer}
+.fs-controls{padding:24px}
+.fs-progress{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.fs-progress .progress-track{flex:1;height:6px}
+.fs-progress .progress-time{font:500 13px/18px 'Inter',sans-serif}
+.fs-buttons{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:16px}
+.fs-play-btn{width:64px;height:64px;border-radius:50%;background:var(--md-primary);color:var(--md-on-primary);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.fs-play-btn:hover{transform:scale(1.08);box-shadow:var(--md-elevation-3)}
+.fs-play-btn .material-symbols-rounded{font-size:36px}
+.fs-actions{display:flex;align-items:center;justify-content:center;gap:12px;padding:0 24px 24px}
+/* SETTINGS ITEMS */
+.settings-item{display:flex;align-items:center;gap:16px;padding:16px;border-radius:var(--md-shape-md);transition:background .2s;cursor:pointer}
+.settings-item:hover{background:var(--md-surface-container)}
+.settings-item .material-symbols-rounded{color:var(--md-on-surface-variant);font-size:24px}
+.settings-item-info{flex:1;min-width:0}
+.settings-item-title{font:500 14px/20px 'Inter',sans-serif;color:var(--md-on-surface)}
+.settings-item-sub{font:400 12px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* SEARCH SECTIONS */
+.search-section{margin-bottom:24px}
+.search-section-title{font:600 16px/24px 'Inter',sans-serif;color:var(--md-on-surface);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+/* COVER UPLOAD */
+.cover-upload-zone{width:120px;height:120px;border:2px dashed var(--md-outline-variant);border-radius:var(--md-shape-md);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;overflow:hidden;flex-shrink:0}
+.cover-upload-zone:hover{border-color:var(--md-primary);background:rgba(103,80,164,.05)}
+.cover-upload-zone img{width:100%;height:100%;object-fit:cover}
+.cover-upload-zone .material-symbols-rounded{font-size:32px;color:var(--md-primary)}
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .sidebar-overlay.open{display:block}
+  .main-content{margin-left:0;padding-bottom:calc(var(--player-height) + var(--nav-height) + 24px)}
+  .top-bar .menu-btn{display:flex}
+  .bottom-nav{display:flex}
+  .player-bar{bottom:var(--nav-height)}
+  .player-volume{display:none}
+  .player-track-info{min-width:100px;max-width:160px}
+}
+@media(max-width:600px){
+  .page{padding:12px 16px}
+  .top-bar{padding:8px 12px}
+  .cards-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+  .hero-banner{padding:24px}
+  .hero-title{font-size:24px;line-height:32px}
+  .profile-header{flex-direction:column;text-align:center}
+  .profile-stats{justify-content:center}
+  .player-controls{flex:3}
+  .player-track-info{min-width:70px;max-width:120px}
+  .progress-time{display:none}
+  .artist-page-header{flex-direction:column;align-items:center;text-align:center}
+  .artist-page-avatar{width:120px;height:120px}
+  .wave-circle{width:150px;height:150px}
+  .wave-circle .material-symbols-rounded{font-size:48px}
+  .modal{padding:20px;max-width:100%}
+  .fs-cover{max-width:280px}
 }
 </style>
 </head>
 <body>
-
-<!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <div class="sidebar-logo">♪</div>
     <span class="sidebar-brand">MusicPlatforme</span>
-    <button class="btn-icon" onclick="toggleSidebar()" style="margin-left:auto;display:none" id="sidebarCloseBtn">
-      <span class="material-symbols-rounded">close</span>
-    </button>
+    <button class="btn-icon" onclick="toggleSidebar()" style="margin-left:auto;display:none" id="sidebarCloseBtn"><span class="material-symbols-rounded">close</span></button>
   </div>
   <nav>
-    <a class="nav-item active" data-page="home" onclick="navigate('home')">
-      <span class="material-symbols-rounded">home</span> Главная
-    </a>
-    <a class="nav-item" data-page="explore" onclick="navigate('explore')">
-      <span class="material-symbols-rounded">explore</span> Обзор
-    </a>
-    <a class="nav-item" data-page="wave" onclick="navigate('wave')">
-      <span class="material-symbols-rounded">waves</span> Моя волна
-    </a>
+    <a class="nav-item active" data-page="home" onclick="navigate('home')"><span class="material-symbols-rounded">home</span> Главная</a>
+    <a class="nav-item" data-page="explore" onclick="navigate('explore')"><span class="material-symbols-rounded">explore</span> Обзор</a>
+    <a class="nav-item" data-page="wave" onclick="navigate('wave')"><span class="material-symbols-rounded">waves</span> Моя волна</a>
     <div class="nav-divider"></div>
-    <a class="nav-item" data-page="favorites" onclick="navigate('favorites')">
-      <span class="material-symbols-rounded">favorite</span> Любимое
-    </a>
-    <a class="nav-item" data-page="playlists" onclick="navigate('playlists')">
-      <span class="material-symbols-rounded">queue_music</span> Плейлисты
-    </a>
-    <a class="nav-item" data-page="subscriptions" onclick="navigate('subscriptions')">
-      <span class="material-symbols-rounded">people</span> Подписки
-    </a>
+    <a class="nav-item" data-page="favorites" onclick="navigate('favorites')"><span class="material-symbols-rounded">favorite</span> Любимое</a>
+    <a class="nav-item" data-page="playlists" onclick="navigate('playlists')"><span class="material-symbols-rounded">queue_music</span> Плейлисты</a>
+    <a class="nav-item" data-page="subscriptions" onclick="navigate('subscriptions')"><span class="material-symbols-rounded">people</span> Подписки</a>
     <div class="nav-divider"></div>
-    <a class="nav-item" data-page="upload" onclick="navigate('upload')">
-      <span class="material-symbols-rounded">upload</span> Загрузить
-    </a>
-    <a class="nav-item" data-page="profile" onclick="navigate('profile')">
-      <span class="material-symbols-rounded">person</span> Профиль
-    </a>
+    <a class="nav-item" data-page="upload" onclick="navigate('upload')"><span class="material-symbols-rounded">upload</span> Загрузить</a>
+    <a class="nav-item" data-page="profile" onclick="navigate('profile')"><span class="material-symbols-rounded">person</span> Профиль</a>
   </nav>
 </aside>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-<!-- MAIN -->
 <div class="main-content" id="mainContent">
   <header class="top-bar" id="topBar">
-    <button class="btn-icon menu-btn" onclick="toggleSidebar()">
-      <span class="material-symbols-rounded">menu</span>
-    </button>
+    <button class="btn-icon menu-btn" onclick="toggleSidebar()"><span class="material-symbols-rounded">menu</span></button>
     <div class="search-bar">
       <span class="material-symbols-rounded">search</span>
       <input type="text" placeholder="Поиск музыки, артистов..." id="searchInput" oninput="handleSearch(this.value)">
     </div>
     <div class="user-area">
-      <button class="btn-icon" onclick="toggleTheme()" title="Сменить тему">
-        <span class="material-symbols-rounded" id="themeIcon">dark_mode</span>
-      </button>
+      <button class="btn-icon" onclick="toggleTheme()" title="Сменить тему"><span class="material-symbols-rounded" id="themeIcon">dark_mode</span></button>
       <div class="user-avatar" id="userAvatarBtn" onclick="toggleUserMenu()">
         <span class="material-symbols-rounded" id="avatarIcon">person</span>
         <img id="avatarImg" style="display:none" alt="">
       </div>
     </div>
   </header>
+  <div class="user-menu" id="userMenu"><div id="userMenuContent"></div></div>
 
-  <div class="user-menu" id="userMenu">
-    <div id="userMenuContent"></div>
-  </div>
-
-  <!-- HOME PAGE -->
+  <!-- HOME -->
   <div class="page active" id="page-home">
     <div class="hero-banner">
       <div class="hero-title">Добро пожаловать в MusicPlatforme</div>
       <div class="hero-sub">Слушай, открывай и делись музыкой бесплатно</div>
-      <button class="btn-primary" onclick="navigate('wave')">
-        <span class="material-symbols-rounded">waves</span> Моя волна
-      </button>
+      <button class="btn-primary" onclick="navigate('wave')"><span class="material-symbols-rounded">waves</span> Моя волна</button>
     </div>
     <div class="section-title">Новые треки</div>
     <div class="track-list" id="homeNewTracks"><div class="loading-spinner"></div></div>
     <div class="section-title">Популярное</div>
-    <div class="cards-grid" id="homePopular">
-      <div class="skeleton" style="height:220px"></div>
-      <div class="skeleton" style="height:220px"></div>
-      <div class="skeleton" style="height:220px"></div>
-      <div class="skeleton" style="height:220px"></div>
-    </div>
+    <div class="cards-grid" id="homePopular"><div class="skeleton" style="height:220px"></div><div class="skeleton" style="height:220px"></div><div class="skeleton" style="height:220px"></div><div class="skeleton" style="height:220px"></div></div>
     <div class="section-title">Артисты</div>
     <div class="cards-grid" id="homeArtists" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr))"></div>
   </div>
 
-  <!-- EXPLORE PAGE -->
+  <!-- EXPLORE -->
   <div class="page" id="page-explore">
     <div class="section-title">Обзор</div>
     <div class="genre-pills" id="genrePills"></div>
@@ -791,83 +335,49 @@ button, a, [onclick], input, select, textarea {
     <div class="track-list" id="exploreTracks"><div class="loading-spinner"></div></div>
   </div>
 
-  <!-- WAVE PAGE -->
+  <!-- WAVE -->
   <div class="page" id="page-wave">
     <div class="wave-container" id="waveContainer">
-      <div class="wave-circle" id="waveCircle">
-        <span class="material-symbols-rounded filled">waves</span>
-      </div>
+      <div class="wave-circle" id="waveCircle"><span class="material-symbols-rounded filled">waves</span></div>
       <div class="section-title">Моя волна</div>
       <p class="section-sub">Персональная радиостанция, которая подстраивается под твои вкусы</p>
-      <button class="btn-primary" onclick="startWave()" id="waveBtn">
-        <span class="material-symbols-rounded">play_arrow</span> Запустить волну
-      </button>
+      <button class="btn-primary" onclick="startWave()" id="waveBtn"><span class="material-symbols-rounded">play_arrow</span> Запустить волну</button>
     </div>
     <div class="track-list" id="waveTracks" style="margin-top:24px"></div>
   </div>
 
-  <!-- FAVORITES PAGE -->
+  <!-- FAVORITES -->
   <div class="page" id="page-favorites">
     <div class="section-title">Любимое</div>
     <div id="favContent">
-      <div class="empty-state" id="favEmpty">
-        <span class="material-symbols-rounded">favorite</span>
-        <h3>Пока пусто</h3>
-        <p>Нажмите ♡ на любом треке, чтобы добавить его в любимое</p>
-      </div>
+      <div class="empty-state" id="favEmpty"><span class="material-symbols-rounded">favorite</span><h3>Пока пусто</h3><p>Нажмите ♡ на любом треке, чтобы добавить его в любимое</p></div>
       <div class="track-list" id="favTracks"></div>
     </div>
   </div>
 
-  <!-- PLAYLISTS PAGE -->
+  <!-- PLAYLISTS -->
   <div class="page" id="page-playlists">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
       <div class="section-title" style="margin-bottom:0">Плейлисты</div>
-      <button class="btn-tonal" onclick="createPlaylist()">
-        <span class="material-symbols-rounded">add</span> Создать
-      </button>
+      <button class="btn-tonal" onclick="createPlaylist()"><span class="material-symbols-rounded">add</span> Создать</button>
     </div>
-    <div id="playlistsContent">
-      <div class="empty-state">
-        <span class="material-symbols-rounded">queue_music</span>
-        <h3>Нет плейлистов</h3>
-        <p>Создайте свой первый плейлист</p>
-      </div>
-    </div>
+    <div id="playlistsContent"><div class="empty-state"><span class="material-symbols-rounded">queue_music</span><h3>Нет плейлистов</h3><p>Создайте свой первый плейлист</p></div></div>
     <div class="cards-grid" id="playlistsGrid"></div>
   </div>
 
-  <!-- SUBSCRIPTIONS PAGE -->
+  <!-- SUBSCRIPTIONS -->
   <div class="page" id="page-subscriptions">
     <div class="section-title">Подписки</div>
-    <div id="subsContent">
-      <div class="empty-state" id="subsEmpty">
-        <span class="material-symbols-rounded">people</span>
-        <h3>Вы ни на кого не подписаны</h3>
-        <p>Подпишитесь на артистов, чтобы видеть их новые треки</p>
-      </div>
-    </div>
+    <div id="subsContent"><div class="empty-state" id="subsEmpty"><span class="material-symbols-rounded">people</span><h3>Вы ни на кого не подписаны</h3><p>Подпишитесь на артистов, чтобы видеть их новые треки</p></div></div>
     <div class="cards-grid" id="subsGrid" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr))"></div>
   </div>
 
-  <!-- UPLOAD PAGE -->
+  <!-- UPLOAD -->
   <div class="page" id="page-upload">
     <div class="section-title">Загрузить трек</div>
-    <div id="uploadAuthMsg" style="display:none">
-      <div class="empty-state">
-        <span class="material-symbols-rounded">lock</span>
-        <h3>Требуется авторизация</h3>
-        <p>Войдите или зарегистрируйтесь, чтобы публиковать музыку</p>
-        <button class="btn-primary" onclick="navigate('profile')" style="margin-top:20px">
-          <span class="material-symbols-rounded">login</span> Войти
-        </button>
-      </div>
-    </div>
+    <div id="uploadAuthMsg" style="display:none"><div class="empty-state"><span class="material-symbols-rounded">lock</span><h3>Требуется авторизация</h3><p>Войдите или зарегистрируйтесь, чтобы публиковать музыку</p><button class="btn-primary" onclick="navigate('profile')" style="margin-top:20px"><span class="material-symbols-rounded">login</span> Войти</button></div></div>
     <div id="uploadForm" style="display:none">
-      <div class="upload-zone" id="uploadZone" onclick="document.getElementById('audioFileInput').click()"
-           ondragover="event.preventDefault();this.classList.add('dragover')"
-           ondragleave="this.classList.remove('dragover')"
-           ondrop="handleAudioDrop(event)">
+      <div class="upload-zone" id="uploadZone" onclick="document.getElementById('audioFileInput').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="handleAudioDrop(event)">
         <span class="material-symbols-rounded">cloud_upload</span>
         <div style="font:500 16px/24px 'Inter',sans-serif;color:var(--md-on-surface)">Перетащите аудиофайл сюда</div>
         <div style="font:400 13px/18px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-top:4px">или нажмите для выбора (MP3, WAV, OGG, до 15 МБ)</div>
@@ -877,103 +387,74 @@ button, a, [onclick], input, select, textarea {
         <div style="display:flex;align-items:center;gap:8px">
           <span class="material-symbols-rounded" style="color:var(--md-primary)">audio_file</span>
           <span id="selectedFileName" style="font:500 14px/20px 'Inter',sans-serif"></span>
-          <button class="btn-icon" onclick="clearSelectedFile()" style="margin-left:auto">
-            <span class="material-symbols-rounded">close</span>
-          </button>
+          <button class="btn-icon" onclick="clearSelectedFile()" style="margin-left:auto"><span class="material-symbols-rounded">close</span></button>
         </div>
       </div>
       <label class="modal-label">Название трека *</label>
       <input class="md-input" id="uploadTitle" placeholder="Название трека" style="border-radius:var(--md-shape-md);margin-bottom:16px">
       <label class="modal-label">Жанр</label>
-      <select class="md-input" id="uploadGenre" style="border-radius:var(--md-shape-md);margin-bottom:16px;cursor:pointer">
+      <select class="md-input" id="uploadGenre" style="border-radius:var(--md-shape-md);margin-bottom:8px;cursor:pointer">
         <option value="">Выберите жанр</option>
-        <option value="pop">Поп</option>
-        <option value="rock">Рок</option>
-        <option value="hiphop">Хип-хоп</option>
-        <option value="electronic">Электронная</option>
-        <option value="rnb">R&B</option>
-        <option value="jazz">Джаз</option>
-        <option value="classical">Классика</option>
-        <option value="indie">Инди</option>
-        <option value="metal">Метал</option>
-        <option value="other">Другое</option>
+        <option value="pop">Поп</option><option value="rock">Рок</option><option value="hiphop">Хип-хоп</option>
+        <option value="electronic">Электронная</option><option value="rnb">R&B</option><option value="jazz">Джаз</option>
+        <option value="classical">Классика</option><option value="indie">Инди</option><option value="metal">Метал</option>
+        <option value="phonk">Phonk</option><option value="custom">Свой жанр...</option>
       </select>
-      <label class="modal-label">Обложка (URL изображения, необязательно)</label>
-      <input class="md-input" id="uploadCover" placeholder="https://example.com/cover.jpg" style="border-radius:var(--md-shape-md);margin-bottom:16px">
+      <input class="md-input" id="uploadCustomGenre" placeholder="Введите свой жанр" style="border-radius:var(--md-shape-md);margin-bottom:16px;display:none">
+      <label class="modal-label">Обложка</label>
+      <div style="display:flex;gap:16px;align-items:flex-start;margin-bottom:16px;flex-wrap:wrap">
+        <div class="cover-upload-zone" id="coverUploadZone" onclick="document.getElementById('coverFileInput').click()">
+          <span class="material-symbols-rounded">image</span>
+          <span style="font:400 11px/14px 'Inter',sans-serif;color:var(--md-on-surface-variant);text-align:center;padding:0 4px">Загрузить</span>
+        </div>
+        <div style="flex:1;min-width:200px">
+          <input class="md-input" id="uploadCover" placeholder="или вставьте URL изображения" style="border-radius:var(--md-shape-md)">
+          <input type="file" id="coverFileInput" accept="image/*" style="display:none" onchange="handleCoverSelect(event)">
+        </div>
+      </div>
       <div id="uploadProgress" style="display:none;margin-bottom:16px">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
           <div class="loading-spinner" style="width:20px;height:20px;margin:0;border-width:2px"></div>
-          <span style="font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant)" id="uploadStatusText">Загрузка и модерация...</span>
+          <span style="font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant)" id="uploadStatusText">Загрузка...</span>
         </div>
-        <div style="height:4px;background:var(--md-outline-variant);border-radius:2px;overflow:hidden">
-          <div id="uploadProgressBar" style="height:100%;background:var(--md-primary);width:0%;transition:width .3s"></div>
-        </div>
+        <div style="height:4px;background:var(--md-outline-variant);border-radius:2px;overflow:hidden"><div id="uploadProgressBar" style="height:100%;background:var(--md-primary);width:0%;transition:width .3s"></div></div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn-primary" onclick="publishTrack()" id="publishBtn">
-          <span class="material-symbols-rounded">publish</span> Опубликовать
-        </button>
+        <button class="btn-primary" onclick="publishTrack()" id="publishBtn"><span class="material-symbols-rounded">publish</span> Опубликовать</button>
       </div>
       <div class="section-title" style="margin-top:40px">Мои треки</div>
       <div class="track-list" id="myTracks"></div>
     </div>
   </div>
 
-  <!-- PROFILE PAGE -->
+  <!-- PROFILE -->
   <div class="page" id="page-profile">
-    <!-- Auth form (shown when logged out) -->
     <div id="profileAuthMsg">
       <div class="auth-container">
         <span class="material-symbols-rounded" style="font-size:80px;color:var(--md-primary)">account_circle</span>
         <div class="section-title" style="margin-bottom:0">Войдите в MusicPlatforme</div>
         <p class="section-sub" style="max-width:400px;margin-bottom:0">Авторизуйтесь, чтобы публиковать музыку, ставить лайки и подписываться</p>
-
         <div class="auth-form">
           <div class="auth-tabs">
             <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Вход</button>
             <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Регистрация</button>
           </div>
-
-          <!-- LOGIN FORM -->
           <div id="loginForm">
             <input class="md-input" id="loginIdentity" placeholder="Логин или Email" autocomplete="username">
-            <div class="password-wrap">
-              <input class="md-input" id="loginPassword" type="password" placeholder="Пароль" autocomplete="current-password">
-              <button class="password-toggle" onclick="togglePasswordVis('loginPassword', this)" type="button">
-                <span class="material-symbols-rounded">visibility_off</span>
-              </button>
-            </div>
+            <div class="password-wrap"><input class="md-input" id="loginPassword" type="password" placeholder="Пароль" autocomplete="current-password"><button class="password-toggle" onclick="togglePasswordVis('loginPassword',this)" type="button"><span class="material-symbols-rounded">visibility_off</span></button></div>
             <div class="auth-error" id="loginError"></div>
-            <button class="btn-primary" style="width:100%;justify-content:center" onclick="doLogin()">
-              <span class="material-symbols-rounded">login</span> Войти
-            </button>
+            <button class="btn-primary" style="width:100%;justify-content:center" onclick="doLogin()"><span class="material-symbols-rounded">login</span> Войти</button>
           </div>
-
-          <!-- REGISTER FORM -->
           <div id="registerForm" style="display:none">
             <input class="md-input" id="regUsername" placeholder="Логин (уникальный)" autocomplete="username">
             <input class="md-input" id="regEmail" placeholder="Email" type="email" autocomplete="email">
             <input class="md-input" id="regDisplayName" placeholder="Отображаемое имя">
-            <div class="password-wrap">
-              <input class="md-input" id="regPassword" type="password" placeholder="Пароль (мин. 6 символов)" autocomplete="new-password">
-              <button class="password-toggle" onclick="togglePasswordVis('regPassword', this)" type="button">
-                <span class="material-symbols-rounded">visibility_off</span>
-              </button>
-            </div>
-            <div class="password-wrap">
-              <input class="md-input" id="regPassword2" type="password" placeholder="Повторите пароль" autocomplete="new-password">
-              <button class="password-toggle" onclick="togglePasswordVis('regPassword2', this)" type="button">
-                <span class="material-symbols-rounded">visibility_off</span>
-              </button>
-            </div>
+            <div class="password-wrap"><input class="md-input" id="regPassword" type="password" placeholder="Пароль (мин. 6 символов)" autocomplete="new-password"><button class="password-toggle" onclick="togglePasswordVis('regPassword',this)" type="button"><span class="material-symbols-rounded">visibility_off</span></button></div>
+            <div class="password-wrap"><input class="md-input" id="regPassword2" type="password" placeholder="Повторите пароль" autocomplete="new-password"><button class="password-toggle" onclick="togglePasswordVis('regPassword2',this)" type="button"><span class="material-symbols-rounded">visibility_off</span></button></div>
             <div class="auth-error" id="regError"></div>
-            <button class="btn-primary" style="width:100%;justify-content:center" onclick="doRegister()">
-              <span class="material-symbols-rounded">person_add</span> Зарегистрироваться
-            </button>
+            <button class="btn-primary" style="width:100%;justify-content:center" onclick="doRegister()"><span class="material-symbols-rounded">person_add</span> Зарегистрироваться</button>
           </div>
-
           <div class="auth-divider">или</div>
-
           <div class="telegram-btn-wrap">
             <button class="tg-login-btn" onclick="openTelegramLogin()">
               <svg viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
@@ -983,13 +464,9 @@ button, a, [onclick], input, select, textarea {
         </div>
       </div>
     </div>
-
-    <!-- Profile content (shown when logged in) -->
     <div id="profileContent" style="display:none">
       <div class="profile-header">
-        <div class="profile-avatar" id="profileAvatar">
-          <span class="material-symbols-rounded">person</span>
-        </div>
+        <div class="profile-avatar" id="profileAvatar"><span class="material-symbols-rounded">person</span></div>
         <div class="profile-info">
           <div class="profile-name" id="profileName">Пользователь</div>
           <div style="font:400 13px/18px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-top:2px" id="profileLogin">@user</div>
@@ -999,9 +476,8 @@ button, a, [onclick], input, select, textarea {
             <span><strong id="profileSubs">0</strong> подписчиков</span>
           </div>
           <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">
-            <button class="btn-outlined" onclick="signOutUser()">
-              <span class="material-symbols-rounded">logout</span> Выйти
-            </button>
+            <button class="btn-tonal" onclick="openSettings()"><span class="material-symbols-rounded">settings</span> Настройки</button>
+            <button class="btn-outlined" onclick="signOutUser()"><span class="material-symbols-rounded">logout</span> Выйти</button>
           </div>
         </div>
       </div>
@@ -1009,19 +485,24 @@ button, a, [onclick], input, select, textarea {
         <div class="tab-item active" onclick="switchProfileTab('tracks',this)">Треки</div>
         <div class="tab-item" onclick="switchProfileTab('liked',this)">Понравившиеся</div>
       </div>
-      <div id="profileTabContent">
-        <div class="track-list" id="profileTrackList"></div>
-      </div>
+      <div id="profileTabContent"><div class="track-list" id="profileTrackList"><div class="loading-spinner"></div></div></div>
     </div>
   </div>
 
-  <!-- SEARCH RESULTS -->
+  <!-- SEARCH -->
   <div class="page" id="page-search">
     <div class="section-title" id="searchTitle">Результаты поиска</div>
-    <div class="track-list" id="searchResults"></div>
+    <div id="searchArtistsSection" class="search-section" style="display:none">
+      <div class="search-section-title"><span class="material-symbols-rounded">person</span> Артисты</div>
+      <div class="cards-grid" id="searchArtists" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr))"></div>
+    </div>
+    <div id="searchTracksSection" class="search-section">
+      <div class="search-section-title"><span class="material-symbols-rounded">music_note</span> Треки</div>
+      <div class="track-list" id="searchResults"></div>
+    </div>
   </div>
 
-  <!-- ARTIST PAGE -->
+  <!-- ARTIST -->
   <div class="page" id="page-artist">
     <div class="artist-page-header" id="artistHeader"></div>
     <div class="track-list" id="artistTracks"></div>
@@ -1030,1343 +511,751 @@ button, a, [onclick], input, select, textarea {
 
 <!-- BOTTOM NAV -->
 <div class="bottom-nav" id="bottomNav">
-  <button class="nav-tab active" data-page="home" onclick="navigate('home')">
-    <div class="nav-tab-indicator"><span class="material-symbols-rounded">home</span></div>
-    Главная
-  </button>
-  <button class="nav-tab" data-page="explore" onclick="navigate('explore')">
-    <div class="nav-tab-indicator"><span class="material-symbols-rounded">explore</span></div>
-    Обзор
-  </button>
-  <button class="nav-tab" data-page="wave" onclick="navigate('wave')">
-    <div class="nav-tab-indicator"><span class="material-symbols-rounded">waves</span></div>
-    Волна
-  </button>
-  <button class="nav-tab" data-page="favorites" onclick="navigate('favorites')">
-    <div class="nav-tab-indicator"><span class="material-symbols-rounded">favorite</span></div>
-    Любимое
-  </button>
-  <button class="nav-tab" data-page="profile" onclick="navigate('profile')">
-    <div class="nav-tab-indicator"><span class="material-symbols-rounded">person</span></div>
-    Профиль
-  </button>
+  <button class="nav-tab active" data-page="home" onclick="navigate('home')"><div class="nav-tab-indicator"><span class="material-symbols-rounded">home</span></div>Главная</button>
+  <button class="nav-tab" data-page="explore" onclick="navigate('explore')"><div class="nav-tab-indicator"><span class="material-symbols-rounded">explore</span></div>Обзор</button>
+  <button class="nav-tab" data-page="wave" onclick="navigate('wave')"><div class="nav-tab-indicator"><span class="material-symbols-rounded">waves</span></div>Волна</button>
+  <button class="nav-tab" data-page="favorites" onclick="navigate('favorites')"><div class="nav-tab-indicator"><span class="material-symbols-rounded">favorite</span></div>Любимое</button>
+  <button class="nav-tab" data-page="profile" onclick="navigate('profile')"><div class="nav-tab-indicator"><span class="material-symbols-rounded">person</span></div>Профиль</button>
 </div>
 
 <!-- PLAYER BAR -->
 <div class="player-bar" id="playerBar">
-  <div class="player-track-info">
-    <div class="player-thumb" id="playerThumb">
-      <span class="material-symbols-rounded">music_note</span>
-    </div>
+  <div class="player-track-info" onclick="openFullscreenPlayer()">
+    <div class="player-thumb" id="playerThumb"><span class="material-symbols-rounded">music_note</span></div>
     <div class="player-meta">
-      <div class="player-title-row">
-        <div class="player-song" id="playerSong">—</div>
-        <span class="explicit-badge" id="playerExplicit" style="display:none" title="Ненормативная лексика">!</span>
-      </div>
+      <div class="player-title-row"><div class="player-song" id="playerSong">—</div><span class="explicit-badge" id="playerExplicit" style="display:none" title="Explicit">!</span></div>
       <div class="player-artist-name" id="playerArtist">—</div>
     </div>
   </div>
   <div class="player-controls">
     <div class="player-buttons">
-      <button class="btn-icon" onclick="toggleShuffle()" id="shuffleBtn">
-        <span class="material-symbols-rounded">shuffle</span>
-      </button>
-      <button class="btn-icon" onclick="prevTrack()">
-        <span class="material-symbols-rounded">skip_previous</span>
-      </button>
-      <button class="player-play-btn" onclick="togglePlay()" id="mainPlayBtn">
-        <span class="material-symbols-rounded" id="playIcon">play_arrow</span>
-      </button>
-      <button class="btn-icon" onclick="nextTrack()">
-        <span class="material-symbols-rounded">skip_next</span>
-      </button>
-      <button class="btn-icon" onclick="toggleRepeat()" id="repeatBtn">
-        <span class="material-symbols-rounded">repeat</span>
-      </button>
+      <button class="btn-icon" onclick="toggleShuffle()" id="shuffleBtn"><span class="material-symbols-rounded">shuffle</span></button>
+      <button class="btn-icon" onclick="prevTrack()"><span class="material-symbols-rounded">skip_previous</span></button>
+      <button class="player-play-btn" onclick="togglePlay()" id="mainPlayBtn"><span class="material-symbols-rounded" id="playIcon">play_arrow</span></button>
+      <button class="btn-icon" onclick="nextTrack()"><span class="material-symbols-rounded">skip_next</span></button>
+      <button class="btn-icon" onclick="toggleRepeat()" id="repeatBtn"><span class="material-symbols-rounded">repeat</span></button>
     </div>
     <div class="progress-bar">
       <span class="progress-time" id="currentTime">0:00</span>
-      <div class="progress-track" onclick="seekTo(event)" id="progressTrack">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
+      <div class="progress-track" onclick="seekTo(event)" id="progressTrack"><div class="progress-fill" id="progressFill"></div></div>
       <span class="progress-time" id="totalTime">0:00</span>
     </div>
   </div>
   <div class="player-volume">
-    <button class="btn-icon" onclick="toggleMute()" id="volumeBtn">
-      <span class="material-symbols-rounded">volume_up</span>
-    </button>
-    <div class="volume-slider" onclick="setVolume(event)" id="volumeSlider">
-      <div class="volume-fill" id="volumeFill"></div>
-    </div>
+    <button class="btn-icon" onclick="toggleMute()" id="volumeBtn"><span class="material-symbols-rounded">volume_up</span></button>
+    <div class="volume-slider" onclick="setVolume(event)" id="volumeSlider"><div class="volume-fill" id="volumeFill"></div></div>
   </div>
 </div>
 
-<!-- PLAYLIST MODAL -->
-<div class="modal-overlay" id="playlistModal">
-  <div class="modal">
-    <div class="modal-title">Новый плейлист</div>
-    <label class="modal-label">Название</label>
-    <input class="md-input" id="playlistNameInput" placeholder="Мой плейлист">
-    <div class="modal-actions">
-      <button class="btn-outlined" onclick="closeModal('playlistModal')">Отмена</button>
-      <button class="btn-primary" onclick="savePlaylist()">Создать</button>
+<!-- FULLSCREEN PLAYER -->
+<div class="fs-player-overlay" id="fsPlayer">
+  <div class="fs-top">
+    <button class="btn-icon" onclick="closeFullscreenPlayer()"><span class="material-symbols-rounded">keyboard_arrow_down</span></button>
+    <div style="font:600 14px/20px 'Inter',sans-serif;color:var(--md-on-surface)">Сейчас играет</div>
+    <button class="btn-icon" onclick="showTrackMenu()"><span class="material-symbols-rounded">more_vert</span></button>
+  </div>
+  <div class="fs-cover-wrap">
+    <div class="fs-cover" id="fsCover"><span class="material-symbols-rounded">music_note</span></div>
+  </div>
+  <div class="fs-info">
+    <div class="fs-title" id="fsTitle">—</div>
+    <div class="fs-artist" id="fsArtist" onclick="fsGoToArtist()">—</div>
+  </div>
+  <div class="fs-controls">
+    <div class="fs-progress">
+      <span class="progress-time" id="fsCurrentTime">0:00</span>
+      <div class="progress-track" onclick="seekTo(event)" id="fsProgressTrack"><div class="progress-fill" id="fsProgressFill"></div></div>
+      <span class="progress-time" id="fsTotalTime">0:00</span>
     </div>
+    <div class="fs-buttons">
+      <button class="btn-icon" onclick="toggleShuffle()" id="fsShuffleBtn"><span class="material-symbols-rounded">shuffle</span></button>
+      <button class="btn-icon" onclick="prevTrack()" style="width:48px;height:48px"><span class="material-symbols-rounded" style="font-size:32px">skip_previous</span></button>
+      <button class="fs-play-btn" onclick="togglePlay()" id="fsPlayBtn"><span class="material-symbols-rounded" id="fsPlayIcon">play_arrow</span></button>
+      <button class="btn-icon" onclick="nextTrack()" style="width:48px;height:48px"><span class="material-symbols-rounded" style="font-size:32px">skip_next</span></button>
+      <button class="btn-icon" onclick="toggleRepeat()" id="fsRepeatBtn"><span class="material-symbols-rounded">repeat</span></button>
+    </div>
+  </div>
+  <div class="fs-actions">
+    <button class="btn-icon" id="fsLikeBtn" onclick="toggleFavorite(currentTrackId)"><span class="material-symbols-rounded">favorite</span></button>
+    <button class="btn-icon" onclick="fsGoToArtist()" title="Профиль артиста"><span class="material-symbols-rounded">person</span></button>
+    <button class="btn-icon" onclick="shareTrack()" title="Поделиться"><span class="material-symbols-rounded">share</span></button>
   </div>
 </div>
 
-<!-- DELETE CONFIRM MODAL -->
-<div class="modal-overlay" id="deleteModal">
-  <div class="modal">
-    <div class="modal-title">Удалить трек?</div>
-    <p style="font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-bottom:16px">Этот трек будет безвозвратно удалён. Действие нельзя отменить.</p>
-    <div class="modal-actions">
-      <button class="btn-outlined" onclick="closeModal('deleteModal')">Отмена</button>
-      <button class="btn-primary" style="background:var(--md-error);color:var(--md-on-error)" id="confirmDeleteBtn" onclick="confirmDeleteTrack()">Удалить</button>
-    </div>
-  </div>
-</div>
+<!-- MODALS -->
+<div class="modal-overlay" id="playlistModal"><div class="modal">
+  <div class="modal-title">Новый плейлист</div>
+  <label class="modal-label">Название</label>
+  <input class="md-input" id="playlistNameInput" placeholder="Мой плейлист">
+  <div class="modal-actions"><button class="btn-outlined" onclick="closeModal('playlistModal')">Отмена</button><button class="btn-primary" onclick="savePlaylist()">Создать</button></div>
+</div></div>
 
-<!-- SNACKBAR -->
+<div class="modal-overlay" id="deleteModal"><div class="modal">
+  <div class="modal-title">Удалить трек?</div>
+  <p style="font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-bottom:16px">Этот трек будет безвозвратно удалён.</p>
+  <div class="modal-actions"><button class="btn-outlined" onclick="closeModal('deleteModal')">Отмена</button><button class="btn-primary" style="background:var(--md-error);color:var(--md-on-error)" onclick="confirmDeleteTrack()">Удалить</button></div>
+</div></div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsModal"><div class="modal" style="max-width:520px">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+    <button class="btn-icon" onclick="closeModal('settingsModal')"><span class="material-symbols-rounded">arrow_back</span></button>
+    <div class="modal-title" style="margin-bottom:0">Настройки</div>
+  </div>
+  <div id="settingsContent"></div>
+</div></div>
+
+<!-- EDIT PROFILE MODAL -->
+<div class="modal-overlay" id="editProfileModal"><div class="modal">
+  <div class="modal-title">Редактировать профиль</div>
+  <div style="display:flex;justify-content:center;margin-bottom:16px">
+    <div class="cover-upload-zone" style="width:100px;height:100px;border-radius:50%" id="editAvatarZone" onclick="document.getElementById('avatarFileInput').click()">
+      <span class="material-symbols-rounded">add_a_photo</span>
+    </div>
+    <input type="file" id="avatarFileInput" accept="image/*" style="display:none" onchange="handleAvatarSelect(event)">
+  </div>
+  <label class="modal-label">Отображаемое имя</label>
+  <input class="md-input" id="editDisplayName" placeholder="Имя">
+  <label class="modal-label">Аватар (URL)</label>
+  <input class="md-input" id="editAvatarUrl" placeholder="https://...">
+  <div class="modal-actions">
+    <button class="btn-outlined" onclick="closeModal('editProfileModal')">Отмена</button>
+    <button class="btn-primary" onclick="saveProfileEdits()">Сохранить</button>
+  </div>
+</div></div>
+
+<!-- LINK TELEGRAM MODAL -->
+<div class="modal-overlay" id="linkTelegramModal"><div class="modal">
+  <div class="modal-title">Привязать Telegram</div>
+  <p style="font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-bottom:16px">Нажмите кнопку ниже для привязки вашего Telegram аккаунта</p>
+  <div class="telegram-btn-wrap"><button class="tg-login-btn" onclick="linkTelegram()">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    Привязать Telegram
+  </button></div>
+  <div class="modal-actions" style="margin-top:16px"><button class="btn-outlined" onclick="closeModal('linkTelegramModal')">Закрыть</button></div>
+</div></div>
+
+<!-- LINK EMAIL MODAL -->
+<div class="modal-overlay" id="linkEmailModal"><div class="modal">
+  <div class="modal-title">Привязать Email</div>
+  <label class="modal-label">Email</label>
+  <input class="md-input" id="linkEmail" placeholder="email@example.com" type="email">
+  <label class="modal-label">Пароль для входа</label>
+  <div class="password-wrap"><input class="md-input" id="linkPassword" type="password" placeholder="Пароль (мин. 6 символов)"><button class="password-toggle" onclick="togglePasswordVis('linkPassword',this)" type="button"><span class="material-symbols-rounded">visibility_off</span></button></div>
+  <div class="auth-error" id="linkEmailError"></div>
+  <div class="modal-actions"><button class="btn-outlined" onclick="closeModal('linkEmailModal')">Отмена</button><button class="btn-primary" onclick="saveLinkEmail()">Привязать</button></div>
+</div></div>
+
 <div class="snackbar" id="snackbar"></div>
-
 <audio id="audioPlayer" preload="auto"></audio>
 
 <script>
-// ============================================
-// FIREBASE INIT
-// ============================================
-const firebaseConfig = {
-  apiKey: "AIzaSyBi_ZxAPL7SOZGf-EX-mYxEuePztC4XoVc",
-  authDomain: "musicplatforme.firebaseapp.com",
-  databaseURL: "https://musicplatforme-default-rtdb.firebaseio.com",
-  projectId: "musicplatforme",
-  storageBucket: "musicplatforme.firebasestorage.app",
-  messagingSenderId: "947754451244",
-  appId: "1:947754451244:web:0e4bbe8403f91a57c8ec89"
-};
+const firebaseConfig={apiKey:"AIzaSyBi_ZxAPL7SOZGf-EX-mYxEuePztC4XoVc",authDomain:"musicplatforme.firebaseapp.com",databaseURL:"https://musicplatforme-default-rtdb.firebaseio.com",projectId:"musicplatforme",storageBucket:"musicplatforme.firebasestorage.app",messagingSenderId:"947754451244",appId:"1:947754451244:web:0e4bbe8403f91a57c8ec89"};
 firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+const db=firebase.database();
 
-// ============================================
-// STATE
-// ============================================
-let currentUser = null; // { uid, username, email, displayName, photo, authMethod }
-let allTracks = {};
-let currentTrackId = null;
-let playlist = [];
-let playlistIndex = -1;
-let isPlaying = false;
-let isShuffle = false;
-let repeatMode = 0;
-let favorites = {};
-let subscriptions = {};
-let userPlaylists = {};
-let deleteTrackId = null;
-let selectedAudioFile = null;
-let selectedAudioDataURL = null;
-let playerVisible = false;
+let currentUser=null,allTracks={},currentTrackId=null,playlist=[],playlistIndex=-1;
+let isPlaying=false,isShuffle=false,repeatMode=0;
+let favorites={},subscriptions={},userPlaylists={},deleteTrackId=null;
+let selectedAudioFile=null,selectedAudioDataURL=null,playerVisible=false;
+let selectedCoverDataURL=null;
+const audio=document.getElementById('audioPlayer');
 
-const audio = document.getElementById('audioPlayer');
-
-const genres = [
-  {id:'all', label:'Все', icon:'apps'},
-  {id:'pop', label:'Поп', icon:'star'},
-  {id:'rock', label:'Рок', icon:'electric_bolt'},
-  {id:'hiphop', label:'Хип-хоп', icon:'mic'},
-  {id:'electronic', label:'Электронная', icon:'equalizer'},
-  {id:'rnb', label:'R&B', icon:'nightlife'},
-  {id:'jazz', label:'Джаз', icon:'piano'},
-  {id:'classical', label:'Классика', icon:'music_note'},
-  {id:'indie', label:'Инди', icon:'headphones'},
-  {id:'metal', label:'Метал', icon:'whatshot'},
-  {id:'other', label:'Другое', icon:'more_horiz'},
+const genres=[
+  {id:'all',label:'Все',icon:'apps'},{id:'pop',label:'Поп',icon:'star'},{id:'rock',label:'Рок',icon:'electric_bolt'},
+  {id:'hiphop',label:'Хип-хоп',icon:'mic'},{id:'electronic',label:'Электронная',icon:'equalizer'},
+  {id:'rnb',label:'R&B',icon:'nightlife'},{id:'jazz',label:'Джаз',icon:'piano'},
+  {id:'classical',label:'Классика',icon:'music_note'},{id:'indie',label:'Инди',icon:'headphones'},
+  {id:'metal',label:'Метал',icon:'whatshot'},{id:'phonk',label:'Phonk',icon:'speed'},
+  {id:'other',label:'Другое',icon:'more_horiz'}
 ];
 
-// ============================================
-// BAD WORDS FOR AI MODERATION
-// ============================================
-const explicitWords = [
-  'fuck','shit','bitch','ass','dick','damn','bastard','crap','piss','cock','pussy',
-  'хуй','пизд','блядь','бля','ёб','еб','сук','мудак','мудил','пидор','пидар',
-  'залуп','хер','дерьм','срань','сука','ебан','ебат','ёбан','пиздец','нахуй',
-  'нахер','похуй','охуе','ахуе','шлюх','проститут','ублюдок','гандон','манда',
-  'ебло','ёбл','хуе','хуё','пизж','выблядок','долбоёб','долбоеб','заеб','заёб',
-  'отъеб','подъеб','уёб','уеб','разъеб','разъёб','объеб','объёб','перееб','переёб',
-  'выеб','выёб','взъеб','взъёб','доеб','доёб','наеб','наёб','приеб','приёб',
-  'припизд','распизд','спизд','пиздат','запизд','отпизд','попизд',
-  'хуяр','хуяч','хуяк','пиздюл','ёбарь','ебарь','мудозвон',
-  'fucker','motherfuck','asshole','bullshit','nigger','nigga',
-  'whore','slut','cunt','twat','wanker','jackass'
-];
+const explicitWords=['fuck','shit','bitch','ass','dick','damn','bastard','crap','piss','cock','pussy','хуй','пизд','блядь','бля','ёб','еб','сук','мудак','мудил','пидор','пидар','залуп','хер','дерьм','срань','сука','ебан','ебат','ёбан','пиздец','нахуй','нахер','похуй','охуе','ахуе','шлюх','проститут','ублюдок','гандон','манда','ебло','ёбл','хуе','хуё','пизж','выблядок','долбоёб','долбоеб','заеб','заёб','отъеб','подъеб','уёб','уеб','разъеб','разъёб','объеб','объёб','перееб','переёб','выеб','выёб','взъеб','взъёб','доеб','доёб','наеб','наёб','приеб','приёб','припизд','распизд','спизд','пиздат','запизд','отпизд','попизд','хуяр','хуяч','хуяк','пиздюл','ёбарь','ебарь','мудозвон','fucker','motherfuck','asshole','bullshit','nigger','nigga','whore','slut','cunt','twat','wanker','jackass'];
+function checkExplicit(t){if(!t)return false;const l=t.toLowerCase().replace(/[^a-zа-яёй0-9]/gi,' ');for(const w of explicitWords)if(l.includes(w.toLowerCase()))return true;return false}
 
-function checkExplicit(text) {
-  if (!text) return false;
-  const lower = text.toLowerCase().replace(/[^a-zа-яёй0-9]/gi, ' ');
-  for (const w of explicitWords) {
-    if (lower.includes(w.toLowerCase())) return true;
-  }
-  return false;
-}
+// CUSTOM GENRE TOGGLE
+document.getElementById('uploadGenre').addEventListener('change',function(){
+  document.getElementById('uploadCustomGenre').style.display=this.value==='custom'?'block':'none';
+});
 
-// ============================================
-// AUTH: Email/Login + Password (Firebase RTDB)
-// ============================================
-function hashPassword(password) {
-  // Simple hash for client-side. Not crypto-secure but sufficient for demo.
-  // Uses SHA-256 via SubtleCrypto
-  return crypto.subtle.digest('SHA-256', new TextEncoder().encode(password))
-    .then(buf => Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join(''));
-}
-
-function switchAuthTab(tab) {
-  document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
-  document.getElementById('tabRegister').classList.toggle('active', tab === 'register');
-  document.getElementById('loginForm').style.display = tab === 'login' ? '' : 'none';
-  document.getElementById('registerForm').style.display = tab === 'register' ? '' : 'none';
-  document.getElementById('loginError').textContent = '';
-  document.getElementById('regError').textContent = '';
-}
-
-function togglePasswordVis(inputId, btn) {
-  const input = document.getElementById(inputId);
-  const icon = btn.querySelector('.material-symbols-rounded');
-  if (input.type === 'password') {
-    input.type = 'text';
-    icon.textContent = 'visibility';
-  } else {
-    input.type = 'password';
-    icon.textContent = 'visibility_off';
-  }
-}
-
-async function doRegister() {
-  const username = document.getElementById('regUsername').value.trim().toLowerCase();
-  const email = document.getElementById('regEmail').value.trim().toLowerCase();
-  const displayName = document.getElementById('regDisplayName').value.trim();
-  const pw = document.getElementById('regPassword').value;
-  const pw2 = document.getElementById('regPassword2').value;
-  const errEl = document.getElementById('regError');
-
-  errEl.textContent = '';
-
-  if (!username || username.length < 3) { errEl.textContent = 'Логин должен быть минимум 3 символа'; return; }
-  if (!/^[a-zA-Z0-9_]+$/.test(username)) { errEl.textContent = 'Логин: только латиница, цифры, _'; return; }
-  if (!email || !email.includes('@')) { errEl.textContent = 'Введите корректный Email'; return; }
-  if (!displayName) { errEl.textContent = 'Введите отображаемое имя'; return; }
-  if (pw.length < 6) { errEl.textContent = 'Пароль минимум 6 символов'; return; }
-  if (pw !== pw2) { errEl.textContent = 'Пароли не совпадают'; return; }
-
-  errEl.textContent = '';
-  errEl.innerHTML = '<div class="loading-spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block;vertical-align:middle"></div> Регистрация...';
-
-  try {
-    // Check if username is taken
-    const usernameSnap = await db.ref('usernames/' + username).once('value');
-    if (usernameSnap.exists()) {
-      errEl.textContent = 'Этот логин уже занят';
-      return;
-    }
-
-    // Check if email is taken
-    const emailKey = email.replace(/\./g, ',');
-    const emailSnap = await db.ref('emails/' + emailKey).once('value');
-    if (emailSnap.exists()) {
-      errEl.textContent = 'Этот Email уже зарегистрирован';
-      return;
-    }
-
-    const passwordHash = await hashPassword(pw);
-    const uid = 'u_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8);
-
-    const userData = {
-      uid: uid,
-      username: username,
-      email: email,
-      displayName: displayName,
-      photo: '',
-      passwordHash: passwordHash,
-      authMethod: 'email',
-      createdAt: Date.now()
-    };
-
-    await db.ref('users/' + uid).set(userData);
-    await db.ref('usernames/' + username).set(uid);
-    await db.ref('emails/' + emailKey).set(uid);
-
-    // Login the user
-    loginUser(userData);
-    showSnackbar('Добро пожаловать, ' + displayName + '!');
-  } catch (err) {
-    console.error(err);
-    errEl.textContent = 'Ошибка регистрации: ' + err.message;
-  }
-}
-
-async function doLogin() {
-  const identity = document.getElementById('loginIdentity').value.trim().toLowerCase();
-  const pw = document.getElementById('loginPassword').value;
-  const errEl = document.getElementById('loginError');
-
-  errEl.textContent = '';
-
-  if (!identity) { errEl.textContent = 'Введите логин или Email'; return; }
-  if (!pw) { errEl.textContent = 'Введите пароль'; return; }
-
-  errEl.innerHTML = '<div class="loading-spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block;vertical-align:middle"></div> Вход...';
-
-  try {
-    let uid = null;
-
-    // Check if identity is email or username
-    if (identity.includes('@')) {
-      const emailKey = identity.replace(/\./g, ',');
-      const snap = await db.ref('emails/' + emailKey).once('value');
-      uid = snap.val();
-    } else {
-      const snap = await db.ref('usernames/' + identity).once('value');
-      uid = snap.val();
-    }
-
-    if (!uid) {
-      errEl.textContent = 'Пользователь не найден';
-      return;
-    }
-
-    const userSnap = await db.ref('users/' + uid).once('value');
-    const userData = userSnap.val();
-
-    if (!userData) {
-      errEl.textContent = 'Ошибка: данные пользователя не найдены';
-      return;
-    }
-
-    const passwordHash = await hashPassword(pw);
-
-    if (userData.passwordHash !== passwordHash) {
-      errEl.textContent = 'Неверный пароль';
-      return;
-    }
-
-    loginUser(userData);
-    showSnackbar('С возвращением, ' + userData.displayName + '!');
-  } catch (err) {
-    console.error(err);
-    errEl.textContent = 'Ошибка входа: ' + err.message;
-  }
-}
-
-function loginUser(userData) {
-  currentUser = {
-    uid: userData.uid,
-    username: userData.username || '',
-    email: userData.email || '',
-    displayName: userData.displayName || 'Пользователь',
-    photo: userData.photo || '',
-    authMethod: userData.authMethod || 'email'
+// COVER FILE UPLOAD
+function handleCoverSelect(e){
+  const f=e.target.files[0];if(!f)return;
+  if(!f.type.startsWith('image/')){showSnackbar('Выберите изображение');return}
+  if(f.size>5*1024*1024){showSnackbar('Обложка макс. 5 МБ');return}
+  const r=new FileReader();
+  r.onload=ev=>{
+    selectedCoverDataURL=ev.target.result;
+    document.getElementById('coverUploadZone').innerHTML='<img src="'+selectedCoverDataURL+'" alt="">';
+    document.getElementById('uploadCover').value='';
   };
-
-  localStorage.setItem('mp_user', JSON.stringify(currentUser));
-  updateAuthUI();
-  loadUserData();
+  r.readAsDataURL(f);
 }
 
-function signOutUser() {
-  currentUser = null;
-  localStorage.removeItem('mp_user');
-  favorites = {};
-  subscriptions = {};
-  userPlaylists = {};
-  updateAuthUI();
-  showSnackbar('Вы вышли из аккаунта');
-  navigate('home');
+// AUTH
+function hashPassword(p){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(p)).then(b=>Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join(''))}
+function switchAuthTab(t){
+  document.getElementById('tabLogin').classList.toggle('active',t==='login');
+  document.getElementById('tabRegister').classList.toggle('active',t==='register');
+  document.getElementById('loginForm').style.display=t==='login'?'':'none';
+  document.getElementById('registerForm').style.display=t==='register'?'':'none';
+  document.getElementById('loginError').textContent='';document.getElementById('regError').textContent='';
+}
+function togglePasswordVis(id,btn){const i=document.getElementById(id),ic=btn.querySelector('.material-symbols-rounded');if(i.type==='password'){i.type='text';ic.textContent='visibility'}else{i.type='password';ic.textContent='visibility_off'}}
+
+async function doRegister(){
+  const u=document.getElementById('regUsername').value.trim().toLowerCase(),e=document.getElementById('regEmail').value.trim().toLowerCase(),d=document.getElementById('regDisplayName').value.trim(),p=document.getElementById('regPassword').value,p2=document.getElementById('regPassword2').value,err=document.getElementById('regError');
+  err.textContent='';
+  if(!u||u.length<3){err.textContent='Логин минимум 3 символа';return}
+  if(!/^[a-zA-Z0-9_]+$/.test(u)){err.textContent='Логин: латиница, цифры, _';return}
+  if(!e||!e.includes('@')){err.textContent='Введите корректный Email';return}
+  if(!d){err.textContent='Введите отображаемое имя';return}
+  if(p.length<6){err.textContent='Пароль минимум 6 символов';return}
+  if(p!==p2){err.textContent='Пароли не совпадают';return}
+  err.innerHTML='<div class="loading-spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block;vertical-align:middle"></div> Регистрация...';
+  try{
+    const us=await db.ref('usernames/'+u).once('value');if(us.exists()){err.textContent='Логин занят';return}
+    const ek=e.replace(/\./g,','),es=await db.ref('emails/'+ek).once('value');if(es.exists()){err.textContent='Email уже зарегистрирован';return}
+    const ph=await hashPassword(p),uid='u_'+Date.now()+'_'+Math.random().toString(36).substr(2,8);
+    const ud={uid,username:u,email:e,displayName:d,photo:'',passwordHash:ph,authMethod:'email',createdAt:Date.now()};
+    await db.ref('users/'+uid).set(ud);await db.ref('usernames/'+u).set(uid);await db.ref('emails/'+ek).set(uid);
+    loginUser(ud);showSnackbar('Добро пожаловать, '+d+'!');
+  }catch(x){err.textContent='Ошибка: '+x.message}
 }
 
-// Restore session on page load
-function restoreSession() {
-  const saved = localStorage.getItem('mp_user');
-  if (saved) {
-    try {
-      currentUser = JSON.parse(saved);
-      updateAuthUI();
-      loadUserData();
-    } catch(e) {
-      localStorage.removeItem('mp_user');
-    }
-  }
+async function doLogin(){
+  const id=document.getElementById('loginIdentity').value.trim().toLowerCase(),p=document.getElementById('loginPassword').value,err=document.getElementById('loginError');
+  err.textContent='';if(!id){err.textContent='Введите логин или Email';return}if(!p){err.textContent='Введите пароль';return}
+  err.innerHTML='<div class="loading-spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block;vertical-align:middle"></div> Вход...';
+  try{
+    let uid=null;
+    if(id.includes('@')){const s=await db.ref('emails/'+id.replace(/\./g,',')).once('value');uid=s.val()}
+    else{const s=await db.ref('usernames/'+id).once('value');uid=s.val()}
+    if(!uid){err.textContent='Пользователь не найден';return}
+    const us=await db.ref('users/'+uid).once('value'),ud=us.val();
+    if(!ud){err.textContent='Данные не найдены';return}
+    const ph=await hashPassword(p);if(ud.passwordHash!==ph){err.textContent='Неверный пароль';return}
+    loginUser(ud);showSnackbar('С возвращением, '+ud.displayName+'!');
+  }catch(x){err.textContent='Ошибка: '+x.message}
 }
 
-// ============================================
+function loginUser(ud){
+  currentUser={uid:ud.uid,username:ud.username||'',email:ud.email||'',displayName:ud.displayName||'Пользователь',photo:ud.photo||'',authMethod:ud.authMethod||'email'};
+  localStorage.setItem('mp_user',JSON.stringify(currentUser));updateAuthUI();loadUserData();
+}
+function signOutUser(){currentUser=null;localStorage.removeItem('mp_user');favorites={};subscriptions={};userPlaylists={};updateAuthUI();showSnackbar('Вы вышли');navigate('home')}
+function restoreSession(){const s=localStorage.getItem('mp_user');if(s){try{currentUser=JSON.parse(s);updateAuthUI();loadUserData()}catch(e){localStorage.removeItem('mp_user')}}}
+
 // TELEGRAM AUTH
-// ============================================
-// Telegram Login Widget callback — called from telegram widget
-window.onTelegramAuth = async function(tgUser) {
-  if (!tgUser || !tgUser.id) {
-    showSnackbar('Ошибка авторизации Telegram');
-    return;
+window.onTelegramAuth=async function(tg){
+  if(!tg||!tg.id){showSnackbar('Ошибка Telegram');return}
+  const uid='tg_'+tg.id;const s=await db.ref('users/'+uid).once('value');let ud=s.val();
+  if(!ud){const dn=(tg.first_name||'')+(tg.last_name?' '+tg.last_name:''),un=tg.username||('tg'+tg.id);
+    ud={uid,username:un,email:'',displayName:dn||'Telegram User',photo:tg.photo_url||'',authMethod:'telegram',telegramId:tg.id,createdAt:Date.now()};
+    await db.ref('users/'+uid).set(ud);if(tg.username)await db.ref('usernames/'+tg.username.toLowerCase()).set(uid)}
+  loginUser(ud);showSnackbar('Добро пожаловать, '+(ud.displayName||'пользователь')+'!');
+};
+// Also handle linking telegram
+window.onTelegramLink=async function(tg){
+  if(!currentUser||!tg)return;
+  await db.ref('users/'+currentUser.uid+'/telegramId').set(tg.id);
+  await db.ref('users/'+currentUser.uid+'/telegramUsername').set(tg.username||'');
+  if(tg.photo_url&&!currentUser.photo){
+    await db.ref('users/'+currentUser.uid+'/photo').set(tg.photo_url);
+    currentUser.photo=tg.photo_url;localStorage.setItem('mp_user',JSON.stringify(currentUser));updateAuthUI();
   }
-
-  const uid = 'tg_' + tgUser.id;
-
-  // Check if user already exists
-  const snap = await db.ref('users/' + uid).once('value');
-  let userData = snap.val();
-
-  if (!userData) {
-    // Create new user from Telegram data
-    const displayName = (tgUser.first_name || '') + (tgUser.last_name ? ' ' + tgUser.last_name : '');
-    const username = tgUser.username || ('tg' + tgUser.id);
-
-    userData = {
-      uid: uid,
-      username: username,
-      email: '',
-      displayName: displayName || 'Telegram User',
-      photo: tgUser.photo_url || '',
-      authMethod: 'telegram',
-      telegramId: tgUser.id,
-      createdAt: Date.now()
-    };
-
-    await db.ref('users/' + uid).set(userData);
-    if (tgUser.username) {
-      await db.ref('usernames/' + tgUser.username.toLowerCase()).set(uid);
-    }
-  }
-
-  loginUser(userData);
-  showSnackbar('Добро пожаловать, ' + (userData.displayName || 'пользователь') + '!');
-
-  // Close popup if opened
-  const tgPopup = document.getElementById('tgLoginPopup');
-  if (tgPopup) tgPopup.remove();
+  closeModal('linkTelegramModal');showSnackbar('Telegram привязан!');openSettings();
 };
 
-function openTelegramLogin() {
-  // Open Telegram login in a popup window
-  const width = 550;
-  const height = 470;
-  const left = (screen.width - width) / 2;
-  const top = (screen.height - height) / 2;
-
-  const popup = window.open(
-    '',
-    'TelegramLogin',
-    'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top + ',resizable=yes,scrollbars=yes'
-  );
-
-  if (!popup) {
-    // Popup blocked — show inline instead
-    showTelegramInline();
-    return;
-  }
-
-  popup.document.write('<!DOCTYPE html><html><head><title>Вход через Telegram</title>' +
-    '<style>body{font-family:Inter,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#F3EDF7;color:#1D1B20}' +
-    'h2{margin-bottom:24px;font-weight:600}p{color:#49454F;margin-bottom:24px;text-align:center;max-width:350px;font-size:14px;line-height:22px}</style></head><body>' +
-    '<h2>Вход через Telegram</h2>' +
-    '<p>Нажмите кнопку ниже для авторизации через Telegram</p>' +
-    '<div id="tg-widget"></div>' +
-    '<script async src="https://telegram.org/js/telegram-widget.js?22"' +
-    ' data-telegram-login="VriskasRobot"' +
-    ' data-size="large"' +
-    ' data-radius="20"' +
-    ' data-onauth="onTgAuth(user)"' +
-    ' data-request-access="write"><\/script>' +
-    '<script>' +
-    'function onTgAuth(user) {' +
-    '  if (window.opener && window.opener.onTelegramAuth) {' +
-    '    window.opener.onTelegramAuth(user);' +
-    '    window.close();' +
-    '  }' +
-    '}' +
-    '<\/script></body></html>');
-  popup.document.close();
+function openTelegramLogin(){openTgPopup('onTelegramAuth')}
+function linkTelegram(){openTgPopup('onTelegramLink')}
+function openTgPopup(cbName){
+  const w=550,h=470,l=(screen.width-w)/2,t=(screen.height-h)/2;
+  const p=window.open('','TelegramLogin','width='+w+',height='+h+',left='+l+',top='+t+',resizable=yes,scrollbars=yes');
+  if(!p){showSnackbar('Разрешите всплывающие окна');return}
+  p.document.write('<!DOCTYPE html><html><head><title>Telegram</title><style>body{font-family:Inter,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#F3EDF7;color:#1D1B20}h2{margin-bottom:24px;font-weight:600}p{color:#49454F;margin-bottom:24px;text-align:center;max-width:350px;font-size:14px}</style></head><body><h2>Вход через Telegram</h2><p>Нажмите кнопку ниже</p><div id="w"></div><script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="VriskasRobot" data-size="large" data-radius="20" data-onauth="onTgAuth(user)" data-request-access="write"><\/script><script>function onTgAuth(u){if(window.opener&&window.opener.'+cbName+'){window.opener.'+cbName+'(u);window.close()}}<\/script></body></html>');
+  p.document.close();
 }
 
-function showTelegramInline() {
-  // Fallback: create a modal with Telegram widget embedded via iframe-like approach
-  showSnackbar('Разрешите всплывающие окна для входа через Telegram');
-}
-
-// ============================================
 // AUTH UI
-// ============================================
-function updateAuthUI() {
-  const avatarIcon = document.getElementById('avatarIcon');
-  const avatarImg = document.getElementById('avatarImg');
-  const uploadAuthMsg = document.getElementById('uploadAuthMsg');
-  const uploadForm = document.getElementById('uploadForm');
-  const profileAuthMsg = document.getElementById('profileAuthMsg');
-  const profileContent = document.getElementById('profileContent');
-
-  if (currentUser) {
-    if (currentUser.photo) {
-      avatarIcon.style.display = 'none';
-      avatarImg.style.display = 'block';
-      avatarImg.src = currentUser.photo;
-    } else {
-      avatarIcon.style.display = '';
-      avatarImg.style.display = 'none';
-    }
-    uploadAuthMsg.style.display = 'none';
-    uploadForm.style.display = 'block';
-    profileAuthMsg.style.display = 'none';
-    profileContent.style.display = 'block';
-    document.getElementById('profileName').textContent = currentUser.displayName || 'Пользователь';
-    document.getElementById('profileLogin').textContent = '@' + (currentUser.username || 'user');
-
-    const pa = document.getElementById('profileAvatar');
-    if (currentUser.photo) {
-      pa.innerHTML = '<img src="' + currentUser.photo + '" alt="">';
-    } else {
-      pa.innerHTML = '<span class="material-symbols-rounded" style="font-size:48px;color:var(--md-primary)">person</span>';
-    }
-  } else {
-    avatarIcon.style.display = '';
-    avatarImg.style.display = 'none';
-    uploadAuthMsg.style.display = 'block';
-    uploadForm.style.display = 'none';
-    profileAuthMsg.style.display = 'block';
-    profileContent.style.display = 'none';
+function updateAuthUI(){
+  const ai=document.getElementById('avatarIcon'),am=document.getElementById('avatarImg');
+  if(currentUser){
+    if(currentUser.photo){ai.style.display='none';am.style.display='block';am.src=currentUser.photo}else{ai.style.display='';am.style.display='none'}
+    document.getElementById('uploadAuthMsg').style.display='none';document.getElementById('uploadForm').style.display='block';
+    document.getElementById('profileAuthMsg').style.display='none';document.getElementById('profileContent').style.display='block';
+    document.getElementById('profileName').textContent=currentUser.displayName||'Пользователь';
+    document.getElementById('profileLogin').textContent='@'+(currentUser.username||'user');
+    const pa=document.getElementById('profileAvatar');
+    pa.innerHTML=currentUser.photo?'<img src="'+currentUser.photo+'" alt="">':'<span class="material-symbols-rounded" style="font-size:48px;color:var(--md-primary)">person</span>';
+  }else{
+    ai.style.display='';am.style.display='none';
+    document.getElementById('uploadAuthMsg').style.display='block';document.getElementById('uploadForm').style.display='none';
+    document.getElementById('profileAuthMsg').style.display='block';document.getElementById('profileContent').style.display='none';
   }
   updateUserMenu();
 }
-
-function updateUserMenu() {
-  const c = document.getElementById('userMenuContent');
-  if (currentUser) {
-    const methodIcon = currentUser.authMethod === 'telegram' ? 'telegram' : 'mail';
-    const methodLabel = currentUser.authMethod === 'telegram' ? 'Telegram' : 'Email';
-    c.innerHTML =
-      '<div style="padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--md-outline-variant)">' +
-        '<div style="width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--md-primary-container);display:flex;align-items:center;justify-content:center;flex-shrink:0">' +
-          (currentUser.photo ? '<img src="' + currentUser.photo + '" style="width:100%;height:100%;object-fit:cover">' : '<span class="material-symbols-rounded">person</span>') +
-        '</div>' +
-        '<div style="min-width:0">' +
-          '<div style="font:500 14px/20px \'Inter\',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + escapeHtml(currentUser.displayName || 'Пользователь') + '</div>' +
-          '<div style="font:400 12px/16px \'Inter\',sans-serif;color:var(--md-on-surface-variant)">@' + escapeHtml(currentUser.username || 'user') + ' · ' + methodLabel + '</div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="user-menu-item" onclick="navigate(\'profile\');closeUserMenu()"><span class="material-symbols-rounded">person</span> Профиль</div>' +
-      '<div class="user-menu-item" onclick="navigate(\'upload\');closeUserMenu()"><span class="material-symbols-rounded">upload</span> Загрузить трек</div>' +
-      '<div class="user-menu-item" onclick="signOutUser();closeUserMenu()"><span class="material-symbols-rounded">logout</span> Выйти</div>';
-  } else {
-    c.innerHTML =
-      '<div class="user-menu-item" onclick="navigate(\'profile\');closeUserMenu()"><span class="material-symbols-rounded">login</span> Войти / Регистрация</div>';
+function updateUserMenu(){
+  const c=document.getElementById('userMenuContent');
+  if(currentUser){
+    c.innerHTML='<div style="padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--md-outline-variant)"><div style="width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--md-primary-container);display:flex;align-items:center;justify-content:center;flex-shrink:0">'+(currentUser.photo?'<img src="'+currentUser.photo+'" style="width:100%;height:100%;object-fit:cover">':'<span class="material-symbols-rounded">person</span>')+'</div><div style="min-width:0"><div style="font:500 14px/20px \'Inter\',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(currentUser.displayName)+'</div><div style="font:400 12px/16px \'Inter\',sans-serif;color:var(--md-on-surface-variant)">@'+esc(currentUser.username)+'</div></div></div><div class="user-menu-item" onclick="navigate(\'profile\');closeUserMenu()"><span class="material-symbols-rounded">person</span> Профиль</div><div class="user-menu-item" onclick="navigate(\'upload\');closeUserMenu()"><span class="material-symbols-rounded">upload</span> Загрузить</div><div class="user-menu-item" onclick="openSettings();closeUserMenu()"><span class="material-symbols-rounded">settings</span> Настройки</div><div class="user-menu-item" onclick="signOutUser();closeUserMenu()"><span class="material-symbols-rounded">logout</span> Выйти</div>';
+  }else{
+    c.innerHTML='<div class="user-menu-item" onclick="navigate(\'profile\');closeUserMenu()"><span class="material-symbols-rounded">login</span> Войти / Регистрация</div>';
   }
 }
+function toggleUserMenu(){document.getElementById('userMenu').classList.toggle('open')}
+function closeUserMenu(){document.getElementById('userMenu').classList.remove('open')}
+document.addEventListener('click',e=>{if(!e.target.closest('#userMenu')&&!e.target.closest('#userAvatarBtn'))closeUserMenu()});
 
-function toggleUserMenu() {
-  document.getElementById('userMenu').classList.toggle('open');
+// SETTINGS
+function openSettings(){
+  if(!currentUser){showSnackbar('Войдите в аккаунт');return}
+  const c=document.getElementById('settingsContent');
+  // Check linked accounts
+  db.ref('users/'+currentUser.uid).once('value').then(s=>{
+    const u=s.val()||{};
+    const hasTg=!!u.telegramId;
+    const hasEmail=!!u.email&&!!u.passwordHash;
+    const method=currentUser.authMethod;
+    c.innerHTML=
+      '<div class="settings-item" onclick="openEditProfile()"><span class="material-symbols-rounded">edit</span><div class="settings-item-info"><div class="settings-item-title">Редактировать профиль</div><div class="settings-item-sub">Имя, аватар</div></div><span class="material-symbols-rounded" style="color:var(--md-outline)">chevron_right</span></div>'+
+      '<div class="settings-item" onclick="'+(hasEmail?'showSnackbar(\'Email уже привязан\')':'openLinkEmail()')+'" ><span class="material-symbols-rounded">mail</span><div class="settings-item-info"><div class="settings-item-title">Email и пароль</div><div class="settings-item-sub">'+(hasEmail?(u.email||'Привязан'):'Не привязан')+'</div></div>'+(hasEmail?'<span class="material-symbols-rounded" style="color:var(--md-primary)">check_circle</span>':'<span class="material-symbols-rounded" style="color:var(--md-outline)">chevron_right</span>')+'</div>'+
+      '<div class="settings-item" onclick="'+(hasTg?'showSnackbar(\'Telegram уже привязан\')':'openLinkTelegram()')+'" ><span class="material-symbols-rounded">telegram</span><div class="settings-item-info"><div class="settings-item-title">Telegram</div><div class="settings-item-sub">'+(hasTg?('@'+(u.telegramUsername||'Привязан')):'Не привязан')+'</div></div>'+(hasTg?'<span class="material-symbols-rounded" style="color:var(--md-primary)">check_circle</span>':'<span class="material-symbols-rounded" style="color:var(--md-outline)">chevron_right</span>')+'</div>'+
+      '<div style="margin:16px 0;height:1px;background:var(--md-outline-variant)"></div>'+
+      '<div class="settings-item" onclick="toggleTheme();openSettings()"><span class="material-symbols-rounded">'+((document.body.getAttribute('data-theme')==='dark')?'light_mode':'dark_mode')+'</span><div class="settings-item-info"><div class="settings-item-title">Тема</div><div class="settings-item-sub">'+((document.body.getAttribute('data-theme')==='dark')?'Тёмная':'Светлая')+'</div></div></div>'+
+      '<div class="settings-item" onclick="signOutUser();closeModal(\'settingsModal\')"><span class="material-symbols-rounded" style="color:var(--md-error)">logout</span><div class="settings-item-info"><div class="settings-item-title" style="color:var(--md-error)">Выйти из аккаунта</div></div></div>';
+    document.getElementById('settingsModal').classList.add('open');
+  });
 }
-function closeUserMenu() {
-  document.getElementById('userMenu').classList.remove('open');
+function openEditProfile(){
+  closeModal('settingsModal');
+  document.getElementById('editDisplayName').value=currentUser.displayName||'';
+  document.getElementById('editAvatarUrl').value=currentUser.photo||'';
+  const zone=document.getElementById('editAvatarZone');
+  zone.innerHTML=currentUser.photo?'<img src="'+currentUser.photo+'" alt="">':'<span class="material-symbols-rounded">add_a_photo</span>';
+  document.getElementById('editProfileModal').classList.add('open');
 }
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('#userMenu') && !e.target.closest('#userAvatarBtn')) {
-    closeUserMenu();
-  }
-});
+function handleAvatarSelect(e){
+  const f=e.target.files[0];if(!f||!f.type.startsWith('image/'))return;
+  if(f.size>2*1024*1024){showSnackbar('Аватар макс. 2 МБ');return}
+  const r=new FileReader();
+  r.onload=ev=>{
+    document.getElementById('editAvatarZone').innerHTML='<img src="'+ev.target.result+'" alt="">';
+    document.getElementById('editAvatarUrl').value=ev.target.result;
+  };r.readAsDataURL(f);
+}
+async function saveProfileEdits(){
+  if(!currentUser)return;
+  const dn=document.getElementById('editDisplayName').value.trim();
+  const photo=document.getElementById('editAvatarUrl').value.trim();
+  if(!dn){showSnackbar('Введите имя');return}
+  const updates={displayName:dn,photo:photo};
+  await db.ref('users/'+currentUser.uid).update(updates);
+  // Update artistName on all user's tracks
+  const snap=await db.ref('tracks').orderByChild('artistId').equalTo(currentUser.uid).once('value');
+  const tracks=snap.val()||{};
+  const trackUpdates={};
+  Object.keys(tracks).forEach(tid=>{trackUpdates[tid+'/artistName']=dn;trackUpdates[tid+'/artistPhoto']=photo});
+  if(Object.keys(trackUpdates).length)await db.ref('tracks').update(trackUpdates);
+  currentUser.displayName=dn;currentUser.photo=photo;
+  localStorage.setItem('mp_user',JSON.stringify(currentUser));
+  updateAuthUI();closeModal('editProfileModal');showSnackbar('Профиль обновлён');
+}
+function openLinkTelegram(){closeModal('settingsModal');document.getElementById('linkTelegramModal').classList.add('open')}
+function openLinkEmail(){closeModal('settingsModal');document.getElementById('linkEmailModal').classList.add('open');document.getElementById('linkEmailError').textContent=''}
+async function saveLinkEmail(){
+  if(!currentUser)return;
+  const e=document.getElementById('linkEmail').value.trim().toLowerCase(),p=document.getElementById('linkPassword').value,err=document.getElementById('linkEmailError');
+  if(!e||!e.includes('@')){err.textContent='Введите Email';return}
+  if(p.length<6){err.textContent='Пароль мин. 6 символов';return}
+  const ek=e.replace(/\./g,',');
+  const es=await db.ref('emails/'+ek).once('value');
+  if(es.exists()){err.textContent='Email уже используется';return}
+  const ph=await hashPassword(p);
+  await db.ref('users/'+currentUser.uid+'/email').set(e);
+  await db.ref('users/'+currentUser.uid+'/passwordHash').set(ph);
+  await db.ref('emails/'+ek).set(currentUser.uid);
+  currentUser.email=e;localStorage.setItem('mp_user',JSON.stringify(currentUser));
+  closeModal('linkEmailModal');showSnackbar('Email привязан!');openSettings();
+}
 
-// ============================================
 // USER DATA
-// ============================================
-function loadUserData() {
-  if (!currentUser) return;
-  const uid = currentUser.uid;
-
-  db.ref('favorites/' + uid).on('value', snap => {
-    favorites = snap.val() || {};
-    renderFavorites();
-  });
-
-  db.ref('subscriptions/' + uid).on('value', snap => {
-    subscriptions = snap.val() || {};
-    renderSubscriptions();
-  });
-
-  db.ref('playlists/' + uid).on('value', snap => {
-    userPlaylists = snap.val() || {};
-    renderPlaylists();
-  });
-
-  loadMyTracks();
-  loadProfileStats();
+function loadUserData(){
+  if(!currentUser)return;const uid=currentUser.uid;
+  db.ref('favorites/'+uid).on('value',s=>{favorites=s.val()||{};renderFavorites();updateFsLike()});
+  db.ref('subscriptions/'+uid).on('value',s=>{subscriptions=s.val()||{};renderSubscriptions()});
+  db.ref('playlists/'+uid).on('value',s=>{userPlaylists=s.val()||{};renderPlaylists()});
+  loadMyTracks();loadProfileStats();
 }
-
-function loadMyTracks() {
-  if (!currentUser) return;
-  db.ref('tracks').orderByChild('artistId').equalTo(currentUser.uid).on('value', snap => {
-    const list = document.getElementById('myTracks');
-    const tracks = snap.val() || {};
-    const arr = Object.entries(tracks).sort((a,b) => (b[1].timestamp||0) - (a[1].timestamp||0));
-    if (arr.length === 0) {
-      list.innerHTML = '<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Вы ещё не загрузили треки</h3></div>';
-    } else {
-      list.innerHTML = arr.map(([id, t], i) => renderTrackItem(id, t, i+1, true)).join('');
-    }
-    document.getElementById('profileTracks').textContent = arr.length;
+function loadMyTracks(){
+  if(!currentUser)return;
+  db.ref('tracks').orderByChild('artistId').equalTo(currentUser.uid).on('value',snap=>{
+    const tracks=snap.val()||{};
+    const arr=Object.entries(tracks).sort((a,b)=>(b[1].timestamp||0)-(a[1].timestamp||0));
+    // Update both myTracks and profileTrackList
+    ['myTracks','profileTrackList'].forEach(elId=>{
+      const el=document.getElementById(elId);if(!el)return;
+      if(arr.length===0)el.innerHTML='<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Нет загруженных треков</h3></div>';
+      else el.innerHTML=arr.map(([id,t],i)=>renderTrackItem(id,t,i+1,true)).join('');
+    });
+    document.getElementById('profileTracks').textContent=arr.length;
   });
 }
+function loadProfileStats(){if(!currentUser)return;db.ref('subscribers/'+currentUser.uid).on('value',s=>{document.getElementById('profileSubs').textContent=Object.keys(s.val()||{}).length})}
 
-function loadProfileStats() {
-  if (!currentUser) return;
-  db.ref('subscribers/' + currentUser.uid).on('value', snap => {
-    const subs = snap.val() || {};
-    document.getElementById('profileSubs').textContent = Object.keys(subs).length;
-  });
-}
-
-// ============================================
 // TRACKS
-// ============================================
-db.ref('tracks').on('value', snap => {
-  allTracks = snap.val() || {};
-  renderHome();
-  renderExplore();
-  if (document.getElementById('page-search').classList.contains('active')) {
-    handleSearch(document.getElementById('searchInput').value);
-  }
+db.ref('tracks').on('value',snap=>{
+  allTracks=snap.val()||{};renderHome();renderExplore();
+  if(document.getElementById('page-search').classList.contains('active'))handleSearch(document.getElementById('searchInput').value);
 });
 
-function renderTrackItem(id, track, num, showDelete) {
-  const isExp = track.explicit;
-  const isFav = favorites[id];
-  const isNowPlaying = currentTrackId === id;
-  const dur = track.duration ? formatTime(track.duration) : '—';
-
-  return '<div class="track-item ' + (isNowPlaying ? 'playing' : '') + '" data-id="' + id + '" onclick="playTrackById(\'' + id + '\')">' +
-    '<div class="track-num">' + (isNowPlaying ? '<span class="material-symbols-rounded filled" style="color:var(--md-primary);font-size:18px">equalizer</span>' : num) + '</div>' +
-    '<div class="track-thumb">' +
-      (track.cover ? '<img src="' + track.cover + '" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="material-symbols-rounded" style="display:none">music_note</span>' : '<span class="material-symbols-rounded">music_note</span>') +
-      '<div class="play-overlay"><span class="material-symbols-rounded" style="color:white;font-size:24px">play_arrow</span></div>' +
-    '</div>' +
-    '<div class="track-info">' +
-      '<div class="track-title-row">' +
-        '<span class="track-name">' + escapeHtml(track.title || 'Без названия') + '</span>' +
-        (isExp ? '<span class="explicit-badge" title="Ненормативная лексика">!</span>' : '') +
-      '</div>' +
-      '<div class="track-artist" onclick="event.stopPropagation();viewArtist(\'' + track.artistId + '\')" style="cursor:pointer">' + escapeHtml(track.artistName || 'Неизвестен') + '</div>' +
-    '</div>' +
-    '<div class="track-actions">' +
-      '<button class="btn-icon ' + (isFav ? 'active' : '') + '" onclick="event.stopPropagation();toggleFavorite(\'' + id + '\')" title="Нравится">' +
-        '<span class="material-symbols-rounded ' + (isFav ? 'filled' : '') + '">favorite</span>' +
-      '</button>' +
-      (showDelete ? '<button class="btn-icon" onclick="event.stopPropagation();deleteTrack(\'' + id + '\')" title="Удалить"><span class="material-symbols-rounded">delete</span></button>' : '') +
-    '</div>' +
-    '<div class="track-duration">' + dur + '</div>' +
-  '</div>';
+function renderTrackItem(id,track,num,showDel){
+  const isExp=track.explicit,isFav=favorites[id],isNP=currentTrackId===id,dur=track.duration?formatTime(track.duration):'—';
+  return '<div class="track-item '+(isNP?'playing':'')+'" data-id="'+id+'" onclick="playTrackById(\''+id+'\')">'+
+    '<div class="track-num">'+(isNP?'<span class="material-symbols-rounded filled" style="color:var(--md-primary);font-size:18px">equalizer</span>':num)+'</div>'+
+    '<div class="track-thumb">'+(track.cover?'<img src="'+track.cover+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="material-symbols-rounded" style="display:none">music_note</span>':'<span class="material-symbols-rounded">music_note</span>')+'<div class="play-overlay"><span class="material-symbols-rounded" style="color:white;font-size:24px">play_arrow</span></div></div>'+
+    '<div class="track-info"><div class="track-title-row"><span class="track-name">'+esc(track.title||'Без названия')+'</span>'+(isExp?'<span class="explicit-badge" title="Explicit">!</span>':'')+'</div>'+
+    '<div class="track-artist" onclick="event.stopPropagation();viewArtist(\''+track.artistId+'\')" style="cursor:pointer">'+esc(track.artistName||'Неизвестен')+'</div></div>'+
+    '<div class="track-actions">'+
+    '<button class="btn-icon '+(isFav?'active':'')+'" onclick="event.stopPropagation();toggleFavorite(\''+id+'\')" title="Нравится"><span class="material-symbols-rounded '+(isFav?'filled':'')+'">favorite</span></button>'+
+    (showDel?'<button class="btn-icon" onclick="event.stopPropagation();deleteTrack(\''+id+'\')" title="Удалить"><span class="material-symbols-rounded">delete</span></button>':'')+
+    '</div><div class="track-duration">'+dur+'</div></div>';
 }
 
-function renderHome() {
-  const entries = Object.entries(allTracks);
-  const sorted = [...entries].sort((a,b) => (b[1].timestamp||0) - (a[1].timestamp||0));
-  const newTracks = sorted.slice(0, 10);
+function renderHome(){
+  const entries=Object.entries(allTracks);
+  const sorted=[...entries].sort((a,b)=>(b[1].timestamp||0)-(a[1].timestamp||0));
+  const newTr=sorted.slice(0,10);
+  const ntl=document.getElementById('homeNewTracks');
+  ntl.innerHTML=newTr.length===0?'<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Пока нет треков</h3><p>Будьте первым!</p></div>':newTr.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
 
-  const ntl = document.getElementById('homeNewTracks');
-  if (newTracks.length === 0) {
-    ntl.innerHTML = '<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Пока нет треков</h3><p>Будьте первым, кто загрузит музыку!</p></div>';
-  } else {
-    ntl.innerHTML = newTracks.map(([id,t],i) => renderTrackItem(id,t,i+1)).join('');
-  }
+  const popular=[...entries].sort((a,b)=>(b[1].likes||0)-(a[1].likes||0)).slice(0,8);
+  const pg=document.getElementById('homePopular');
+  pg.innerHTML=popular.length===0?'':popular.map(([id,t])=>'<div class="md-card" onclick="playTrackById(\''+id+'\')"><div class="card-img">'+(t.cover?'<img src="'+t.cover+'" alt="" onerror="this.style.display=\'none\'">':'<span class="material-symbols-rounded">music_note</span>')+'</div><div class="card-body"><div class="card-title" style="display:flex;align-items:center;gap:4px">'+esc(t.title||'')+(t.explicit?'<span class="explicit-badge" style="font-size:10px;width:16px;height:16px">!</span>':'')+'</div><div class="card-sub">'+esc(t.artistName||'')+'</div><div class="card-sub" style="display:flex;align-items:center;gap:4px;margin-top:4px"><span class="material-symbols-rounded" style="font-size:14px">favorite</span> '+(t.likes||0)+'</div></div></div>').join('');
 
-  const popular = [...entries].sort((a,b) => (b[1].likes||0) - (a[1].likes||0)).slice(0, 8);
-  const pg = document.getElementById('homePopular');
-  if (popular.length === 0) {
-    pg.innerHTML = '';
-  } else {
-    pg.innerHTML = popular.map(([id,t]) =>
-      '<div class="md-card" onclick="playTrackById(\'' + id + '\')">' +
-        '<div class="card-img">' +
-          (t.cover ? '<img src="' + t.cover + '" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display=\'none\'">' : '<span class="material-symbols-rounded">music_note</span>') +
-        '</div>' +
-        '<div class="card-body">' +
-          '<div class="card-title" style="display:flex;align-items:center;gap:4px">' +
-            escapeHtml(t.title||'Без названия') +
-            (t.explicit ? '<span class="explicit-badge" style="font-size:10px;width:16px;height:16px">!</span>' : '') +
-          '</div>' +
-          '<div class="card-sub">' + escapeHtml(t.artistName||'Неизвестен') + '</div>' +
-          '<div class="card-sub" style="display:flex;align-items:center;gap:4px;margin-top:4px">' +
-            '<span class="material-symbols-rounded" style="font-size:14px">favorite</span> ' + (t.likes||0) +
-          '</div>' +
-        '</div>' +
-      '</div>'
-    ).join('');
-  }
-
-  const artistMap = {};
-  entries.forEach(([id, t]) => {
-    if (t.artistId && !artistMap[t.artistId]) {
-      artistMap[t.artistId] = { name: t.artistName, photo: t.artistPhoto || '', id: t.artistId };
-    }
-  });
-  const artists = Object.values(artistMap).slice(0, 12);
-  const ag = document.getElementById('homeArtists');
-  ag.innerHTML = artists.map(a =>
-    '<div class="artist-card" onclick="viewArtist(\'' + a.id + '\')">' +
-      '<div class="artist-img">' +
-        (a.photo ? '<img src="' + a.photo + '" alt="" onerror="this.style.display=\'none\'">' : '<span class="material-symbols-rounded" style="font-size:40px;color:var(--md-outline)">person</span>') +
-      '</div>' +
-      '<div class="card-title" style="font-size:13px">' + escapeHtml(a.name||'Артист') + '</div>' +
-    '</div>'
-  ).join('');
+  const am={};entries.forEach(([id,t])=>{if(t.artistId&&!am[t.artistId])am[t.artistId]={name:t.artistName,photo:t.artistPhoto||'',id:t.artistId}});
+  const ag=document.getElementById('homeArtists');
+  ag.innerHTML=Object.values(am).slice(0,12).map(a=>'<div class="artist-card" onclick="viewArtist(\''+a.id+'\')"><div class="artist-img">'+(a.photo?'<img src="'+a.photo+'" alt="" onerror="this.style.display=\'none\'">':'<span class="material-symbols-rounded" style="font-size:40px;color:var(--md-outline)">person</span>')+'</div><div class="card-title" style="font-size:13px">'+esc(a.name||'Артист')+'</div></div>').join('');
 }
 
-let currentGenre = 'all';
-function renderExplore() {
-  const gp = document.getElementById('genrePills');
-  gp.innerHTML = genres.map(g =>
-    '<div class="chip ' + (currentGenre===g.id?'active':'') + '" onclick="filterGenre(\'' + g.id + '\')">' +
-      '<span class="material-symbols-rounded" style="font-size:16px">' + g.icon + '</span> ' + g.label +
-    '</div>'
-  ).join('');
-
-  const entries = Object.entries(allTracks);
-  let filtered = entries;
-  if (currentGenre !== 'all') {
-    filtered = entries.filter(([id,t]) => t.genre === currentGenre);
-  }
-  filtered.sort((a,b) => (b[1].timestamp||0) - (a[1].timestamp||0));
-
-  const el = document.getElementById('exploreTracks');
-  const title = document.getElementById('exploreTitle');
-  const genreLabel = genres.find(g => g.id === currentGenre);
-  title.textContent = currentGenre === 'all' ? 'Все треки' : (genreLabel ? genreLabel.label : 'Треки');
-
-  if (filtered.length === 0) {
-    el.innerHTML = '<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Нет треков в этой категории</h3></div>';
-  } else {
-    el.innerHTML = filtered.map(([id,t],i) => renderTrackItem(id,t,i+1)).join('');
-  }
+let currentGenre='all';
+function renderExplore(){
+  document.getElementById('genrePills').innerHTML=genres.map(g=>'<div class="chip '+(currentGenre===g.id?'active':'')+'" onclick="filterGenre(\''+g.id+'\')"><span class="material-symbols-rounded" style="font-size:16px">'+g.icon+'</span> '+g.label+'</div>').join('');
+  const entries=Object.entries(allTracks);
+  let filtered=currentGenre==='all'?entries:entries.filter(([id,t])=>t.genre===currentGenre);
+  filtered.sort((a,b)=>(b[1].timestamp||0)-(a[1].timestamp||0));
+  const el=document.getElementById('exploreTracks'),title=document.getElementById('exploreTitle');
+  const gl=genres.find(g=>g.id===currentGenre);
+  title.textContent=currentGenre==='all'?'Все треки':(gl?gl.label:'Треки');
+  el.innerHTML=filtered.length===0?'<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Нет треков</h3></div>':filtered.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
 }
+function filterGenre(g){currentGenre=g;renderExplore()}
 
-function filterGenre(genre) { currentGenre = genre; renderExplore(); }
-
-// ============================================
-// SEARCH
-// ============================================
-function handleSearch(query) {
-  if (!query || query.trim().length < 2) {
-    if (document.getElementById('page-search').classList.contains('active')) navigate('home');
-    return;
-  }
+// SEARCH WITH ARTISTS
+function handleSearch(q){
+  if(!q||q.trim().length<2){if(document.getElementById('page-search').classList.contains('active'))navigate('home');return}
   navigate('search');
-  const q = query.toLowerCase().trim();
-  const results = Object.entries(allTracks).filter(([id, t]) =>
-    (t.title || '').toLowerCase().includes(q) ||
-    (t.artistName || '').toLowerCase().includes(q) ||
-    (t.genre || '').toLowerCase().includes(q)
-  );
+  const query=q.toLowerCase().trim();
+  // Search tracks
+  const trackResults=Object.entries(allTracks).filter(([id,t])=>(t.title||'').toLowerCase().includes(query)||(t.artistName||'').toLowerCase().includes(query)||(t.genre||'').toLowerCase().includes(query));
+  // Search artists
+  const artistMap={};Object.entries(allTracks).forEach(([id,t])=>{if(t.artistId&&!artistMap[t.artistId])artistMap[t.artistId]={name:t.artistName||'',photo:t.artistPhoto||'',id:t.artistId}});
+  const artistResults=Object.values(artistMap).filter(a=>(a.name||'').toLowerCase().includes(query));
 
-  document.getElementById('searchTitle').textContent = 'Результаты: «' + query + '»';
-  const sr = document.getElementById('searchResults');
-  if (results.length === 0) {
-    sr.innerHTML = '<div class="empty-state"><span class="material-symbols-rounded">search_off</span><h3>Ничего не найдено</h3><p>Попробуйте другой запрос</p></div>';
-  } else {
-    sr.innerHTML = results.map(([id,t],i) => renderTrackItem(id,t,i+1)).join('');
-  }
+  document.getElementById('searchTitle').textContent='Результаты: «'+q+'»';
+  const as=document.getElementById('searchArtistsSection'),ag=document.getElementById('searchArtists');
+  if(artistResults.length>0){
+    as.style.display='';
+    ag.innerHTML=artistResults.map(a=>'<div class="artist-card" onclick="viewArtist(\''+a.id+'\')"><div class="artist-img">'+(a.photo?'<img src="'+a.photo+'" alt="">':'<span class="material-symbols-rounded" style="font-size:40px;color:var(--md-outline)">person</span>')+'</div><div class="card-title" style="font-size:13px">'+esc(a.name)+'</div></div>').join('');
+  }else as.style.display='none';
+
+  const sr=document.getElementById('searchResults');
+  sr.innerHTML=trackResults.length===0?'<div class="empty-state"><span class="material-symbols-rounded">search_off</span><h3>Треков не найдено</h3></div>':trackResults.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
 }
 
-// ============================================
 // PLAYER
-// ============================================
-function showPlayer() {
-  if (!playerVisible) {
-    playerVisible = true;
-    document.getElementById('playerBar').classList.add('visible');
-  }
+function showPlayer(){if(!playerVisible){playerVisible=true;document.getElementById('playerBar').classList.add('visible')}}
+
+function playTrackById(id){
+  const track=allTracks[id];if(!track||!track.audioData){showSnackbar('Аудио недоступно');return}
+  currentTrackId=id;
+  const ap=document.querySelector('.page.active');const items=ap?ap.querySelectorAll('.track-item'):[];
+  playlist=[];items.forEach(it=>{const tid=it.dataset.id;if(tid)playlist.push(tid)});
+  playlistIndex=playlist.indexOf(id);if(playlistIndex===-1){playlist=[id];playlistIndex=0}
+  loadAndPlay(track);db.ref('tracks/'+id+'/plays').transaction(p=>(p||0)+1);
 }
 
-function playTrackById(id) {
-  const track = allTracks[id];
-  if (!track || !track.audioData) { showSnackbar('Аудиоданные недоступны'); return; }
-
-  currentTrackId = id;
-
-  const activePage = document.querySelector('.page.active');
-  const items = activePage ? activePage.querySelectorAll('.track-item') : [];
-  playlist = [];
-  items.forEach(item => { const tid = item.dataset.id; if (tid) playlist.push(tid); });
-  playlistIndex = playlist.indexOf(id);
-  if (playlistIndex === -1) { playlist = [id]; playlistIndex = 0; }
-
-  loadAndPlay(track);
-  db.ref('tracks/' + id + '/plays').transaction(p => (p || 0) + 1);
-}
-
-function loadAndPlay(track) {
+function loadAndPlay(track){
   showPlayer();
-  document.getElementById('playerSong').textContent = track.title || 'Без названия';
-  document.getElementById('playerArtist').textContent = track.artistName || 'Неизвестен';
-  document.getElementById('playerExplicit').style.display = track.explicit ? 'inline-flex' : 'none';
+  document.getElementById('playerSong').textContent=track.title||'Без названия';
+  document.getElementById('playerArtist').textContent=track.artistName||'Неизвестен';
+  document.getElementById('playerExplicit').style.display=track.explicit?'inline-flex':'none';
+  const thumb=document.getElementById('playerThumb');
+  thumb.innerHTML=track.cover?'<img src="'+track.cover+'" alt="" onerror="this.parentElement.innerHTML=\'<span class=\\\'material-symbols-rounded\\\'>music_note</span>\'">':'<span class="material-symbols-rounded">music_note</span>';
+  // Fullscreen player update
+  document.getElementById('fsCover').innerHTML=track.cover?'<img src="'+track.cover+'" alt="">':'<span class="material-symbols-rounded">music_note</span>';
+  document.getElementById('fsTitle').innerHTML=esc(track.title||'Без названия')+(track.explicit?' <span class="explicit-badge">!</span>':'');
+  document.getElementById('fsArtist').textContent=track.artistName||'Неизвестен';
+  updateFsLike();
 
-  const thumb = document.getElementById('playerThumb');
-  if (track.cover) {
-    thumb.innerHTML = '<img src="' + track.cover + '" alt="" onerror="this.parentElement.innerHTML=\'<span class=\\\'material-symbols-rounded\\\'>music_note</span>\'">';
-  } else {
-    thumb.innerHTML = '<span class="material-symbols-rounded">music_note</span>';
-  }
-
-  audio.src = track.audioData;
-  audio.play().then(() => { isPlaying = true; updatePlayButton(); }).catch(err => {
-    console.error('Play error:', err); showSnackbar('Ошибка воспроизведения');
+  audio.src=track.audioData;
+  audio.play().then(()=>{isPlaying=true;updatePlayButton()}).catch(err=>{console.error(err);showSnackbar('Ошибка воспроизведения')});
+  document.querySelectorAll('.track-item').forEach(el=>{
+    el.classList.toggle('playing',el.dataset.id===currentTrackId);
+    if(el.dataset.id===currentTrackId)el.querySelector('.track-num').innerHTML='<span class="material-symbols-rounded filled" style="color:var(--md-primary);font-size:18px">equalizer</span>';
   });
-
-  document.querySelectorAll('.track-item').forEach(el => {
-    el.classList.toggle('playing', el.dataset.id === currentTrackId);
-    const numEl = el.querySelector('.track-num');
-    if (el.dataset.id === currentTrackId) {
-      numEl.innerHTML = '<span class="material-symbols-rounded filled" style="color:var(--md-primary);font-size:18px">equalizer</span>';
-    }
-  });
-
-  if ('mediaSession' in navigator) {
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: track.title || 'Без названия',
-      artist: track.artistName || 'Неизвестен',
-      artwork: track.cover ? [{src: track.cover}] : []
-    });
-    navigator.mediaSession.setActionHandler('play', () => togglePlay());
-    navigator.mediaSession.setActionHandler('pause', () => togglePlay());
-    navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
-    navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
+  if('mediaSession' in navigator){
+    navigator.mediaSession.metadata=new MediaMetadata({title:track.title||'',artist:track.artistName||'',artwork:track.cover?[{src:track.cover}]:[]});
+    navigator.mediaSession.setActionHandler('play',()=>togglePlay());navigator.mediaSession.setActionHandler('pause',()=>togglePlay());
+    navigator.mediaSession.setActionHandler('previoustrack',()=>prevTrack());navigator.mediaSession.setActionHandler('nexttrack',()=>nextTrack());
   }
 }
 
-function togglePlay() {
-  if (!audio.src) return;
-  if (isPlaying) audio.pause(); else audio.play();
-  isPlaying = !isPlaying;
-  updatePlayButton();
+function togglePlay(){if(!audio.src)return;if(isPlaying)audio.pause();else audio.play();isPlaying=!isPlaying;updatePlayButton()}
+function updatePlayButton(){
+  const ic=isPlaying?'pause':'play_arrow';
+  document.getElementById('playIcon').textContent=ic;
+  document.getElementById('fsPlayIcon').textContent=ic;
+  document.getElementById('waveCircle').classList.toggle('playing-anim',isPlaying);
+}
+function prevTrack(){if(!playlist.length)return;if(audio.currentTime>3){audio.currentTime=0;return}playlistIndex=(playlistIndex-1+playlist.length)%playlist.length;currentTrackId=playlist[playlistIndex];loadAndPlay(allTracks[currentTrackId])}
+function nextTrack(){if(!playlist.length)return;if(isShuffle)playlistIndex=Math.floor(Math.random()*playlist.length);else playlistIndex=(playlistIndex+1)%playlist.length;currentTrackId=playlist[playlistIndex];loadAndPlay(allTracks[currentTrackId])}
+function toggleShuffle(){isShuffle=!isShuffle;document.getElementById('shuffleBtn').classList.toggle('active',isShuffle);document.getElementById('fsShuffleBtn').classList.toggle('active',isShuffle);showSnackbar(isShuffle?'Перемешивание вкл':'Перемешивание выкл')}
+function toggleRepeat(){
+  repeatMode=(repeatMode+1)%3;
+  ['repeatBtn','fsRepeatBtn'].forEach(id=>{const b=document.getElementById(id);b.classList.toggle('active',repeatMode>0);b.querySelector('.material-symbols-rounded').textContent=repeatMode===2?'repeat_one':'repeat'});
+  showSnackbar(['Повтор выкл','Повтор плейлиста','Повтор трека'][repeatMode]);
 }
 
-function updatePlayButton() {
-  document.getElementById('playIcon').textContent = isPlaying ? 'pause' : 'play_arrow';
-  document.getElementById('waveCircle').classList.toggle('playing-anim', isPlaying);
-}
-
-function prevTrack() {
-  if (playlist.length === 0) return;
-  if (audio.currentTime > 3) { audio.currentTime = 0; return; }
-  playlistIndex = (playlistIndex - 1 + playlist.length) % playlist.length;
-  currentTrackId = playlist[playlistIndex];
-  loadAndPlay(allTracks[currentTrackId]);
-}
-
-function nextTrack() {
-  if (playlist.length === 0) return;
-  if (isShuffle) playlistIndex = Math.floor(Math.random() * playlist.length);
-  else playlistIndex = (playlistIndex + 1) % playlist.length;
-  currentTrackId = playlist[playlistIndex];
-  loadAndPlay(allTracks[currentTrackId]);
-}
-
-function toggleShuffle() {
-  isShuffle = !isShuffle;
-  document.getElementById('shuffleBtn').classList.toggle('active', isShuffle);
-  showSnackbar(isShuffle ? 'Перемешивание включено' : 'Перемешивание выключено');
-}
-
-function toggleRepeat() {
-  repeatMode = (repeatMode + 1) % 3;
-  const btn = document.getElementById('repeatBtn');
-  const icon = btn.querySelector('.material-symbols-rounded');
-  btn.classList.toggle('active', repeatMode > 0);
-  icon.textContent = repeatMode === 2 ? 'repeat_one' : 'repeat';
-  showSnackbar(['Повтор выключен', 'Повтор плейлиста', 'Повтор трека'][repeatMode]);
-}
-
-audio.addEventListener('timeupdate', () => {
-  if (audio.duration) {
-    document.getElementById('progressFill').style.width = (audio.currentTime / audio.duration * 100) + '%';
-    document.getElementById('currentTime').textContent = formatTime(audio.currentTime);
-    document.getElementById('totalTime').textContent = formatTime(audio.duration);
-  }
+audio.addEventListener('timeupdate',()=>{
+  if(!audio.duration)return;
+  const pct=(audio.currentTime/audio.duration*100)+'%';
+  document.getElementById('progressFill').style.width=pct;
+  document.getElementById('fsProgressFill').style.width=pct;
+  const ct=formatTime(audio.currentTime),tt=formatTime(audio.duration);
+  document.getElementById('currentTime').textContent=ct;document.getElementById('totalTime').textContent=tt;
+  document.getElementById('fsCurrentTime').textContent=ct;document.getElementById('fsTotalTime').textContent=tt;
 });
+audio.addEventListener('ended',()=>{if(repeatMode===2){audio.currentTime=0;audio.play()}else if(repeatMode===1||playlistIndex<playlist.length-1)nextTrack();else{isPlaying=false;updatePlayButton()}});
 
-audio.addEventListener('ended', () => {
-  if (repeatMode === 2) { audio.currentTime = 0; audio.play(); }
-  else if (repeatMode === 1 || playlistIndex < playlist.length - 1) nextTrack();
-  else { isPlaying = false; updatePlayButton(); }
-});
+function seekTo(e){const r=e.currentTarget.getBoundingClientRect();if(audio.duration)audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration}
+let volume=0.8;audio.volume=volume;
+function setVolume(e){const r=e.currentTarget.getBoundingClientRect();volume=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));audio.volume=volume;document.getElementById('volumeFill').style.width=(volume*100)+'%';updateVolumeIcon()}
+function toggleMute(){audio.muted=!audio.muted;updateVolumeIcon()}
+function updateVolumeIcon(){const i=document.getElementById('volumeBtn').querySelector('.material-symbols-rounded');i.textContent=audio.muted||volume===0?'volume_off':volume<.5?'volume_down':'volume_up'}
+function formatTime(s){const m=Math.floor(s/60),sec=Math.floor(s%60);return m+':'+(sec<10?'0':'')+sec}
 
-function seekTo(e) {
-  const rect = e.currentTarget.getBoundingClientRect();
-  if (audio.duration) audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+// FULLSCREEN PLAYER
+function openFullscreenPlayer(){if(!currentTrackId)return;document.getElementById('fsPlayer').classList.add('open');updateFsLike()}
+function closeFullscreenPlayer(){document.getElementById('fsPlayer').classList.remove('open')}
+function updateFsLike(){
+  const btn=document.getElementById('fsLikeBtn');if(!btn)return;
+  const liked=currentTrackId&&favorites[currentTrackId];
+  btn.classList.toggle('active',!!liked);
+  btn.querySelector('.material-symbols-rounded').classList.toggle('filled',!!liked);
 }
-
-let volume = 0.8;
-audio.volume = volume;
-
-function setVolume(e) {
-  const rect = e.currentTarget.getBoundingClientRect();
-  volume = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-  audio.volume = volume;
-  document.getElementById('volumeFill').style.width = (volume * 100) + '%';
-  updateVolumeIcon();
+function fsGoToArtist(){
+  if(!currentTrackId||!allTracks[currentTrackId])return;
+  closeFullscreenPlayer();viewArtist(allTracks[currentTrackId].artistId);
 }
-
-function toggleMute() { audio.muted = !audio.muted; updateVolumeIcon(); }
-
-function updateVolumeIcon() {
-  const icon = document.getElementById('volumeBtn').querySelector('.material-symbols-rounded');
-  if (audio.muted || volume === 0) icon.textContent = 'volume_off';
-  else if (volume < 0.5) icon.textContent = 'volume_down';
-  else icon.textContent = 'volume_up';
+function shareTrack(){
+  if(!currentTrackId)return;
+  const t=allTracks[currentTrackId];
+  if(navigator.share){navigator.share({title:t.title,text:t.title+' — '+t.artistName,url:location.href}).catch(()=>{})}
+  else{navigator.clipboard.writeText(location.href).then(()=>showSnackbar('Ссылка скопирована')).catch(()=>showSnackbar('Не удалось скопировать'))}
 }
+function showTrackMenu(){showSnackbar('Меню трека (скоро)')}
 
-function formatTime(sec) {
-  const m = Math.floor(sec / 60);
-  const s = Math.floor(sec % 60);
-  return m + ':' + (s < 10 ? '0' : '') + s;
-}
-
-// ============================================
 // FAVORITES
-// ============================================
-function toggleFavorite(trackId) {
-  if (!currentUser) { showSnackbar('Войдите, чтобы ставить лайки'); return; }
-  const uid = currentUser.uid;
-  if (favorites[trackId]) {
-    db.ref('favorites/' + uid + '/' + trackId).remove();
-    db.ref('tracks/' + trackId + '/likes').transaction(l => Math.max(0, (l||1) - 1));
-    showSnackbar('Удалено из любимого');
-  } else {
-    db.ref('favorites/' + uid + '/' + trackId).set(true);
-    db.ref('tracks/' + trackId + '/likes').transaction(l => (l||0) + 1);
-    showSnackbar('Добавлено в любимое');
-  }
+function toggleFavorite(tid){
+  if(!currentUser){showSnackbar('Войдите для лайков');return}
+  if(!tid)return;
+  if(favorites[tid]){db.ref('favorites/'+currentUser.uid+'/'+tid).remove();db.ref('tracks/'+tid+'/likes').transaction(l=>Math.max(0,(l||1)-1));showSnackbar('Удалено из любимого')}
+  else{db.ref('favorites/'+currentUser.uid+'/'+tid).set(true);db.ref('tracks/'+tid+'/likes').transaction(l=>(l||0)+1);showSnackbar('Добавлено в любимое')}
+}
+function renderFavorites(){
+  const fids=Object.keys(favorites),em=document.getElementById('favEmpty'),list=document.getElementById('favTracks');
+  if(fids.length===0){em.style.display='';list.innerHTML='';return}
+  em.style.display='none';
+  list.innerHTML=fids.map(id=>[id,allTracks[id]]).filter(([id,t])=>t).map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
+  document.getElementById('profileLikes').textContent=fids.length;
 }
 
-function renderFavorites() {
-  const favIds = Object.keys(favorites);
-  const empty = document.getElementById('favEmpty');
-  const list = document.getElementById('favTracks');
-  if (favIds.length === 0) { empty.style.display = ''; list.innerHTML = ''; return; }
-  empty.style.display = 'none';
-  const tracks = favIds.map(id => [id, allTracks[id]]).filter(([id,t]) => t);
-  list.innerHTML = tracks.map(([id,t],i) => renderTrackItem(id,t,i+1)).join('');
-  if (document.getElementById('profileLikes')) document.getElementById('profileLikes').textContent = favIds.length;
-}
-
-// ============================================
 // SUBSCRIPTIONS
-// ============================================
-function toggleSubscription(artistId) {
-  if (!currentUser) { showSnackbar('Войдите, чтобы подписываться'); return; }
-  if (artistId === currentUser.uid) { showSnackbar('Нельзя подписаться на себя'); return; }
-  const uid = currentUser.uid;
-  if (subscriptions[artistId]) {
-    db.ref('subscriptions/' + uid + '/' + artistId).remove();
-    db.ref('subscribers/' + artistId + '/' + uid).remove();
-    showSnackbar('Вы отписались');
-  } else {
-    db.ref('subscriptions/' + uid + '/' + artistId).set(true);
-    db.ref('subscribers/' + artistId + '/' + uid).set(true);
-    showSnackbar('Вы подписались');
-  }
+function toggleSubscription(aid){
+  if(!currentUser){showSnackbar('Войдите для подписки');return}
+  if(aid===currentUser.uid){showSnackbar('Нельзя подписаться на себя');return}
+  if(subscriptions[aid]){db.ref('subscriptions/'+currentUser.uid+'/'+aid).remove();db.ref('subscribers/'+aid+'/'+currentUser.uid).remove();showSnackbar('Отписались')}
+  else{db.ref('subscriptions/'+currentUser.uid+'/'+aid).set(true);db.ref('subscribers/'+aid+'/'+currentUser.uid).set(true);showSnackbar('Подписались')}
 }
-
-function renderSubscriptions() {
-  const subIds = Object.keys(subscriptions);
-  const empty = document.getElementById('subsEmpty');
-  const grid = document.getElementById('subsGrid');
-  if (subIds.length === 0) { empty.style.display = ''; grid.innerHTML = ''; return; }
-  empty.style.display = 'none';
-  const promises = subIds.map(id => db.ref('users/' + id).once('value'));
-  Promise.all(promises).then(snaps => {
-    grid.innerHTML = snaps.map((snap, i) => {
-      const user = snap.val() || {};
-      const id = subIds[i];
-      return '<div class="artist-card" onclick="viewArtist(\'' + id + '\')">' +
-        '<div class="artist-img">' +
-          (user.photo ? '<img src="' + user.photo + '" alt="">' : '<span class="material-symbols-rounded" style="font-size:40px;color:var(--md-outline)">person</span>') +
-        '</div>' +
-        '<div class="card-title" style="font-size:13px">' + escapeHtml(user.displayName||user.name||'Артист') + '</div>' +
-      '</div>';
-    }).join('');
+function renderSubscriptions(){
+  const sids=Object.keys(subscriptions),em=document.getElementById('subsEmpty'),grid=document.getElementById('subsGrid');
+  if(sids.length===0){em.style.display='';grid.innerHTML='';return}
+  em.style.display='none';
+  Promise.all(sids.map(id=>db.ref('users/'+id).once('value'))).then(snaps=>{
+    grid.innerHTML=snaps.map((s,i)=>{const u=s.val()||{};return'<div class="artist-card" onclick="viewArtist(\''+sids[i]+'\')"><div class="artist-img">'+(u.photo?'<img src="'+u.photo+'" alt="">':'<span class="material-symbols-rounded" style="font-size:40px;color:var(--md-outline)">person</span>')+'</div><div class="card-title" style="font-size:13px">'+esc(u.displayName||'Артист')+'</div></div>'}).join('');
   });
 }
 
-// ============================================
 // PLAYLISTS
-// ============================================
-function createPlaylist() {
-  if (!currentUser) { showSnackbar('Войдите, чтобы создавать плейлисты'); return; }
-  document.getElementById('playlistModal').classList.add('open');
-  document.getElementById('playlistNameInput').value = '';
-  setTimeout(() => document.getElementById('playlistNameInput').focus(), 100);
+function createPlaylist(){if(!currentUser){showSnackbar('Войдите');return}document.getElementById('playlistModal').classList.add('open');document.getElementById('playlistNameInput').value='';setTimeout(()=>document.getElementById('playlistNameInput').focus(),100)}
+function savePlaylist(){const n=document.getElementById('playlistNameInput').value.trim();if(!n){showSnackbar('Введите название');return}if(!currentUser)return;db.ref('playlists/'+currentUser.uid).push({name:n,tracks:{},created:Date.now()});closeModal('playlistModal');showSnackbar('Плейлист создан')}
+function renderPlaylists(){
+  const entries=Object.entries(userPlaylists),c=document.getElementById('playlistsContent'),g=document.getElementById('playlistsGrid');
+  if(entries.length===0){c.style.display='';g.innerHTML='';return}
+  c.style.display='none';
+  g.innerHTML=entries.map(([id,pl])=>{const tc=pl.tracks?Object.keys(pl.tracks).length:0;return'<div class="md-card"><div class="card-img"><span class="material-symbols-rounded">queue_music</span></div><div class="card-body"><div class="card-title">'+esc(pl.name)+'</div><div class="card-sub">'+tc+' треков</div></div></div>'}).join('');
 }
 
-function savePlaylist() {
-  const name = document.getElementById('playlistNameInput').value.trim();
-  if (!name) { showSnackbar('Введите название'); return; }
-  if (!currentUser) return;
-  db.ref('playlists/' + currentUser.uid).push({ name, tracks: {}, created: Date.now() });
-  closeModal('playlistModal');
-  showSnackbar('Плейлист создан');
-}
-
-function renderPlaylists() {
-  const entries = Object.entries(userPlaylists);
-  const content = document.getElementById('playlistsContent');
-  const grid = document.getElementById('playlistsGrid');
-  if (entries.length === 0) { content.style.display = ''; grid.innerHTML = ''; return; }
-  content.style.display = 'none';
-  grid.innerHTML = entries.map(([id, pl]) => {
-    const trackCount = pl.tracks ? Object.keys(pl.tracks).length : 0;
-    return '<div class="md-card" onclick="showSnackbar(\'Плейлист: ' + escapeHtml(pl.name) + '\')">' +
-      '<div class="card-img"><span class="material-symbols-rounded">queue_music</span></div>' +
-      '<div class="card-body">' +
-        '<div class="card-title">' + escapeHtml(pl.name) + '</div>' +
-        '<div class="card-sub">' + trackCount + ' треков</div>' +
-      '</div>' +
-    '</div>';
-  }).join('');
-}
-
-// ============================================
 // ARTIST PAGE
-// ============================================
-function viewArtist(artistId) {
-  navigate('artist');
-  const header = document.getElementById('artistHeader');
-  const tracksList = document.getElementById('artistTracks');
-
-  db.ref('users/' + artistId).once('value').then(snap => {
-    const user = snap.val() || {};
-    const isSubbed = subscriptions[artistId];
-
-    db.ref('subscribers/' + artistId).once('value').then(subSnap => {
-      const subCount = subSnap.val() ? Object.keys(subSnap.val()).length : 0;
-      const artistTracks = Object.entries(allTracks).filter(([id,t]) => t.artistId === artistId);
-
-      header.innerHTML =
-        '<div class="artist-page-avatar">' +
-          (user.photo ? '<img src="' + user.photo + '" alt="">' : '<span class="material-symbols-rounded" style="font-size:64px;color:var(--md-primary)">person</span>') +
-        '</div>' +
-        '<div style="flex:1">' +
-          '<div style="font:800 28px/36px \'Inter\',sans-serif;color:var(--md-on-surface);margin-bottom:4px">' + escapeHtml(user.displayName||user.name||'Артист') + '</div>' +
-          (user.username ? '<div style="font:400 14px/20px \'Inter\',sans-serif;color:var(--md-on-surface-variant);margin-bottom:4px">@' + escapeHtml(user.username) + '</div>' : '') +
-          '<div style="font:400 14px/20px \'Inter\',sans-serif;color:var(--md-on-surface-variant);margin-bottom:16px">' +
-            artistTracks.length + ' треков · ' + subCount + ' подписчиков' +
-          '</div>' +
-          (currentUser && currentUser.uid !== artistId ?
-            '<button class="' + (isSubbed ? 'btn-outlined' : 'btn-primary') + '" onclick="toggleSubscription(\'' + artistId + '\');setTimeout(function(){viewArtist(\'' + artistId + '\')},500)">' +
-              '<span class="material-symbols-rounded">' + (isSubbed ? 'person_remove' : 'person_add') + '</span>' +
-              (isSubbed ? ' Отписаться' : ' Подписаться') +
-            '</button>'
-          : '') +
-        '</div>';
-
-      if (artistTracks.length === 0) {
-        tracksList.innerHTML = '<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Нет треков</h3></div>';
-      } else {
-        tracksList.innerHTML = artistTracks.map(([id,t],i) => renderTrackItem(id,t,i+1)).join('');
-      }
+function viewArtist(aid){
+  navigate('artist');const h=document.getElementById('artistHeader'),tl=document.getElementById('artistTracks');
+  h.innerHTML='<div class="loading-spinner"></div>';tl.innerHTML='';
+  db.ref('users/'+aid).once('value').then(s=>{
+    const u=s.val()||{};const isSub=subscriptions[aid];
+    db.ref('subscribers/'+aid).once('value').then(ss=>{
+      const sc=ss.val()?Object.keys(ss.val()).length:0;
+      const at=Object.entries(allTracks).filter(([id,t])=>t.artistId===aid);
+      h.innerHTML='<div class="artist-page-avatar">'+(u.photo?'<img src="'+u.photo+'" alt="">':'<span class="material-symbols-rounded" style="font-size:64px;color:var(--md-primary)">person</span>')+'</div><div style="flex:1"><div style="font:800 28px/36px \'Inter\',sans-serif;color:var(--md-on-surface);margin-bottom:4px">'+esc(u.displayName||'Артист')+'</div>'+(u.username?'<div style="font:400 14px/20px \'Inter\',sans-serif;color:var(--md-on-surface-variant);margin-bottom:4px">@'+esc(u.username)+'</div>':'')+'<div style="font:400 14px/20px \'Inter\',sans-serif;color:var(--md-on-surface-variant);margin-bottom:16px">'+at.length+' треков · '+sc+' подписчиков</div>'+(currentUser&&currentUser.uid!==aid?'<button class="'+(isSub?'btn-outlined':'btn-primary')+'" onclick="toggleSubscription(\''+aid+'\');setTimeout(function(){viewArtist(\''+aid+'\')},500)"><span class="material-symbols-rounded">'+(isSub?'person_remove':'person_add')+'</span>'+(isSub?' Отписаться':' Подписаться')+'</button>':'')+'</div>';
+      tl.innerHTML=at.length===0?'<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Нет треков</h3></div>':at.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
     });
   });
 }
 
-// ============================================
 // WAVE
-// ============================================
-function startWave() {
-  const entries = Object.entries(allTracks);
-  if (entries.length === 0) { showSnackbar('Нет треков для волны'); return; }
-
-  const favIds = Object.keys(favorites);
-  const favEntries = entries.filter(([id]) => favIds.includes(id));
-  const nonFavEntries = entries.filter(([id]) => !favIds.includes(id));
-  shuffle(favEntries); shuffle(nonFavEntries);
-  let waveTracks = [...favEntries, ...nonFavEntries];
-  if (favEntries.length === 0) { waveTracks = [...entries]; shuffle(waveTracks); }
-
-  document.getElementById('waveTracks').innerHTML = waveTracks.map(([id,t],i) => renderTrackItem(id,t,i+1)).join('');
-
-  playlist = waveTracks.map(([id]) => id);
-  playlistIndex = 0;
-  currentTrackId = playlist[0];
-  loadAndPlay(allTracks[currentTrackId]);
-  isShuffle = true;
-  document.getElementById('shuffleBtn').classList.add('active');
-  document.getElementById('waveBtn').innerHTML = '<span class="material-symbols-rounded">refresh</span> Обновить волну';
-  showSnackbar('Моя волна запущена!');
+function startWave(){
+  const entries=Object.entries(allTracks);if(!entries.length){showSnackbar('Нет треков');return}
+  const fids=Object.keys(favorites),fe=entries.filter(([id])=>fids.includes(id)),nfe=entries.filter(([id])=>!fids.includes(id));
+  shuffle(fe);shuffle(nfe);let wt=fe.length?[...fe,...nfe]:[...entries];if(!fe.length)shuffle(wt);
+  document.getElementById('waveTracks').innerHTML=wt.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
+  playlist=wt.map(([id])=>id);playlistIndex=0;currentTrackId=playlist[0];loadAndPlay(allTracks[currentTrackId]);
+  isShuffle=true;document.getElementById('shuffleBtn').classList.add('active');document.getElementById('fsShuffleBtn').classList.add('active');
+  document.getElementById('waveBtn').innerHTML='<span class="material-symbols-rounded">refresh</span> Обновить волну';showSnackbar('Волна запущена!');
 }
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}
 
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-}
-
-// ============================================
 // UPLOAD
-// ============================================
-function handleAudioDrop(e) {
-  e.preventDefault(); e.currentTarget.classList.remove('dragover');
-  if (e.dataTransfer.files[0]) processAudioFile(e.dataTransfer.files[0]);
+function handleAudioDrop(e){e.preventDefault();e.currentTarget.classList.remove('dragover');if(e.dataTransfer.files[0])processAudioFile(e.dataTransfer.files[0])}
+function handleAudioSelect(e){if(e.target.files[0])processAudioFile(e.target.files[0])}
+function processAudioFile(f){
+  if(!f.type.startsWith('audio/')){showSnackbar('Выберите аудиофайл');return}
+  if(f.size>15*1024*1024){showSnackbar('Файл макс. 15 МБ');return}
+  selectedAudioFile=f;
+  document.getElementById('selectedFileInfo').style.display='block';
+  document.getElementById('selectedFileName').textContent=f.name+' ('+(f.size/1024/1024).toFixed(1)+' МБ)';
+  if(!document.getElementById('uploadTitle').value)document.getElementById('uploadTitle').value=f.name.replace(/\.[^/.]+$/,'');
+  const r=new FileReader();r.onload=e=>{selectedAudioDataURL=e.target.result};r.readAsDataURL(f);
 }
+function clearSelectedFile(){selectedAudioFile=null;selectedAudioDataURL=null;document.getElementById('selectedFileInfo').style.display='none';document.getElementById('audioFileInput').value=''}
 
-function handleAudioSelect(e) {
-  if (e.target.files[0]) processAudioFile(e.target.files[0]);
-}
+async function publishTrack(){
+  if(!currentUser){showSnackbar('Войдите');return}
+  const title=document.getElementById('uploadTitle').value.trim();
+  let genre=document.getElementById('uploadGenre').value;
+  if(genre==='custom')genre=document.getElementById('uploadCustomGenre').value.trim().toLowerCase()||'other';
+  let cover=document.getElementById('uploadCover').value.trim();
+  if(selectedCoverDataURL)cover=selectedCoverDataURL;
+  if(!title){showSnackbar('Введите название');return}
+  if(!selectedAudioDataURL){showSnackbar('Выберите аудиофайл');return}
 
-function processAudioFile(file) {
-  if (!file.type.startsWith('audio/')) { showSnackbar('Выберите аудиофайл'); return; }
-  if (file.size > 15 * 1024 * 1024) { showSnackbar('Файл слишком большой (макс. 15 МБ)'); return; }
-  selectedAudioFile = file;
-  document.getElementById('selectedFileInfo').style.display = 'block';
-  document.getElementById('selectedFileName').textContent = file.name + ' (' + (file.size / 1024 / 1024).toFixed(1) + ' МБ)';
-  const titleInput = document.getElementById('uploadTitle');
-  if (!titleInput.value) titleInput.value = file.name.replace(/\.[^/.]+$/, '');
-  const reader = new FileReader();
-  reader.onload = (e) => { selectedAudioDataURL = e.target.result; };
-  reader.readAsDataURL(file);
-}
+  const pe=document.getElementById('uploadProgress'),pb=document.getElementById('uploadProgressBar'),st=document.getElementById('uploadStatusText'),btn=document.getElementById('publishBtn');
+  pe.style.display='block';btn.disabled=true;st.textContent='Проверка аудио...';pb.style.width='20%';
 
-function clearSelectedFile() {
-  selectedAudioFile = null; selectedAudioDataURL = null;
-  document.getElementById('selectedFileInfo').style.display = 'none';
-  document.getElementById('audioFileInput').value = '';
-}
-
-async function publishTrack() {
-  if (!currentUser) { showSnackbar('Войдите, чтобы публиковать'); return; }
-  const title = document.getElementById('uploadTitle').value.trim();
-  const genre = document.getElementById('uploadGenre').value;
-  const cover = document.getElementById('uploadCover').value.trim();
-  if (!title) { showSnackbar('Введите название трека'); return; }
-  if (!selectedAudioDataURL) { showSnackbar('Выберите аудиофайл'); return; }
-
-  const progressEl = document.getElementById('uploadProgress');
-  const progressBar = document.getElementById('uploadProgressBar');
-  const statusText = document.getElementById('uploadStatusText');
-  const publishBtn = document.getElementById('publishBtn');
-
-  progressEl.style.display = 'block';
-  publishBtn.disabled = true;
-
-  statusText.textContent = 'Проверка аудио...';
-  progressBar.style.width = '20%';
-
-  const duration = await new Promise(resolve => {
-    const tempAudio = new Audio(selectedAudioDataURL);
-    tempAudio.addEventListener('loadedmetadata', () => {
-      if (tempAudio.duration < 15) {
-        showSnackbar('Трек слишком короткий (минимум 15 секунд)');
-        progressEl.style.display = 'none'; publishBtn.disabled = false;
-        resolve(false); return;
-      }
-      resolve(tempAudio.duration);
-    });
-    tempAudio.addEventListener('error', () => {
-      showSnackbar('Ошибка чтения аудио');
-      progressEl.style.display = 'none'; publishBtn.disabled = false;
-      resolve(false);
-    });
+  const duration=await new Promise(res=>{
+    const ta=new Audio(selectedAudioDataURL);
+    ta.addEventListener('loadedmetadata',()=>{if(ta.duration<15){showSnackbar('Трек мин. 15 сек');pe.style.display='none';btn.disabled=false;res(false);return}res(ta.duration)});
+    ta.addEventListener('error',()=>{showSnackbar('Ошибка чтения');pe.style.display='none';btn.disabled=false;res(false)});
   });
-  if (duration === false) return;
+  if(duration===false)return;
 
-  statusText.textContent = 'ИИ-модерация контента...';
-  progressBar.style.width = '50%';
-  await new Promise(r => setTimeout(r, 800));
-  const isExplicit = checkExplicit(title);
+  st.textContent='ИИ-модерация...';pb.style.width='50%';
+  await new Promise(r=>setTimeout(r,800));
+  const isExp=checkExplicit(title);
+  st.textContent='Публикация...';pb.style.width='75%';
 
-  statusText.textContent = 'Публикация трека...';
-  progressBar.style.width = '75%';
+  const szMB=(selectedAudioDataURL.length*0.75)/(1024*1024);
+  if(szMB>10){showSnackbar('Файл слишком большой для БД');pe.style.display='none';btn.disabled=false;return}
 
-  const sizeInMB = (selectedAudioDataURL.length * 0.75) / (1024 * 1024);
-  if (sizeInMB > 10) {
-    showSnackbar('Файл слишком большой для базы данных (макс ~7.5 МБ оригинала)');
-    progressEl.style.display = 'none'; publishBtn.disabled = false; return;
+  // Check cover size too
+  if(cover&&cover.startsWith('data:')&&(cover.length*0.75)/(1024*1024)>2){
+    showSnackbar('Обложка слишком большая');pe.style.display='none';btn.disabled=false;return;
   }
 
-  try {
-    await db.ref('tracks').push({
-      title, genre: genre || 'other', cover,
-      artistId: currentUser.uid,
-      artistName: currentUser.displayName || 'Неизвестен',
-      artistPhoto: currentUser.photo || '',
-      audioData: selectedAudioDataURL,
-      duration: Math.round(duration),
-      explicit: isExplicit, likes: 0, plays: 0,
-      timestamp: Date.now(), moderated: true
-    });
-    progressBar.style.width = '100%';
-    statusText.textContent = 'Готово!';
-    setTimeout(() => {
-      progressEl.style.display = 'none'; publishBtn.disabled = false;
-      progressBar.style.width = '0%';
-      document.getElementById('uploadTitle').value = '';
-      document.getElementById('uploadGenre').value = '';
-      document.getElementById('uploadCover').value = '';
-      clearSelectedFile();
-      showSnackbar(isExplicit ? 'Трек опубликован! (помечен как explicit)' : 'Трек успешно опубликован!');
-    }, 500);
-  } catch (err) {
-    console.error('Upload error:', err);
-    showSnackbar('Ошибка публикации: ' + err.message);
-    progressEl.style.display = 'none'; publishBtn.disabled = false;
-  }
+  try{
+    await db.ref('tracks').push({title,genre:genre||'other',cover,artistId:currentUser.uid,artistName:currentUser.displayName||'Неизвестен',artistPhoto:currentUser.photo||'',audioData:selectedAudioDataURL,duration:Math.round(duration),explicit:isExp,likes:0,plays:0,timestamp:Date.now(),moderated:true});
+    pb.style.width='100%';st.textContent='Готово!';
+    setTimeout(()=>{pe.style.display='none';btn.disabled=false;pb.style.width='0%';
+      document.getElementById('uploadTitle').value='';document.getElementById('uploadGenre').value='';
+      document.getElementById('uploadCover').value='';document.getElementById('uploadCustomGenre').value='';
+      document.getElementById('uploadCustomGenre').style.display='none';
+      selectedCoverDataURL=null;document.getElementById('coverUploadZone').innerHTML='<span class="material-symbols-rounded">image</span><span style="font:400 11px/14px \'Inter\',sans-serif;color:var(--md-on-surface-variant);text-align:center;padding:0 4px">Загрузить</span>';
+      clearSelectedFile();showSnackbar(isExp?'Опубликован (explicit)':'Трек опубликован!')},500);
+  }catch(err){showSnackbar('Ошибка: '+err.message);pe.style.display='none';btn.disabled=false}
 }
 
-// ============================================
-// DELETE TRACK
-// ============================================
-function deleteTrack(id) {
-  deleteTrackId = id;
-  document.getElementById('deleteModal').classList.add('open');
+// DELETE
+function deleteTrack(id){deleteTrackId=id;document.getElementById('deleteModal').classList.add('open')}
+function confirmDeleteTrack(){
+  if(!deleteTrackId||!currentUser)return;const t=allTracks[deleteTrackId];
+  if(!t||t.artistId!==currentUser.uid){showSnackbar('Нет доступа');closeModal('deleteModal');return}
+  db.ref('tracks/'+deleteTrackId).remove();
+  if(currentTrackId===deleteTrackId){audio.pause();audio.src='';playerVisible=false;document.getElementById('playerBar').classList.remove('visible');currentTrackId=null;isPlaying=false;updatePlayButton()}
+  closeModal('deleteModal');showSnackbar('Трек удалён');deleteTrackId=null;
 }
 
-function confirmDeleteTrack() {
-  if (!deleteTrackId || !currentUser) return;
-  const track = allTracks[deleteTrackId];
-  if (!track || track.artistId !== currentUser.uid) { showSnackbar('Вы не можете удалить этот трек'); closeModal('deleteModal'); return; }
-  db.ref('tracks/' + deleteTrackId).remove();
-  if (currentTrackId === deleteTrackId) {
-    audio.pause(); audio.src = '';
-    playerVisible = false;
-    document.getElementById('playerBar').classList.remove('visible');
-    currentTrackId = null; isPlaying = false; updatePlayButton();
-  }
-  closeModal('deleteModal');
-  showSnackbar('Трек удалён');
-  deleteTrackId = null;
-}
-
-// ============================================
 // PROFILE TABS
-// ============================================
-function switchProfileTab(tab, el) {
-  document.querySelectorAll('#page-profile .tab-item').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  const content = document.getElementById('profileTabContent');
-  if (tab === 'tracks') {
-    content.innerHTML = '<div class="track-list" id="profileTrackList"></div>';
-    loadMyTracks();
-  } else if (tab === 'liked') {
-    const favIds = Object.keys(favorites);
-    const tracks = favIds.map(id => [id, allTracks[id]]).filter(([id,t]) => t);
-    if (tracks.length === 0) {
-      content.innerHTML = '<div class="empty-state"><span class="material-symbols-rounded">favorite</span><h3>Нет понравившихся треков</h3></div>';
-    } else {
-      content.innerHTML = '<div class="track-list">' + tracks.map(([id,t],i) => renderTrackItem(id,t,i+1)).join('') + '</div>';
-    }
+function switchProfileTab(tab,el){
+  document.querySelectorAll('#page-profile .tab-item').forEach(t=>t.classList.remove('active'));el.classList.add('active');
+  const c=document.getElementById('profileTabContent');
+  if(tab==='tracks'){c.innerHTML='<div class="track-list" id="profileTrackList"><div class="loading-spinner"></div></div>';loadMyTracks()}
+  else if(tab==='liked'){
+    const fids=Object.keys(favorites),tracks=fids.map(id=>[id,allTracks[id]]).filter(([id,t])=>t);
+    c.innerHTML=tracks.length===0?'<div class="empty-state"><span class="material-symbols-rounded">favorite</span><h3>Нет понравившихся</h3></div>':'<div class="track-list">'+tracks.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('')+'</div>';
   }
 }
 
-// ============================================
 // NAVIGATION
-// ============================================
-function navigate(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const target = document.getElementById('page-' + page);
-  if (target) target.classList.add('active');
-
-  document.querySelectorAll('.sidebar .nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === page));
-  document.querySelectorAll('.bottom-nav .nav-tab').forEach(n => n.classList.toggle('active', n.dataset.page === page));
-
-  if (window.innerWidth <= 1024) {
-    document.getElementById('sidebar').classList.remove('open');
-    document.getElementById('sidebarOverlay').classList.remove('open');
+function navigate(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const t=document.getElementById('page-'+page);if(t)t.classList.add('active');
+  document.querySelectorAll('.sidebar .nav-item').forEach(n=>n.classList.toggle('active',n.dataset.page===page));
+  document.querySelectorAll('.bottom-nav .nav-tab').forEach(n=>n.classList.toggle('active',n.dataset.page===page));
+  if(window.innerWidth<=1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('open')}
+  window.scrollTo(0,0);
+  if(['favorites','subscriptions','playlists'].includes(page)){
+    if(!currentUser)showSnackbar('Войдите для доступа');
+    else{renderFavorites();renderSubscriptions();renderPlaylists()}
   }
-  window.scrollTo(0, 0);
-
-  if (['favorites','subscriptions','playlists'].includes(page)) {
-    if (!currentUser) showSnackbar('Войдите, чтобы использовать эту функцию');
-    else { renderFavorites(); renderSubscriptions(); renderPlaylists(); }
-  }
-  if (page === 'explore') renderExplore();
+  if(page==='explore')renderExplore();
+  if(page==='profile'&&currentUser)loadMyTracks();
 }
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('open')}
 
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('sidebarOverlay').classList.toggle('open');
-}
-
-// ============================================
 // THEME
-// ============================================
-function toggleTheme() {
-  const isDark = document.body.hasAttribute('data-theme');
-  if (isDark) {
-    document.body.removeAttribute('data-theme');
-    document.getElementById('themeIcon').textContent = 'dark_mode';
-    localStorage.setItem('theme', 'light');
-  } else {
-    document.body.setAttribute('data-theme', 'dark');
-    document.getElementById('themeIcon').textContent = 'light_mode';
-    localStorage.setItem('theme', 'dark');
-  }
+function toggleTheme(){
+  const d=document.body.hasAttribute('data-theme');
+  if(d){document.body.removeAttribute('data-theme');document.getElementById('themeIcon').textContent='dark_mode';localStorage.setItem('theme','light')}
+  else{document.body.setAttribute('data-theme','dark');document.getElementById('themeIcon').textContent='light_mode';localStorage.setItem('theme','dark')}
 }
+if(localStorage.getItem('theme')==='dark'||(!localStorage.getItem('theme')&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.body.setAttribute('data-theme','dark');document.getElementById('themeIcon').textContent='light_mode'}
 
-if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme:dark)').matches)) {
-  document.body.setAttribute('data-theme', 'dark');
-  document.getElementById('themeIcon').textContent = 'light_mode';
-}
-
-// ============================================
 // UTILS
-// ============================================
-function escapeHtml(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
-
-function showSnackbar(msg) {
-  const s = document.getElementById('snackbar');
-  s.textContent = msg;
-  s.classList.add('show');
-  clearTimeout(s._timeout);
-  s._timeout = setTimeout(() => s.classList.remove('show'), 3000);
-}
-
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-
-window.addEventListener('scroll', () => {
-  document.getElementById('topBar').classList.toggle('scrolled', window.scrollY > 10);
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function showSnackbar(msg){const s=document.getElementById('snackbar');s.textContent=msg;s.classList.remove('show');void s.offsetWidth;s.classList.add('show');clearTimeout(s._t);s._t=setTimeout(()=>s.classList.remove('show'),3000)}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+window.addEventListener('scroll',()=>{document.getElementById('topBar').classList.toggle('scrolled',window.scrollY>10)});
+function checkResponsive(){const b=document.getElementById('sidebarCloseBtn');if(window.innerWidth<=1024)b.style.display='';else{b.style.display='none';document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('open')}}
+window.addEventListener('resize',checkResponsive);checkResponsive();
+document.addEventListener('click',e=>{document.querySelectorAll('.modal-overlay').forEach(m=>{if(e.target===m)m.classList.remove('open')})});
+document.addEventListener('keydown',e=>{
+  if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+  if(e.code==='Space'){e.preventDefault();togglePlay()}
+  if(e.code==='ArrowRight'&&e.ctrlKey)nextTrack();if(e.code==='ArrowLeft'&&e.ctrlKey)prevTrack();
+  if(e.key==='Escape'){closeFullscreenPlayer();document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open'))}
 });
+document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;if(e.target.id==='loginIdentity'||e.target.id==='loginPassword')doLogin();if(e.target.id==='regPassword2')doRegister()});
 
-function checkResponsive() {
-  const btn = document.getElementById('sidebarCloseBtn');
-  if (window.innerWidth <= 1024) {
-    btn.style.display = '';
-  } else {
-    btn.style.display = 'none';
-    document.getElementById('sidebar').classList.remove('open');
-    document.getElementById('sidebarOverlay').classList.remove('open');
-  }
-}
-window.addEventListener('resize', checkResponsive);
-checkResponsive();
-
-document.addEventListener('click', (e) => {
-  document.querySelectorAll('.modal-overlay').forEach(m => { if (e.target === m) m.classList.remove('open'); });
-});
-
-document.addEventListener('keydown', (e) => {
-  if (['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) return;
-  if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
-  if (e.code === 'ArrowRight' && e.ctrlKey) nextTrack();
-  if (e.code === 'ArrowLeft' && e.ctrlKey) prevTrack();
-});
-
-// Allow Enter key on auth forms
-document.addEventListener('keydown', (e) => {
-  if (e.key !== 'Enter') return;
-  if (e.target.id === 'loginIdentity' || e.target.id === 'loginPassword') doLogin();
-  if (e.target.id === 'regPassword2') doRegister();
-});
-
-// ============================================
-// INIT
-// ============================================
-restoreSession();
-updateUserMenu();
+restoreSession();updateUserMenu();
 </script>
 </body>
 </html>
