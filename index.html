@@ -108,7 +108,9 @@
   --md-inverse-on-surface: #322F35;
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+*:focus { outline: none; }
+*:focus-visible { outline: 2px solid var(--md-primary); outline-offset: 2px; border-radius: 4px; }
 
 html { scroll-behavior: smooth; }
 
@@ -151,6 +153,10 @@ body {
 .ripple:active::after { opacity:.16; }
 
 /* BUTTONS */
+.btn-primary, .btn-tonal, .btn-outlined, .btn-fab, .player-play-btn, .google-btn {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
 .btn-primary {
   display: inline-flex; align-items: center; gap:8px;
   padding: 10px 24px;
@@ -201,6 +207,8 @@ body {
   transition: all .2s;
   position: relative;
   overflow: hidden;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .btn-icon:hover { background: var(--md-surface-container-highest); }
 .btn-icon.active { color: var(--md-primary); }
@@ -538,7 +546,7 @@ body {
   display: flex;
   align-items: center;
   padding: 0 16px;
-  z-index: 200;
+  z-index: 190;
   transition: transform .3s;
   gap: 12px;
 }
@@ -783,12 +791,12 @@ body {
 .bottom-nav {
   display: none;
   position: fixed;
-  bottom: var(--player-height);
+  bottom: 0;
   left: 0; right: 0;
   height: var(--nav-height);
   background: var(--md-surface-container);
   border-top: 1px solid var(--md-outline-variant);
-  z-index: 150;
+  z-index: 200;
   align-items: center;
   justify-content: space-around;
 }
@@ -1033,10 +1041,10 @@ body {
   .sidebar { transform:translateX(-100%); }
   .sidebar.open { transform:translateX(0); }
   .sidebar-overlay.open { display:block; }
-  .main-content { margin-left:0; }
+  .main-content { margin-left:0; padding-bottom: calc(var(--player-height) + var(--nav-height) + 20px); }
   .top-bar .menu-btn { display:flex; }
   .bottom-nav { display:flex; }
-  .player-bar { bottom: var(--nav-height); }
+  .player-bar { bottom: var(--nav-height); z-index: 190; }
   .player-volume { display:none; }
   .player-track-info { min-width:120px; max-width:180px; }
   .snackbar { bottom: calc(var(--player-height) + var(--nav-height) + 16px); }
@@ -1552,10 +1560,17 @@ auth.onAuthStateChanged(user => {
 });
 
 function signInWithGoogle() {
-  auth.signInWithPopup(provider).catch(err => {
+  auth.signInWithRedirect(provider).catch(err => {
     showSnackbar('Ошибка входа: ' + err.message);
   });
 }
+
+// Handle redirect result
+auth.getRedirectResult().catch(err => {
+  if (err.code && err.code !== 'auth/null') {
+    showSnackbar('Ошибка входа: ' + err.message);
+  }
+});
 
 function signOutUser() {
   auth.signOut();
