@@ -381,6 +381,37 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 .stat-value{font:700 28px/36px 'Inter',sans-serif;color:var(--md-primary)}
 .stat-label{font:400 13px/18px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-top:4px}
 
+/* ===== EQUALIZER ANIM ===== */
+.eq-bars{display:flex;align-items:flex-end;gap:2px;height:18px}
+.eq-bars span{width:3px;background:var(--md-primary);border-radius:1px;animation:eqBar .8s ease-in-out infinite alternate}
+.eq-bars span:nth-child(1){animation-delay:0s;height:30%}
+.eq-bars span:nth-child(2){animation-delay:.15s;height:60%}
+.eq-bars span:nth-child(3){animation-delay:.3s;height:100%}
+.eq-bars span:nth-child(4){animation-delay:.45s;height:40%}
+@keyframes eqBar{0%{height:20%}100%{height:100%}}
+
+/* ===== NOTIFICATION DOT ===== */
+.notif-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--md-error);border:2px solid var(--md-surface-container)}
+
+/* ===== BADGE ===== */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:var(--md-shape-full);font:500 11px/16px 'Inter',sans-serif;background:var(--md-primary-container);color:var(--md-on-primary-container)}
+
+/* ===== TOGGLE SWITCH ===== */
+.toggle{position:relative;width:52px;height:32px;border-radius:16px;background:var(--md-outline);cursor:pointer;transition:background .3s;flex-shrink:0}
+.toggle.on{background:var(--md-primary)}
+.toggle::after{content:'';position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:white;transition:transform .3s cubic-bezier(.2,0,0,1);box-shadow:var(--md-elevation-1)}
+.toggle.on::after{transform:translateX(20px)}
+
+/* ===== TOOLTIP ===== */
+[data-tooltip]{position:relative}
+[data-tooltip]:hover::before{content:attr(data-tooltip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);padding:6px 12px;background:var(--md-inverse-surface);color:var(--md-inverse-on-surface);font:400 12px/16px 'Inter',sans-serif;border-radius:var(--md-shape-sm);white-space:nowrap;z-index:999;pointer-events:none;animation:tooltipIn .2s}
+@keyframes tooltipIn{from{opacity:0;transform:translateX(-50%) translateY(4px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* ===== SPEED SELECTOR ===== */
+.speed-btn{font:600 12px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);padding:4px 8px;border-radius:var(--md-shape-sm);background:transparent;border:1px solid var(--md-outline-variant);cursor:pointer;transition:all .2s}
+.speed-btn:hover{background:var(--md-surface-container-high)}
+.speed-btn.active{background:var(--md-primary);color:var(--md-on-primary);border-color:transparent}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:1024px){
   .sidebar{transform:translateX(-100%)}
@@ -401,7 +432,7 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
   .hero-banner{padding:24px}
   .hero-title{font-size:24px;line-height:32px}
   .profile-header{flex-direction:column;text-align:center}
-  .profile-stats{justify-content:center}
+  .profile-stats{justify-content:center;flex-wrap:wrap}
   .player-controls{flex:3}
   .player-track-info{min-width:70px;max-width:120px}
   .progress-time{display:none}
@@ -411,6 +442,19 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
   .wave-circle .material-symbols-rounded{font-size:48px}
   .modal{padding:20px;max-width:100%}
   .fs-cover{max-width:280px}
+  .fs-title{font-size:20px;line-height:28px}
+  .fs-buttons{gap:12px}
+  .fs-play-btn{width:56px;height:56px}
+  .track-plays{display:none}
+  .track-duration{display:none}
+  .snackbar{bottom:calc(var(--nav-height) + var(--player-height) + 16px);max-width:85vw;font-size:13px;padding:10px 16px}
+}
+@media(max-width:360px){
+  .cards-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+  .hero-banner{padding:16px}
+  .hero-title{font-size:20px;line-height:28px}
+  .hero-sub{font-size:14px}
+  .section-title{font-size:18px}
 }
 </style>
 </head>
@@ -666,7 +710,6 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
           </div>
         </div>
       </div>
-      <!-- Stats -->
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px" id="profileStatsGrid"></div>
       <div class="tab-bar">
         <div class="tab-item active" onclick="switchProfileTab('tracks',this)">Треки</div>
@@ -911,6 +954,7 @@ let selectedAudioFile=null,selectedAudioDataURL=null,playerVisible=false;
 let selectedCoverDataURL=null,reportTrackId=null,contextTrackId=null;
 let playCountCooldowns={},listeningHistory=[],sleepTimerId=null,editTrackId=null;
 let currentArtistTracks=[],currentArtistId=null,queueOpen=false,lyricsOpen=false;
+let playedTracks={};// tracks already counted for this session
 const audio=document.getElementById('audioPlayer');
 
 /* ===== GENRES ===== */
@@ -1031,10 +1075,13 @@ async function doLogin(){
 
 function loginUser(ud){
   currentUser={uid:ud.uid,username:ud.username||'',email:ud.email||'',displayName:ud.displayName||'Пользователь',photo:ud.photo||'',bio:ud.bio||'',authMethod:ud.authMethod||'email'};
-  localStorage.setItem('mp_user',JSON.stringify(currentUser));updateAuthUI();loadUserData();
+  localStorage.setItem('mp_user',JSON.stringify(currentUser));
+  // Load played tracks from localStorage
+  playedTracks=JSON.parse(localStorage.getItem('mp_played_'+currentUser.uid)||'{}');
+  updateAuthUI();loadUserData();
 }
-function signOutUser(){currentUser=null;localStorage.removeItem('mp_user');favorites={};subscriptions={};userPlaylists={};listeningHistory=[];updateAuthUI();showSnackbar('Вы вышли');navigate('home')}
-function restoreSession(){const s=localStorage.getItem('mp_user');if(s){try{currentUser=JSON.parse(s);updateAuthUI();loadUserData()}catch(e){localStorage.removeItem('mp_user')}}}
+function signOutUser(){currentUser=null;localStorage.removeItem('mp_user');favorites={};subscriptions={};userPlaylists={};listeningHistory=[];playedTracks={};updateAuthUI();showSnackbar('Вы вышли');navigate('home')}
+function restoreSession(){const s=localStorage.getItem('mp_user');if(s){try{currentUser=JSON.parse(s);playedTracks=JSON.parse(localStorage.getItem('mp_played_'+currentUser.uid)||'{}');updateAuthUI();loadUserData()}catch(e){localStorage.removeItem('mp_user')}}}
 
 /* ===== TELEGRAM AUTH ===== */
 window.onTelegramAuth=async function(tg){
@@ -1190,7 +1237,6 @@ function loadMyTracks(){
       else el.innerHTML=arr.map(([id,t],i)=>renderTrackItem(id,t,i+1,true)).join('');
     });
     document.getElementById('profileTracks').textContent=arr.length;
-    // Stats grid
     const totalPlays=arr.reduce((s,[id,t])=>s+(t.plays||0),0);
     const totalLikes=arr.reduce((s,[id,t])=>s+(t.likes||0),0);
     document.getElementById('profileStatsGrid').innerHTML=
@@ -1213,7 +1259,7 @@ function renderTrackItem(id,track,num,showDel){
   const isExp=track.explicit,isFav=favorites[id],isNP=currentTrackId===id,dur=track.duration?formatTime(track.duration):'—';
   const plays=track.plays||0;
   return '<div class="track-item '+(isNP?'playing':'')+'" data-id="'+id+'" onclick="playTrackById(\''+id+'\')">'+
-    '<div class="track-num">'+(isNP?'<span class="material-symbols-rounded filled" style="color:var(--md-primary);font-size:18px">equalizer</span>':num)+'</div>'+
+    '<div class="track-num">'+(isNP?'<div class="eq-bars"><span></span><span></span><span></span><span></span></div>':num)+'</div>'+
     '<div class="track-thumb">'+(track.cover?'<img src="'+track.cover+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">':'')+'<span class="material-symbols-rounded" style="'+(track.cover?'display:none':'')+'">music_note</span><div class="play-overlay"><span class="material-symbols-rounded" style="color:white;font-size:24px">play_arrow</span></div></div>'+
     '<div class="track-info"><div class="track-title-row"><span class="track-name">'+esc(track.title||'Без названия')+'</span>'+(isExp?'<span class="explicit-badge" title="Explicit">!</span>':'')+'</div>'+
     '<div class="track-artist" onclick="event.stopPropagation();viewArtist(\''+track.artistId+'\')">'+esc(track.artistName||'Неизвестен')+'</div></div>'+
@@ -1358,9 +1404,22 @@ function playTrackById(id){
   playlist=[];items.forEach(it=>{const tid=it.dataset.id;if(tid&&allTracks[tid])playlist.push(tid)});
   playlistIndex=playlist.indexOf(id);if(playlistIndex===-1){playlist=[id];playlistIndex=0}
   loadAndPlay(track);
-  const now=Date.now();
-  if(!playCountCooldowns[id]||now-playCountCooldowns[id]>60000){playCountCooldowns[id]=now;db.ref('tracks/'+id+'/plays').transaction(p=>(p||0)+1)}
-  if(currentUser)db.ref('history/'+currentUser.uid).push({trackId:id,time:Date.now()});
+  // ONE play per user per track EVER (persisted in localStorage)
+  if(currentUser){
+    const key=currentUser.uid+'_'+id;
+    if(!playedTracks[key]){
+      playedTracks[key]=true;
+      localStorage.setItem('mp_played_'+currentUser.uid,JSON.stringify(playedTracks));
+      db.ref('tracks/'+id+'/plays').transaction(p=>(p||0)+1);
+    }
+    db.ref('history/'+currentUser.uid).push({trackId:id,time:Date.now()});
+  }else{
+    // Anonymous: use session-level cooldown
+    if(!playCountCooldowns[id]){
+      playCountCooldowns[id]=true;
+      db.ref('tracks/'+id+'/plays').transaction(p=>(p||0)+1);
+    }
+  }
 }
 
 function loadAndPlay(track){
@@ -1377,7 +1436,7 @@ function loadAndPlay(track){
     const origVol=audio.volume;
     const fadeOut=setInterval(()=>{if(audio.volume>0.05){audio.volume=Math.max(0,audio.volume-0.1)}else{clearInterval(fadeOut);audio.volume=origVol;doLoad(track)}},30);
   }else doLoad(track);
-  document.querySelectorAll('.track-item').forEach(el=>{el.classList.toggle('playing',el.dataset.id===currentTrackId);const n=el.querySelector('.track-num');if(el.dataset.id===currentTrackId&&n)n.innerHTML='<span class="material-symbols-rounded filled" style="color:var(--md-primary);font-size:18px">equalizer</span>'});
+  document.querySelectorAll('.track-item').forEach(el=>{el.classList.toggle('playing',el.dataset.id===currentTrackId);const n=el.querySelector('.track-num');if(el.dataset.id===currentTrackId&&n)n.innerHTML='<div class="eq-bars"><span></span><span></span><span></span><span></span></div>'});
   if('mediaSession' in navigator){navigator.mediaSession.metadata=new MediaMetadata({title:track.title||'',artist:track.artistName||'',artwork:track.cover?[{src:track.cover}]:[]});navigator.mediaSession.setActionHandler('play',()=>togglePlay());navigator.mediaSession.setActionHandler('pause',()=>togglePlay());navigator.mediaSession.setActionHandler('previoustrack',()=>prevTrack());navigator.mediaSession.setActionHandler('nexttrack',()=>nextTrack())}
 }
 function doLoad(track){audio.src=track.audioData;audio.play().then(()=>{isPlaying=true;updatePlayButton();document.getElementById('fsCover').classList.add('playing')}).catch(err=>{showSnackbar('Ошибка воспроизведения')})}
@@ -1475,7 +1534,6 @@ function renderSubscriptions(){
   Promise.all(sids.map(id=>db.ref('users/'+id).once('value'))).then(snaps=>{
     grid.innerHTML=snaps.map((s,i)=>{const u=s.val()||{};return'<div class="artist-card" onclick="viewArtist(\''+sids[i]+'\')"><div class="artist-img">'+(u.photo?'<img src="'+u.photo+'" alt="">':'<span class="material-symbols-rounded" style="font-size:40px;color:var(--md-outline)">person</span>')+'</div><div class="card-title" style="font-size:13px">'+esc(u.displayName||'Артист')+'</div></div>'}).join('');
   });
-  // Feed
   const feedTracks=Object.entries(allTracks).filter(([id,t])=>sids.includes(t.artistId)).sort((a,b)=>(b[1].timestamp||0)-(a[1].timestamp||0)).slice(0,20);
   if(feedTracks.length>0){document.getElementById('subsFeedTitle').style.display='';document.getElementById('subsFeedTracks').innerHTML=feedTracks.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('')}
 }
