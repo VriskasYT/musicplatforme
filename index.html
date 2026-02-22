@@ -39,28 +39,40 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--md-
 .material-symbols-rounded{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;user-select:none;-webkit-user-select:none}
 .material-symbols-rounded.filled{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24}
 button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-highlight-color:transparent!important;-webkit-touch-callout:none}
+
+/* ===== BUTTONS ===== */
 .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--md-primary);color:var(--md-on-primary);border:none;border-radius:var(--md-shape-full);font:500 14px/20px 'Inter',sans-serif;letter-spacing:.1px;cursor:pointer;transition:all .25s cubic-bezier(.2,0,0,1);box-shadow:var(--md-elevation-1);user-select:none;position:relative;overflow:hidden}
 .btn-primary::after{content:'';position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .2s}
 .btn-primary:hover{box-shadow:var(--md-elevation-2);transform:translateY(-1px)}.btn-primary:hover::after{opacity:.08}
 .btn-primary:active{transform:scale(.97);box-shadow:var(--md-elevation-1)}.btn-primary:active::after{opacity:.12}
 .btn-primary:disabled{opacity:.5;pointer-events:none}
+
 .btn-tonal{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:var(--md-secondary-container);color:var(--md-on-surface);border:none;border-radius:var(--md-shape-full);font:500 14px/20px 'Inter',sans-serif;cursor:pointer;transition:all .25s cubic-bezier(.2,0,0,1);user-select:none;position:relative;overflow:hidden}
 .btn-tonal::after{content:'';position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .2s}
 .btn-tonal:hover{box-shadow:var(--md-elevation-1)}.btn-tonal:hover::after{opacity:.08}
 .btn-tonal:active{transform:scale(.97)}.btn-tonal:active::after{opacity:.12}
+
 .btn-outlined{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:transparent;color:var(--md-primary);border:1px solid var(--md-outline);border-radius:var(--md-shape-full);font:500 14px/20px 'Inter',sans-serif;cursor:pointer;transition:all .25s cubic-bezier(.2,0,0,1);user-select:none}
 .btn-outlined:hover{background:rgba(103,80,164,.08)}.btn-outlined:active{transform:scale(.97)}
+
 .btn-text{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:transparent;color:var(--md-primary);border:none;border-radius:var(--md-shape-full);font:500 14px/20px 'Inter',sans-serif;cursor:pointer;transition:all .2s;user-select:none}
 .btn-text:hover{background:rgba(103,80,164,.08)}
+
 .btn-icon{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:transparent;color:var(--md-on-surface-variant);border:none;border-radius:var(--md-shape-full);cursor:pointer;transition:all .25s cubic-bezier(.2,0,0,1);position:relative;overflow:hidden;user-select:none;flex-shrink:0}
 .btn-icon::after{content:'';position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .2s;border-radius:50%}
 .btn-icon:hover::after{opacity:.08}.btn-icon:active::after{opacity:.12}
 .btn-icon.active{color:var(--md-primary)}
+
+/* ===== CHIPS ===== */
 .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border:1px solid var(--md-outline-variant);border-radius:var(--md-shape-sm);font:500 13px/18px 'Inter',sans-serif;color:var(--md-on-surface-variant);cursor:pointer;transition:all .25s cubic-bezier(.2,0,0,1);white-space:nowrap;user-select:none}
 .chip:hover{background:var(--md-surface-container-high);transform:translateY(-1px)}
 .chip.active{background:var(--md-secondary-container);color:var(--md-on-surface);border-color:transparent;box-shadow:var(--md-elevation-1)}
+
+/* ===== INPUTS ===== */
 .md-input{width:100%;padding:16px;background:var(--md-surface-container-highest);border:none;border-radius:var(--md-shape-xl);font:400 16px/24px 'Inter',sans-serif;color:var(--md-on-surface);outline:none;transition:all .3s cubic-bezier(.2,0,0,1)}
 .md-input:focus{outline:2px solid var(--md-primary)!important;background:var(--md-surface-container-high)}.md-input::placeholder{color:var(--md-on-surface-variant)}
+
+/* ===== CARDS ===== */
 .md-card{background:var(--md-surface-container-low);border-radius:var(--md-shape-md);overflow:hidden;transition:all .3s cubic-bezier(.2,0,0,1);cursor:pointer;position:relative}
 .md-card::after{content:'';position:absolute;inset:0;background:var(--md-primary);opacity:0;transition:opacity .3s;pointer-events:none}
 .md-card:hover{box-shadow:var(--md-elevation-2);transform:translateY(-4px)}.md-card:hover::after{opacity:.04}
@@ -74,7 +86,11 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 .md-card .card-body{padding:12px}
 .md-card .card-title{font:500 14px/20px 'Inter',sans-serif;color:var(--md-on-surface);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .md-card .card-sub{font:400 12px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ===== EXPLICIT BADGE ===== */
 .explicit-badge{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--md-error);color:white;font-size:12px;font-weight:700;flex-shrink:0;line-height:1}
+
+/* ===== SIDEBAR ===== */
 .sidebar{width:var(--sidebar-width);background:var(--md-surface-container);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform .4s cubic-bezier(.2,0,0,1);overflow-y:auto}
 .sidebar-header{padding:16px 20px;display:flex;align-items:center;gap:10px}
 .sidebar-logo{width:36px;height:36px;border-radius:var(--md-shape-full);background:linear-gradient(135deg,var(--md-primary),var(--md-tertiary));display:flex;align-items:center;justify-content:center;color:white;font-size:20px;flex-shrink:0;transition:transform .3s;animation:logoFloat 4s ease-in-out infinite}
@@ -89,6 +105,8 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 .nav-divider{height:1px;background:var(--md-outline-variant);margin:8px 16px}
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:99;opacity:0;transition:opacity .3s}
 .sidebar-overlay.open{display:block;opacity:1}
+
+/* ===== MAIN ===== */
 .main-content{flex:1;margin-left:var(--sidebar-width);padding-bottom:100px;transition:margin .3s}
 .top-bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:12px;padding:8px 24px;background:var(--md-surface);backdrop-filter:blur(20px);transition:box-shadow .3s,background .3s}
 .top-bar.scrolled{box-shadow:var(--md-elevation-2);background:color-mix(in srgb,var(--md-surface) 90%,transparent)}
@@ -102,11 +120,15 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 .user-avatar{width:36px;height:36px;border-radius:var(--md-shape-full);background:var(--md-primary-container);display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;flex-shrink:0;transition:transform .2s,box-shadow .2s}
 .user-avatar:hover{transform:scale(1.08);box-shadow:var(--md-elevation-1)}
 .user-avatar img{width:100%;height:100%;object-fit:cover}.user-avatar .material-symbols-rounded{font-size:20px;color:var(--md-primary)}
+
+/* ===== PAGES ===== */
 .page{display:none;padding:16px 24px;animation:pageIn .4s cubic-bezier(.2,0,0,1)}.page.active{display:block}
 @keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .section-title{font:700 22px/28px 'Inter',sans-serif;color:var(--md-on-surface);margin-bottom:16px}
 .section-sub{font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-bottom:24px}
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:32px}
+
+/* ===== TRACK LIST ===== */
 .track-list{margin-bottom:32px}
 .track-item{display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:var(--md-shape-md);cursor:pointer;transition:all .25s cubic-bezier(.2,0,0,1);position:relative;overflow:hidden}
 .track-item::after{content:'';position:absolute;inset:0;background:var(--md-primary);opacity:0;transition:opacity .2s;pointer-events:none}
@@ -129,6 +151,8 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 @media(hover:hover){.track-actions{opacity:0;transition:opacity .25s}.track-item:hover .track-actions{opacity:1}}
 .track-plays{font:400 11px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);display:flex;align-items:center;gap:2px;flex-shrink:0;margin-right:8px}
 .track-plays .material-symbols-rounded{font-size:14px}
+
+/* ===== PLAYER BAR ===== */
 .player-bar{position:fixed;left:0;right:0;bottom:0;height:var(--player-height);background:var(--md-surface-container-high);border-top:1px solid var(--md-outline-variant);display:none;align-items:center;padding:0 16px;z-index:210;gap:12px;backdrop-filter:blur(20px);transition:transform .4s cubic-bezier(.2,0,0,1)}
 .player-bar.visible{display:flex;animation:slideUp .4s cubic-bezier(.2,0,0,1)}
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
@@ -159,12 +183,16 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 .volume-slider{width:100px;height:4px;background:var(--md-outline-variant);border-radius:2px;cursor:pointer;position:relative;transition:height .2s}
 .volume-slider:hover{height:6px}
 .volume-fill{height:100%;width:80%;background:var(--md-primary);border-radius:2px;transition:width .15s}
+
+/* ===== WAVE ===== */
 .wave-container{text-align:center;padding:40px 20px}
 .wave-circle{width:200px;height:200px;border-radius:50%;background:linear-gradient(135deg,var(--md-primary),var(--md-tertiary));margin:0 auto 24px;display:flex;align-items:center;justify-content:center;position:relative;animation:wavePulse 3s ease-in-out infinite;transition:all .3s}
 .wave-circle.playing-anim{animation:wavePulse 1.5s ease-in-out infinite}
 @keyframes wavePulse{0%,100%{box-shadow:0 0 0 0 rgba(103,80,164,.3)}50%{box-shadow:0 0 0 20px rgba(103,80,164,0)}}
 .wave-circle .material-symbols-rounded{font-size:64px;color:white;transition:transform .3s}
 .wave-circle:hover .material-symbols-rounded{transform:scale(1.1)}
+
+/* ===== MODALS ===== */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .3s}
 .modal-overlay.open{display:flex;animation:modalOverlayIn .3s forwards}
 @keyframes modalOverlayIn{from{opacity:0}to{opacity:1}}
@@ -174,11 +202,15 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 .modal-label{font:500 12px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-bottom:6px;display:block}
 .modal .md-input{margin-bottom:16px;border-radius:var(--md-shape-md)}
 .modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
+
+/* ===== UPLOAD ===== */
 .upload-zone{border:2px dashed var(--md-outline-variant);border-radius:var(--md-shape-lg);padding:32px;text-align:center;cursor:pointer;transition:all .3s cubic-bezier(.2,0,0,1);margin-bottom:16px;position:relative;overflow:hidden}
 .upload-zone::after{content:'';position:absolute;inset:0;background:var(--md-primary);opacity:0;transition:opacity .3s}
 .upload-zone:hover,.upload-zone.dragover{border-color:var(--md-primary);transform:scale(1.01)}.upload-zone:hover::after,.upload-zone.dragover::after{opacity:.03}
 .upload-zone .material-symbols-rounded{font-size:48px;color:var(--md-primary);margin-bottom:8px;position:relative;z-index:1;transition:transform .3s}
 .upload-zone:hover .material-symbols-rounded{transform:translateY(-4px)}
+
+/* ===== PROFILE ===== */
 .profile-header{display:flex;align-items:center;gap:24px;padding:32px 0}
 .profile-avatar{width:120px;height:120px;border-radius:50%;background:var(--md-primary-container);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;position:relative;transition:transform .3s;box-shadow:var(--md-elevation-2)}
 .profile-avatar:hover{transform:scale(1.05)}
@@ -189,21 +221,31 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 .profile-stats{display:flex;gap:24px;margin-top:8px;font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant)}
 .profile-stats strong{color:var(--md-on-surface);font-weight:600}
 .profile-stats span{transition:color .2s;cursor:default}.profile-stats span:hover{color:var(--md-on-surface)}
+
+/* ===== BOTTOM NAV ===== */
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:var(--nav-height);background:var(--md-surface-container);border-top:1px solid var(--md-outline-variant);z-index:200;align-items:center;justify-content:space-around}
 .bottom-nav .nav-tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0;cursor:pointer;color:var(--md-on-surface-variant);transition:color .25s;border:none;background:none;font:500 11px/16px 'Inter',sans-serif;user-select:none}
 .bottom-nav .nav-tab.active{color:var(--md-primary)}
 .bottom-nav .nav-tab.active .material-symbols-rounded{font-variation-settings:'FILL' 1}
 .nav-tab-indicator{width:64px;height:32px;border-radius:var(--md-shape-full);display:flex;align-items:center;justify-content:center;transition:background .25s cubic-bezier(.2,0,0,1)}
 .nav-tab.active .nav-tab-indicator{background:var(--md-secondary-container)}
+
+/* ===== SNACKBAR ===== */
 .snackbar{position:fixed;left:50%;transform:translateX(-50%) translateY(100px);background:var(--md-inverse-surface);color:var(--md-inverse-on-surface);padding:14px 24px;border-radius:var(--md-shape-md);font:400 14px/20px 'Inter',sans-serif;box-shadow:var(--md-elevation-3);z-index:9999;transition:transform .4s cubic-bezier(.2,0,0,1),opacity .3s;white-space:nowrap;max-width:90vw;overflow:hidden;text-overflow:ellipsis;pointer-events:none;opacity:0;bottom:24px}
 .snackbar.show{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:auto}
+
+/* ===== GENRE PILLS ===== */
 .genre-pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:24px;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
 .genre-pills::-webkit-scrollbar{display:none}
+
+/* ===== ARTIST ===== */
 .artist-card{text-align:center;cursor:pointer;transition:transform .3s}
 .artist-card:hover{transform:translateY(-4px)}
 .artist-img{width:100%;aspect-ratio:1;border-radius:50%;background:var(--md-surface-container-highest);display:flex;align-items:center;justify-content:center;overflow:hidden;transition:all .3s cubic-bezier(.2,0,0,1);margin-bottom:8px;box-shadow:0 0 0 0 var(--md-primary)}
 .artist-card:hover .artist-img{transform:scale(1.08);box-shadow:0 0 0 3px var(--md-primary)}
 .artist-img img{width:100%;height:100%;object-fit:cover}
+
+/* ===== AUTH ===== */
 .auth-container{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;text-align:center;gap:24px}
 .auth-form{width:100%;max-width:400px;padding:0 16px}
 .auth-form .md-input{margin-bottom:12px;border-radius:var(--md-shape-md)}
@@ -219,15 +261,20 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 .password-wrap{position:relative}.password-wrap .md-input{padding-right:48px}
 .password-toggle{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:40px;height:40px;border:none;background:none;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--md-on-surface-variant);border-radius:50%;transition:all .2s}
 .password-toggle:hover{background:var(--md-surface-container)}
+
+/* ===== MISC ===== */
 .skeleton{background:linear-gradient(90deg,var(--md-surface-container-high) 25%,var(--md-surface-container-highest) 50%,var(--md-surface-container-high) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--md-shape-sm)}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .loading-spinner{width:40px;height:40px;border:3px solid var(--md-outline-variant);border-top-color:var(--md-primary);border-radius:50%;animation:spin .8s linear infinite;margin:40px auto}
 @keyframes spin{to{transform:rotate(360deg)}}
+
 .user-menu{position:absolute;top:56px;right:16px;background:var(--md-surface-container);border-radius:var(--md-shape-md);box-shadow:var(--md-elevation-3);min-width:220px;overflow:hidden;z-index:300;display:none;transform-origin:top right}
 .user-menu.open{display:block;animation:menuIn .25s cubic-bezier(.2,0,0,1)}
 @keyframes menuIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
 .user-menu-item{display:flex;align-items:center;gap:12px;padding:12px 16px;font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface);cursor:pointer;transition:background .2s}
 .user-menu-item:hover{background:var(--md-surface-container-high)}
+
+/* ===== HERO ===== */
 .hero-banner{background:linear-gradient(135deg,var(--md-primary-container),var(--md-tertiary-container));border-radius:var(--md-shape-xl);padding:40px;margin-bottom:32px;position:relative;overflow:hidden;transition:transform .3s}
 .hero-banner:hover{transform:scale(1.005)}
 .hero-banner::before{content:'♪';position:absolute;right:40px;top:-20px;font-size:200px;opacity:.1;color:var(--md-primary);animation:heroNote 6s ease-in-out infinite}
@@ -236,20 +283,29 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 @keyframes heroNote2{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(-5deg)}}
 .hero-title{font:800 32px/40px 'Inter',sans-serif;color:var(--md-on-primary-container);margin-bottom:8px}
 .hero-sub{font:400 16px/24px 'Inter',sans-serif;color:var(--md-on-primary-container);opacity:.8;margin-bottom:24px}
+
+/* ===== ARTIST PAGE ===== */
 .artist-page-header{display:flex;align-items:flex-end;gap:24px;padding:32px 0 24px;flex-wrap:wrap}
 .artist-page-avatar{width:180px;height:180px;border-radius:50%;background:var(--md-primary-container);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;box-shadow:var(--md-elevation-3);transition:transform .3s}
 .artist-page-avatar:hover{transform:scale(1.05)}
 .artist-page-avatar img{width:100%;height:100%;object-fit:cover}
+
+/* ===== TABS ===== */
 .tab-bar{display:flex;gap:0;border-bottom:1px solid var(--md-outline-variant);margin-bottom:24px;overflow-x:auto}
 .tab-item{padding:12px 24px;font:500 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);cursor:pointer;border-bottom:2px solid transparent;transition:all .25s cubic-bezier(.2,0,0,1);white-space:nowrap;user-select:none;position:relative}
 .tab-item:hover{color:var(--md-on-surface);background:var(--md-surface-container)}
 .tab-item.active{color:var(--md-primary);border-bottom-color:var(--md-primary)}
+
+/* ===== EMPTY STATE ===== */
 .empty-state{text-align:center;padding:60px 20px;color:var(--md-on-surface-variant)}
 .empty-state .material-symbols-rounded{font-size:64px;margin-bottom:16px;opacity:.5;animation:emptyFloat 3s ease-in-out infinite}
 @keyframes emptyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .empty-state h3{font:600 18px/24px 'Inter',sans-serif;margin-bottom:8px;color:var(--md-on-surface)}
 .empty-state p{font:400 14px/20px 'Inter',sans-serif;max-width:400px;margin:0 auto}
+
 .auth-error{color:var(--md-error);font:400 13px/18px 'Inter',sans-serif;margin-bottom:12px;min-height:18px}
+
+/* ===== FULLSCREEN PLAYER ===== */
 .fs-player-overlay{display:none;position:fixed;inset:0;background:var(--md-surface);z-index:600;flex-direction:column;overflow-y:auto}
 .fs-player-overlay.open{display:flex;animation:fsIn .4s cubic-bezier(.2,0,0,1)}
 @keyframes fsIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
@@ -274,24 +330,58 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 .fs-play-btn:active{transform:scale(.95)}
 .fs-play-btn .material-symbols-rounded{font-size:36px;transition:transform .2s}
 .fs-actions{display:flex;align-items:center;justify-content:center;gap:12px;padding:0 24px 24px}
+
+/* ===== SETTINGS ===== */
 .settings-item{display:flex;align-items:center;gap:16px;padding:16px;border-radius:var(--md-shape-md);transition:all .25s cubic-bezier(.2,0,0,1);cursor:pointer}
 .settings-item:hover{background:var(--md-surface-container);transform:translateX(4px)}
 .settings-item .material-symbols-rounded{color:var(--md-on-surface-variant);font-size:24px}
 .settings-item-info{flex:1;min-width:0}
 .settings-item-title{font:500 14px/20px 'Inter',sans-serif;color:var(--md-on-surface)}
 .settings-item-sub{font:400 12px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ===== SEARCH ===== */
 .search-section{margin-bottom:24px}
 .search-section-title{font:600 16px/24px 'Inter',sans-serif;color:var(--md-on-surface);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+
+/* ===== COVER UPLOAD ===== */
 .cover-upload-zone{width:120px;height:120px;border:2px dashed var(--md-outline-variant);border-radius:var(--md-shape-md);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .3s cubic-bezier(.2,0,0,1);overflow:hidden;flex-shrink:0}
 .cover-upload-zone:hover{border-color:var(--md-primary);background:rgba(103,80,164,.05);transform:scale(1.03)}
 .cover-upload-zone img{width:100%;height:100%;object-fit:cover}
 .cover-upload-zone .material-symbols-rounded{font-size:32px;color:var(--md-primary)}
+
+/* ===== CONTEXT MENU ===== */
 .track-context-menu{position:fixed;background:var(--md-surface-container);border-radius:var(--md-shape-md);box-shadow:var(--md-elevation-3);min-width:220px;z-index:700;overflow:hidden;animation:menuIn .2s cubic-bezier(.2,0,0,1)}
 .track-context-item{display:flex;align-items:center;gap:12px;padding:12px 16px;font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface);cursor:pointer;transition:background .15s}
 .track-context-item:hover{background:var(--md-surface-container-high)}
 .track-context-item .material-symbols-rounded{font-size:20px;color:var(--md-on-surface-variant)}
 .track-context-item.danger{color:var(--md-error)}
 .track-context-item.danger .material-symbols-rounded{color:var(--md-error)}
+
+/* ===== QUEUE PANEL ===== */
+.queue-panel{position:fixed;right:0;top:0;bottom:0;width:360px;background:var(--md-surface-container);z-index:500;transform:translateX(100%);transition:transform .4s cubic-bezier(.2,0,0,1);box-shadow:var(--md-elevation-3);display:flex;flex-direction:column;overflow:hidden}
+.queue-panel.open{transform:translateX(0)}
+.queue-panel-header{display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid var(--md-outline-variant)}
+.queue-panel-header .section-title{margin:0;flex:1}
+.queue-panel-body{flex:1;overflow-y:auto;padding:8px}
+.queue-track{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--md-shape-sm);cursor:pointer;transition:background .2s}
+.queue-track:hover{background:var(--md-surface-container-high)}
+.queue-track.active{background:var(--md-primary-container)}
+.queue-track-thumb{width:40px;height:40px;border-radius:6px;background:var(--md-surface-container-highest);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.queue-track-thumb img{width:100%;height:100%;object-fit:cover}
+.queue-track-info{flex:1;min-width:0}
+.queue-track-name{font:500 13px/18px 'Inter',sans-serif;color:var(--md-on-surface);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.queue-track-artist{font:400 11px/16px 'Inter',sans-serif;color:var(--md-on-surface-variant);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ===== LYRICS PANEL ===== */
+.lyrics-container{padding:24px;text-align:center;font:400 18px/32px 'Inter',sans-serif;color:var(--md-on-surface-variant);white-space:pre-wrap;min-height:200px}
+
+/* ===== STATS CARD ===== */
+.stat-card{background:var(--md-surface-container);border-radius:var(--md-shape-md);padding:20px;text-align:center;transition:all .3s}
+.stat-card:hover{transform:translateY(-2px);box-shadow:var(--md-elevation-1)}
+.stat-value{font:700 28px/36px 'Inter',sans-serif;color:var(--md-primary)}
+.stat-label{font:400 13px/18px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-top:4px}
+
+/* ===== RESPONSIVE ===== */
 @media(max-width:1024px){
   .sidebar{transform:translateX(-100%)}
   .sidebar.open{transform:translateX(0)}
@@ -302,6 +392,7 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
   .player-bar{bottom:var(--nav-height)}
   .player-volume{display:none}
   .player-track-info{min-width:100px;max-width:160px}
+  .queue-panel{width:100%}
 }
 @media(max-width:600px){
   .page{padding:12px 16px}
@@ -324,6 +415,8 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 </style>
 </head>
 <body>
+
+<!-- ===== SIDEBAR ===== -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <div class="sidebar-logo">♪</div>
@@ -334,9 +427,12 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
     <a class="nav-item active" data-page="home" onclick="navigate('home')"><span class="material-symbols-rounded">home</span> Главная</a>
     <a class="nav-item" data-page="explore" onclick="navigate('explore')"><span class="material-symbols-rounded">explore</span> Обзор</a>
     <a class="nav-item" data-page="wave" onclick="navigate('wave')"><span class="material-symbols-rounded">waves</span> Моя волна</a>
+    <a class="nav-item" data-page="charts" onclick="navigate('charts')"><span class="material-symbols-rounded">trending_up</span> Чарты</a>
+    <a class="nav-item" data-page="new-releases" onclick="navigate('new-releases')"><span class="material-symbols-rounded">new_releases</span> Новинки</a>
     <div class="nav-divider"></div>
     <a class="nav-item" data-page="favorites" onclick="navigate('favorites')"><span class="material-symbols-rounded">favorite</span> Любимое</a>
     <a class="nav-item" data-page="playlists" onclick="navigate('playlists')"><span class="material-symbols-rounded">queue_music</span> Плейлисты</a>
+    <a class="nav-item" data-page="history" onclick="navigate('history')"><span class="material-symbols-rounded">history</span> История</a>
     <a class="nav-item" data-page="subscriptions" onclick="navigate('subscriptions')"><span class="material-symbols-rounded">people</span> Подписки</a>
     <div class="nav-divider"></div>
     <a class="nav-item" data-page="upload" onclick="navigate('upload')"><span class="material-symbols-rounded">upload</span> Загрузить</a>
@@ -345,14 +441,16 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
 </aside>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
+<!-- ===== MAIN CONTENT ===== -->
 <div class="main-content" id="mainContent">
   <header class="top-bar" id="topBar">
     <button class="btn-icon menu-btn" onclick="toggleSidebar()"><span class="material-symbols-rounded">menu</span></button>
     <div class="search-bar">
       <span class="material-symbols-rounded">search</span>
-      <input type="text" placeholder="Поиск музыки, артистов..." id="searchInput" oninput="handleSearch(this.value)">
+      <input type="text" placeholder="Поиск музыки, артистов, жанров..." id="searchInput" oninput="handleSearch(this.value)">
     </div>
     <div class="user-area">
+      <button class="btn-icon" onclick="toggleQueue()" title="Очередь"><span class="material-symbols-rounded">queue_music</span></button>
       <button class="btn-icon" onclick="toggleTheme()" title="Сменить тему"><span class="material-symbols-rounded" id="themeIcon">dark_mode</span></button>
       <div class="user-avatar" id="userAvatarBtn" onclick="toggleUserMenu()">
         <span class="material-symbols-rounded" id="avatarIcon">person</span>
@@ -362,20 +460,22 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
   </header>
   <div class="user-menu" id="userMenu"><div id="userMenuContent"></div></div>
 
+  <!-- HOME -->
   <div class="page active" id="page-home">
     <div class="hero-banner">
       <div class="hero-title">Добро пожаловать в MusicPlatforme</div>
       <div class="hero-sub">Слушай, открывай и делись музыкой бесплатно</div>
       <button class="btn-primary" onclick="navigate('wave')"><span class="material-symbols-rounded">waves</span> Моя волна</button>
     </div>
-    <div class="section-title">Новые треки</div>
+    <div class="section-title">🔥 Новые треки</div>
     <div class="track-list" id="homeNewTracks"><div class="loading-spinner"></div></div>
-    <div class="section-title">Популярное</div>
+    <div class="section-title">🏆 Популярное</div>
     <div class="cards-grid" id="homePopular"><div class="skeleton" style="height:220px"></div><div class="skeleton" style="height:220px"></div><div class="skeleton" style="height:220px"></div><div class="skeleton" style="height:220px"></div></div>
-    <div class="section-title">Артисты</div>
+    <div class="section-title">🎤 Артисты</div>
     <div class="cards-grid" id="homeArtists" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr))"></div>
   </div>
 
+  <!-- EXPLORE -->
   <div class="page" id="page-explore">
     <div class="section-title">Обзор</div>
     <div class="genre-pills" id="genrePills"></div>
@@ -383,6 +483,7 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
     <div class="track-list" id="exploreTracks"><div class="loading-spinner"></div></div>
   </div>
 
+  <!-- WAVE -->
   <div class="page" id="page-wave">
     <div class="wave-container" id="waveContainer">
       <div class="wave-circle" id="waveCircle"><span class="material-symbols-rounded filled">waves</span></div>
@@ -393,10 +494,28 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
     <div class="track-list" id="waveTracks" style="margin-top:24px"></div>
   </div>
 
+  <!-- CHARTS -->
+  <div class="page" id="page-charts">
+    <div class="section-title">📊 Чарты</div>
+    <div class="section-sub">Самые популярные треки прямо сейчас</div>
+    <div class="track-list" id="chartsTracks"><div class="loading-spinner"></div></div>
+  </div>
+
+  <!-- NEW RELEASES -->
+  <div class="page" id="page-new-releases">
+    <div class="section-title">🆕 Новинки</div>
+    <div class="section-sub">Свежие релизы за последние 7 дней</div>
+    <div class="track-list" id="newReleasesTracks"><div class="loading-spinner"></div></div>
+  </div>
+
+  <!-- FAVORITES -->
   <div class="page" id="page-favorites">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-      <div class="section-title" style="margin-bottom:0">Любимое</div>
-      <button class="btn-tonal" id="playAllFavBtn" style="display:none" onclick="playAllFavorites()"><span class="material-symbols-rounded">play_arrow</span> Воспроизвести все</button>
+      <div class="section-title" style="margin-bottom:0">❤️ Любимое</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn-tonal" id="playAllFavBtn" style="display:none" onclick="playAllFavorites()"><span class="material-symbols-rounded">play_arrow</span> Воспроизвести</button>
+        <button class="btn-tonal" id="shuffleFavBtn" style="display:none" onclick="shuffleFavorites()"><span class="material-symbols-rounded">shuffle</span> Перемешать</button>
+      </div>
     </div>
     <div id="favContent">
       <div class="empty-state" id="favEmpty"><span class="material-symbols-rounded">favorite</span><h3>Пока пусто</h3><p>Нажмите ♡ на любом треке, чтобы добавить его в любимое</p></div>
@@ -404,23 +523,38 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
     </div>
   </div>
 
+  <!-- PLAYLISTS -->
   <div class="page" id="page-playlists">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
-      <div class="section-title" style="margin-bottom:0">Плейлисты</div>
+      <div class="section-title" style="margin-bottom:0">🎵 Плейлисты</div>
       <button class="btn-tonal" onclick="createPlaylist()"><span class="material-symbols-rounded">add</span> Создать</button>
     </div>
     <div id="playlistsContent"><div class="empty-state"><span class="material-symbols-rounded">queue_music</span><h3>Нет плейлистов</h3><p>Создайте свой первый плейлист</p></div></div>
     <div class="cards-grid" id="playlistsGrid"></div>
   </div>
 
-  <div class="page" id="page-subscriptions">
-    <div class="section-title">Подписки</div>
-    <div id="subsContent"><div class="empty-state" id="subsEmpty"><span class="material-symbols-rounded">people</span><h3>Вы ни на кого не подписаны</h3><p>Подпишитесь на артистов, чтобы видеть их новые треки</p></div></div>
-    <div class="cards-grid" id="subsGrid" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr))"></div>
+  <!-- HISTORY -->
+  <div class="page" id="page-history">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+      <div class="section-title" style="margin-bottom:0">📜 История прослушивания</div>
+      <button class="btn-text" onclick="clearHistory()"><span class="material-symbols-rounded">delete</span> Очистить</button>
+    </div>
+    <div id="historyContent"><div class="empty-state"><span class="material-symbols-rounded">history</span><h3>История пуста</h3><p>Здесь появятся треки, которые вы слушали</p></div></div>
+    <div class="track-list" id="historyTracks"></div>
   </div>
 
+  <!-- SUBSCRIPTIONS -->
+  <div class="page" id="page-subscriptions">
+    <div class="section-title">👥 Подписки</div>
+    <div id="subsContent"><div class="empty-state" id="subsEmpty"><span class="material-symbols-rounded">people</span><h3>Вы ни на кого не подписаны</h3><p>Подпишитесь на артистов, чтобы видеть их новые треки</p></div></div>
+    <div class="cards-grid" id="subsGrid" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr))"></div>
+    <div class="section-title" id="subsFeedTitle" style="display:none;margin-top:32px">Новые треки от подписок</div>
+    <div class="track-list" id="subsFeedTracks"></div>
+  </div>
+
+  <!-- UPLOAD -->
   <div class="page" id="page-upload">
-    <div class="section-title">Загрузить трек</div>
+    <div class="section-title">⬆️ Загрузить трек</div>
     <div id="uploadAuthMsg" style="display:none"><div class="empty-state"><span class="material-symbols-rounded">lock</span><h3>Требуется авторизация</h3><p>Войдите или зарегистрируйтесь, чтобы публиковать музыку</p><button class="btn-primary" onclick="navigate('profile')" style="margin-top:20px"><span class="material-symbols-rounded">login</span> Войти</button></div></div>
     <div id="uploadForm" style="display:none">
       <div class="upload-zone" id="uploadZone" onclick="document.getElementById('audioFileInput').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="handleAudioDrop(event)">
@@ -444,7 +578,10 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
         <option value="pop">Поп</option><option value="rock">Рок</option><option value="hiphop">Хип-хоп</option>
         <option value="electronic">Электронная</option><option value="rnb">R&B</option><option value="jazz">Джаз</option>
         <option value="classical">Классика</option><option value="indie">Инди</option><option value="metal">Метал</option>
-        <option value="phonk">Phonk</option><option value="custom">Свой жанр...</option>
+        <option value="phonk">Phonk</option><option value="lofi">Lo-Fi</option><option value="dnb">Drum & Bass</option>
+        <option value="house">House</option><option value="techno">Techno</option><option value="trap">Trap</option>
+        <option value="reggaeton">Reggaeton</option><option value="kpop">K-Pop</option>
+        <option value="custom">Свой жанр...</option>
       </select>
       <input class="md-input" id="uploadCustomGenre" placeholder="Введите свой жанр" style="border-radius:var(--md-shape-md);margin-bottom:16px;display:none">
       <label class="modal-label">Обложка</label>
@@ -458,6 +595,8 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
           <input type="file" id="coverFileInput" accept="image/*" style="display:none" onchange="handleCoverSelect(event)">
         </div>
       </div>
+      <label class="modal-label">Текст песни (необязательно)</label>
+      <textarea class="md-input" id="uploadLyrics" placeholder="Вставьте текст песни..." rows="4" style="border-radius:var(--md-shape-md);margin-bottom:16px;resize:vertical"></textarea>
       <div id="uploadProgress" style="display:none;margin-bottom:16px">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
           <div class="loading-spinner" style="width:20px;height:20px;margin:0;border-width:2px"></div>
@@ -473,6 +612,7 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
     </div>
   </div>
 
+  <!-- PROFILE -->
   <div class="page" id="page-profile">
     <div id="profileAuthMsg">
       <div class="auth-container">
@@ -526,14 +666,18 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
           </div>
         </div>
       </div>
+      <!-- Stats -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px" id="profileStatsGrid"></div>
       <div class="tab-bar">
         <div class="tab-item active" onclick="switchProfileTab('tracks',this)">Треки</div>
         <div class="tab-item" onclick="switchProfileTab('liked',this)">Понравившиеся</div>
+        <div class="tab-item" onclick="switchProfileTab('stats',this)">Статистика</div>
       </div>
       <div id="profileTabContent"><div class="track-list" id="profileTrackList"><div class="loading-spinner"></div></div></div>
     </div>
   </div>
 
+  <!-- SEARCH -->
   <div class="page" id="page-search">
     <div class="section-title" id="searchTitle">Результаты поиска</div>
     <div id="searchArtistsSection" class="search-section" style="display:none">
@@ -546,12 +690,24 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
     </div>
   </div>
 
+  <!-- ARTIST -->
   <div class="page" id="page-artist">
     <div class="artist-page-header" id="artistHeader"></div>
+    <div class="tab-bar" id="artistTabs" style="display:none">
+      <div class="tab-item active" onclick="switchArtistTab('tracks',this)">Треки</div>
+      <div class="tab-item" onclick="switchArtistTab('popular',this)">Популярные</div>
+    </div>
     <div class="track-list" id="artistTracks"></div>
+  </div>
+
+  <!-- PLAYLIST VIEW -->
+  <div class="page" id="page-playlist-view">
+    <div id="playlistViewHeader"></div>
+    <div class="track-list" id="playlistViewTracks"></div>
   </div>
 </div>
 
+<!-- ===== BOTTOM NAV ===== -->
 <div class="bottom-nav" id="bottomNav">
   <button class="nav-tab active" data-page="home" onclick="navigate('home')"><div class="nav-tab-indicator"><span class="material-symbols-rounded">home</span></div>Главная</button>
   <button class="nav-tab" data-page="explore" onclick="navigate('explore')"><div class="nav-tab-indicator"><span class="material-symbols-rounded">explore</span></div>Обзор</button>
@@ -560,6 +716,7 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
   <button class="nav-tab" data-page="profile" onclick="navigate('profile')"><div class="nav-tab-indicator"><span class="material-symbols-rounded">person</span></div>Профиль</button>
 </div>
 
+<!-- ===== PLAYER BAR ===== -->
 <div class="player-bar" id="playerBar">
   <div class="player-track-info" onclick="openFullscreenPlayer()">
     <div class="player-thumb" id="playerThumb"><span class="material-symbols-rounded">music_note</span></div>
@@ -588,6 +745,7 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
   </div>
 </div>
 
+<!-- ===== FULLSCREEN PLAYER ===== -->
 <div class="fs-player-overlay" id="fsPlayer">
   <div class="fs-top">
     <button class="btn-icon" onclick="closeFullscreenPlayer()"><span class="material-symbols-rounded">keyboard_arrow_down</span></button>
@@ -620,20 +778,38 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
     <button class="btn-icon" onclick="fsGoToArtist()" title="Профиль артиста"><span class="material-symbols-rounded">person</span></button>
     <button class="btn-icon" onclick="shareTrack()" title="Поделиться"><span class="material-symbols-rounded">share</span></button>
     <button class="btn-icon" onclick="addToPlaylistPrompt()" title="В плейлист"><span class="material-symbols-rounded">playlist_add</span></button>
+    <button class="btn-icon" onclick="toggleLyrics()" title="Текст"><span class="material-symbols-rounded">lyrics</span></button>
+    <button class="btn-icon" onclick="toggleQueue()" title="Очередь"><span class="material-symbols-rounded">queue_music</span></button>
   </div>
+  <div class="lyrics-container" id="fsLyrics" style="display:none"></div>
 </div>
 
+<!-- ===== QUEUE PANEL ===== -->
+<div class="queue-panel" id="queuePanel">
+  <div class="queue-panel-header">
+    <div class="section-title">Очередь</div>
+    <button class="btn-icon" onclick="clearQueue()"><span class="material-symbols-rounded">delete_sweep</span></button>
+    <button class="btn-icon" onclick="toggleQueue()"><span class="material-symbols-rounded">close</span></button>
+  </div>
+  <div class="queue-panel-body" id="queueBody"></div>
+</div>
+
+<!-- ===== MODALS ===== -->
 <div class="modal-overlay" id="playlistModal"><div class="modal">
   <div class="modal-title">Новый плейлист</div>
   <label class="modal-label">Название</label>
   <input class="md-input" id="playlistNameInput" placeholder="Мой плейлист">
+  <label class="modal-label">Описание (необязательно)</label>
+  <input class="md-input" id="playlistDescInput" placeholder="Описание плейлиста">
   <div class="modal-actions"><button class="btn-outlined" onclick="closeModal('playlistModal')">Отмена</button><button class="btn-primary" onclick="savePlaylist()">Создать</button></div>
 </div></div>
+
 <div class="modal-overlay" id="deleteModal"><div class="modal">
   <div class="modal-title">Удалить трек?</div>
   <p style="font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-bottom:16px">Этот трек будет безвозвратно удалён.</p>
   <div class="modal-actions"><button class="btn-outlined" onclick="closeModal('deleteModal')">Отмена</button><button class="btn-primary" style="background:var(--md-error);color:var(--md-on-error)" onclick="confirmDeleteTrack()">Удалить</button></div>
 </div></div>
+
 <div class="modal-overlay" id="settingsModal"><div class="modal" style="max-width:520px">
   <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
     <button class="btn-icon" onclick="closeModal('settingsModal')"><span class="material-symbols-rounded">arrow_back</span></button>
@@ -641,6 +817,7 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
   </div>
   <div id="settingsContent"></div>
 </div></div>
+
 <div class="modal-overlay" id="editProfileModal"><div class="modal">
   <div class="modal-title">Редактировать профиль</div>
   <div style="display:flex;justify-content:center;margin-bottom:16px">
@@ -653,14 +830,18 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
   <input class="md-input" id="editDisplayName" placeholder="Имя">
   <label class="modal-label">Аватар (URL)</label>
   <input class="md-input" id="editAvatarUrl" placeholder="https://...">
+  <label class="modal-label">Статус / Био</label>
+  <input class="md-input" id="editBio" placeholder="Расскажите о себе...">
   <div class="modal-actions"><button class="btn-outlined" onclick="closeModal('editProfileModal')">Отмена</button><button class="btn-primary" onclick="saveProfileEdits()">Сохранить</button></div>
 </div></div>
+
 <div class="modal-overlay" id="linkTelegramModal"><div class="modal">
   <div class="modal-title">Привязать Telegram</div>
   <p style="font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-bottom:16px">Нажмите кнопку ниже для привязки</p>
   <div class="telegram-btn-wrap"><button class="tg-login-btn" onclick="linkTelegram()"><svg viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg> Привязать Telegram</button></div>
   <div class="modal-actions" style="margin-top:16px"><button class="btn-outlined" onclick="closeModal('linkTelegramModal')">Закрыть</button></div>
 </div></div>
+
 <div class="modal-overlay" id="linkEmailModal"><div class="modal">
   <div class="modal-title">Привязать Email</div>
   <label class="modal-label">Email</label>
@@ -670,11 +851,13 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
   <div class="auth-error" id="linkEmailError"></div>
   <div class="modal-actions"><button class="btn-outlined" onclick="closeModal('linkEmailModal')">Отмена</button><button class="btn-primary" onclick="saveLinkEmail()">Привязать</button></div>
 </div></div>
+
 <div class="modal-overlay" id="addToPlaylistModal"><div class="modal">
   <div class="modal-title">Добавить в плейлист</div>
   <div id="addToPlaylistList"></div>
   <div class="modal-actions" style="margin-top:16px"><button class="btn-outlined" onclick="closeModal('addToPlaylistModal')">Закрыть</button></div>
 </div></div>
+
 <div class="modal-overlay" id="reportModal"><div class="modal">
   <div class="modal-title">Пожаловаться</div>
   <p style="font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-bottom:16px">Выберите причину жалобы:</p>
@@ -682,9 +865,34 @@ button,a,[onclick],input,select,textarea{outline:none!important;-webkit-tap-high
     <div class="settings-item" onclick="submitReport('copyright')"><span class="material-symbols-rounded">copyright</span><div class="settings-item-info"><div class="settings-item-title">Нарушение авторских прав</div></div></div>
     <div class="settings-item" onclick="submitReport('spam')"><span class="material-symbols-rounded">report</span><div class="settings-item-info"><div class="settings-item-title">Спам / мусор</div></div></div>
     <div class="settings-item" onclick="submitReport('inappropriate')"><span class="material-symbols-rounded">block</span><div class="settings-item-info"><div class="settings-item-title">Неприемлемый контент</div></div></div>
+    <div class="settings-item" onclick="submitReport('quality')"><span class="material-symbols-rounded">low_priority</span><div class="settings-item-info"><div class="settings-item-title">Низкое качество</div></div></div>
     <div class="settings-item" onclick="submitReport('other')"><span class="material-symbols-rounded">more_horiz</span><div class="settings-item-info"><div class="settings-item-title">Другое</div></div></div>
   </div>
   <div class="modal-actions" style="margin-top:12px"><button class="btn-outlined" onclick="closeModal('reportModal')">Отмена</button></div>
+</div></div>
+
+<div class="modal-overlay" id="sleepTimerModal"><div class="modal">
+  <div class="modal-title">Таймер сна</div>
+  <p style="font:400 14px/20px 'Inter',sans-serif;color:var(--md-on-surface-variant);margin-bottom:16px">Музыка остановится через выбранное время</p>
+  <div id="sleepTimerOptions">
+    <div class="settings-item" onclick="setSleepTimer(15)"><span class="material-symbols-rounded">timer</span><div class="settings-item-info"><div class="settings-item-title">15 минут</div></div></div>
+    <div class="settings-item" onclick="setSleepTimer(30)"><span class="material-symbols-rounded">timer</span><div class="settings-item-info"><div class="settings-item-title">30 минут</div></div></div>
+    <div class="settings-item" onclick="setSleepTimer(45)"><span class="material-symbols-rounded">timer</span><div class="settings-item-info"><div class="settings-item-title">45 минут</div></div></div>
+    <div class="settings-item" onclick="setSleepTimer(60)"><span class="material-symbols-rounded">timer</span><div class="settings-item-info"><div class="settings-item-title">1 час</div></div></div>
+    <div class="settings-item" onclick="setSleepTimer(0)"><span class="material-symbols-rounded">timer_off</span><div class="settings-item-info"><div class="settings-item-title">Отключить таймер</div></div></div>
+  </div>
+  <div class="modal-actions" style="margin-top:12px"><button class="btn-outlined" onclick="closeModal('sleepTimerModal')">Закрыть</button></div>
+</div></div>
+
+<div class="modal-overlay" id="editTrackModal"><div class="modal">
+  <div class="modal-title">Редактировать трек</div>
+  <label class="modal-label">Название</label>
+  <input class="md-input" id="editTrackTitle" placeholder="Название">
+  <label class="modal-label">Жанр</label>
+  <input class="md-input" id="editTrackGenre" placeholder="Жанр">
+  <label class="modal-label">Текст песни</label>
+  <textarea class="md-input" id="editTrackLyrics" placeholder="Текст песни..." rows="4" style="resize:vertical"></textarea>
+  <div class="modal-actions"><button class="btn-outlined" onclick="closeModal('editTrackModal')">Отмена</button><button class="btn-primary" onclick="saveTrackEdits()">Сохранить</button></div>
 </div></div>
 
 <div class="snackbar" id="snackbar"></div>
@@ -695,40 +903,39 @@ const firebaseConfig={apiKey:"AIzaSyBi_ZxAPL7SOZGf-EX-mYxEuePztC4XoVc",authDomai
 firebase.initializeApp(firebaseConfig);
 const db=firebase.database();
 
+/* ===== STATE ===== */
 let currentUser=null,allTracks={},currentTrackId=null,playlist=[],playlistIndex=-1;
 let isPlaying=false,isShuffle=false,repeatMode=0;
 let favorites={},subscriptions={},userPlaylists={},deleteTrackId=null;
 let selectedAudioFile=null,selectedAudioDataURL=null,playerVisible=false;
 let selectedCoverDataURL=null,reportTrackId=null,contextTrackId=null;
-let playCountCooldowns={};
+let playCountCooldowns={},listeningHistory=[],sleepTimerId=null,editTrackId=null;
+let currentArtistTracks=[],currentArtistId=null,queueOpen=false,lyricsOpen=false;
 const audio=document.getElementById('audioPlayer');
 
+/* ===== GENRES ===== */
 const genres=[
   {id:'all',label:'Все',icon:'apps'},{id:'pop',label:'Поп',icon:'star'},{id:'rock',label:'Рок',icon:'electric_bolt'},
   {id:'hiphop',label:'Хип-хоп',icon:'mic'},{id:'electronic',label:'Электронная',icon:'equalizer'},
   {id:'rnb',label:'R&B',icon:'nightlife'},{id:'jazz',label:'Джаз',icon:'piano'},
   {id:'classical',label:'Классика',icon:'music_note'},{id:'indie',label:'Инди',icon:'headphones'},
   {id:'metal',label:'Метал',icon:'whatshot'},{id:'phonk',label:'Phonk',icon:'speed'},
-  {id:'other',label:'Другое',icon:'more_horiz'}
+  {id:'lofi',label:'Lo-Fi',icon:'self_improvement'},{id:'dnb',label:'D&B',icon:'bolt'},
+  {id:'house',label:'House',icon:'house'},{id:'techno',label:'Techno',icon:'settings_suggest'},
+  {id:'trap',label:'Trap',icon:'explicit'},{id:'reggaeton',label:'Reggaeton',icon:'celebration'},
+  {id:'kpop',label:'K-Pop',icon:'auto_awesome'},{id:'other',label:'Другое',icon:'more_horiz'}
 ];
 
+/* ===== EXPLICIT CHECK ===== */
 const explicitWords=['fuck','shit','bitch','ass','dick','damn','bastard','crap','piss','cock','pussy','хуй','пизд','блядь','бля','ёб','еб','сук','мудак','мудил','пидор','пидар','залуп','хер','дерьм','срань','сука','ебан','ебат','ёбан','пиздец','нахуй','нахер','похуй','охуе','ахуе','шлюх','проститут','ублюдок','гандон','манда','ебло','ёбл','хуе','хуё','пизж','выблядок','долбоёб','долбоеб','заеб','заёб','отъеб','подъеб','уёб','уеб','разъеб','разъёб','объеб','объёб','перееб','переёб','выеб','выёб','взъеб','взъёб','доеб','доёб','наеб','наёб','приеб','приёб','припизд','распизд','спизд','пиздат','запизд','отпизд','попизд','хуяр','хуяч','хуяк','пиздюл','ёбарь','ебарь','мудозвон','fucker','motherfuck','asshole','bullshit','nigger','nigga','whore','slut','cunt','twat','wanker','jackass'];
 function checkExplicit(t){if(!t)return false;const l=t.toLowerCase().replace(/[^a-zа-яёй0-9]/gi,' ');for(const w of explicitWords)if(l.includes(w.toLowerCase()))return true;return false}
 
-const copyrightArtists=['drake','eminem','rihanna','taylor swift','beyonce','ed sheeran','adele','billie eilish','ariana grande','the weeknd','bad bunny','bts','blackpink','dua lipa','justin bieber','post malone','kanye west','travis scott','lil nas x','olivia rodrigo','harry styles','doja cat','sza','lana del rey','imagine dragons','coldplay','maroon 5','bruno mars','lady gaga','katy perry','shakira','madonna','michael jackson','queen','beatles','nirvana','metallica','ac/dc','pink floyd','led zeppelin','radiohead','u2','oasis','arctic monkeys','tame impala','kendrick lamar','jay-z','nas','tupac','notorious big','snoop dogg','dr dre','50 cent','lil wayne','nicki minaj','cardi b','megan thee stallion','duki','bad gyal','rosalia','j balvin','ozuna','daddy yankee','анна асти','мот','егор крид','тимати','баста','miyagi','эндшпиль','макс корж','скриптонит','oxxxymiron','face','pharaoh','big baby tape','morgenshtern','instasamka','slava marlow'];
-function checkCopyright(title,artistName){
-  if(!title)return false;
-  const t=title.toLowerCase(),a=(artistName||'').toLowerCase();
-  for(const ca of copyrightArtists){
-    if(t.includes(ca)||a.includes(ca))return true;
-  }
-  return false;
-}
-
+/* ===== GENRE CUSTOM ===== */
 document.getElementById('uploadGenre').addEventListener('change',function(){
   document.getElementById('uploadCustomGenre').style.display=this.value==='custom'?'block':'none';
 });
 
+/* ===== COVER HANDLING ===== */
 function handleCoverSelect(e){
   const f=e.target.files[0];if(!f)return;
   if(!f.type.startsWith('image/')){showSnackbar('Выберите изображение');return}
@@ -743,11 +950,9 @@ function extractEmbeddedCover(file){
     const reader=new FileReader();
     reader.onload=function(e){
       const buf=new Uint8Array(e.target.result);
-      // Check for ID3v2 tag
       if(buf[0]===0x49&&buf[1]===0x44&&buf[2]===0x33){
         const size=((buf[6]&0x7f)<<21)|((buf[7]&0x7f)<<14)|((buf[8]&0x7f)<<7)|(buf[9]&0x7f);
-        let pos=10;
-        const version=buf[3];
+        let pos=10;const version=buf[3];
         if(version>=3){
           while(pos<size+10){
             const frameId=String.fromCharCode(buf[pos],buf[pos+1],buf[pos+2],buf[pos+3]);
@@ -757,21 +962,14 @@ function extractEmbeddedCover(file){
             if(frameSize<=0||pos+10+frameSize>buf.length)break;
             if(frameId==='APIC'){
               const data=buf.slice(pos+10,pos+10+frameSize);
-              let i=1;// skip text encoding byte
-              let mime='';
+              let i=1;let mime='';
               while(i<data.length&&data[i]!==0){mime+=String.fromCharCode(data[i]);i++}
-              i++;// skip null
-              i++;// skip picture type
-              while(i<data.length&&data[i]!==0)i++;// skip description
-              i++;// skip null
+              i++;i++;while(i<data.length&&data[i]!==0)i++;i++;
               if(!mime||mime==='image/jpeg')mime='image/jpeg';
               else if(mime==='image/png')mime='image/png';
-              const imgData=data.slice(i);
-              let binary='';
+              const imgData=data.slice(i);let binary='';
               for(let j=0;j<imgData.length;j++)binary+=String.fromCharCode(imgData[j]);
-              const b64=btoa(binary);
-              resolve('data:'+mime+';base64,'+b64);
-              return;
+              resolve('data:'+mime+';base64,'+btoa(binary));return;
             }
             pos+=10+frameSize;
           }
@@ -784,6 +982,7 @@ function extractEmbeddedCover(file){
   });
 }
 
+/* ===== AUTH ===== */
 function hashPassword(p){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(p)).then(b=>Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join(''))}
 function switchAuthTab(t){
   document.getElementById('tabLogin').classList.toggle('active',t==='login');
@@ -803,12 +1002,12 @@ async function doRegister(){
   if(!d){err.textContent='Введите отображаемое имя';return}
   if(p.length<6){err.textContent='Пароль минимум 6 символов';return}
   if(p!==p2){err.textContent='Пароли не совпадают';return}
-  err.innerHTML='<div class="loading-spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block;vertical-align:middle"></div> Регистрация...';
+  err.innerHTML='<div class="loading-spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block;vertical-align:middle"></div>';
   try{
     const us=await db.ref('usernames/'+u).once('value');if(us.exists()){err.textContent='Логин занят';return}
     const ek=e.replace(/\./g,','),es=await db.ref('emails/'+ek).once('value');if(es.exists()){err.textContent='Email уже зарегистрирован';return}
     const ph=await hashPassword(p),uid='u_'+Date.now()+'_'+Math.random().toString(36).substr(2,8);
-    const ud={uid,username:u,email:e,displayName:d,photo:'',passwordHash:ph,authMethod:'email',createdAt:Date.now()};
+    const ud={uid,username:u,email:e,displayName:d,photo:'',bio:'',passwordHash:ph,authMethod:'email',createdAt:Date.now()};
     await db.ref('users/'+uid).set(ud);await db.ref('usernames/'+u).set(uid);await db.ref('emails/'+ek).set(uid);
     loginUser(ud);showSnackbar('Добро пожаловать, '+d+'!');
   }catch(x){err.textContent='Ошибка: '+x.message}
@@ -817,7 +1016,7 @@ async function doRegister(){
 async function doLogin(){
   const id=document.getElementById('loginIdentity').value.trim().toLowerCase(),p=document.getElementById('loginPassword').value,err=document.getElementById('loginError');
   err.textContent='';if(!id){err.textContent='Введите логин или Email';return}if(!p){err.textContent='Введите пароль';return}
-  err.innerHTML='<div class="loading-spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block;vertical-align:middle"></div> Вход...';
+  err.innerHTML='<div class="loading-spinner" style="width:16px;height:16px;margin:0;border-width:2px;display:inline-block;vertical-align:middle"></div>';
   try{
     let uid=null;
     if(id.includes('@')){const s=await db.ref('emails/'+id.replace(/\./g,',')).once('value');uid=s.val()}
@@ -831,19 +1030,20 @@ async function doLogin(){
 }
 
 function loginUser(ud){
-  currentUser={uid:ud.uid,username:ud.username||'',email:ud.email||'',displayName:ud.displayName||'Пользователь',photo:ud.photo||'',authMethod:ud.authMethod||'email'};
+  currentUser={uid:ud.uid,username:ud.username||'',email:ud.email||'',displayName:ud.displayName||'Пользователь',photo:ud.photo||'',bio:ud.bio||'',authMethod:ud.authMethod||'email'};
   localStorage.setItem('mp_user',JSON.stringify(currentUser));updateAuthUI();loadUserData();
 }
-function signOutUser(){currentUser=null;localStorage.removeItem('mp_user');favorites={};subscriptions={};userPlaylists={};updateAuthUI();showSnackbar('Вы вышли');navigate('home')}
+function signOutUser(){currentUser=null;localStorage.removeItem('mp_user');favorites={};subscriptions={};userPlaylists={};listeningHistory=[];updateAuthUI();showSnackbar('Вы вышли');navigate('home')}
 function restoreSession(){const s=localStorage.getItem('mp_user');if(s){try{currentUser=JSON.parse(s);updateAuthUI();loadUserData()}catch(e){localStorage.removeItem('mp_user')}}}
 
+/* ===== TELEGRAM AUTH ===== */
 window.onTelegramAuth=async function(tg){
   if(!tg||!tg.id){showSnackbar('Ошибка Telegram');return}
   const uid='tg_'+tg.id;const s=await db.ref('users/'+uid).once('value');let ud=s.val();
   if(!ud){const dn=(tg.first_name||'')+(tg.last_name?' '+tg.last_name:''),un=tg.username||('tg'+tg.id);
-    ud={uid,username:un,email:'',displayName:dn||'Telegram User',photo:tg.photo_url||'',authMethod:'telegram',telegramId:tg.id,createdAt:Date.now()};
+    ud={uid,username:un,email:'',displayName:dn||'Telegram User',photo:tg.photo_url||'',bio:'',authMethod:'telegram',telegramId:tg.id,createdAt:Date.now()};
     await db.ref('users/'+uid).set(ud);if(tg.username)await db.ref('usernames/'+tg.username.toLowerCase()).set(uid)}
-  loginUser(ud);showSnackbar('Добро пожаловать, '+(ud.displayName||'пользователь')+'!');
+  loginUser(ud);showSnackbar('Добро пожаловать!');
 };
 window.onTelegramLink=async function(tg){
   if(!currentUser||!tg)return;
@@ -856,12 +1056,13 @@ function openTelegramLogin(){openTgPopup('onTelegramAuth')}
 function linkTelegram(){openTgPopup('onTelegramLink')}
 function openTgPopup(cbName){
   const w=550,h=470,l=(screen.width-w)/2,t=(screen.height-h)/2;
-  const p=window.open('','TelegramLogin','width='+w+',height='+h+',left='+l+',top='+t+',resizable=yes,scrollbars=yes');
+  const p=window.open('','TelegramLogin','width='+w+',height='+h+',left='+l+',top='+t+',resizable=yes');
   if(!p){showSnackbar('Разрешите всплывающие окна');return}
-  p.document.write('<!DOCTYPE html><html><head><title>Telegram</title><style>body{font-family:Inter,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#F3EDF7;color:#1D1B20}h2{margin-bottom:24px;font-weight:600}p{color:#49454F;margin-bottom:24px;text-align:center;max-width:350px;font-size:14px}</style></head><body><h2>Вход через Telegram</h2><p>Нажмите кнопку ниже</p><div id="w"></div><script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="VriskasRobot" data-size="large" data-radius="20" data-onauth="onTgAuth(user)" data-request-access="write"><\/script><script>function onTgAuth(u){if(window.opener&&window.opener.'+cbName+'){window.opener.'+cbName+'(u);window.close()}}<\/script></body></html>');
+  p.document.write('<!DOCTYPE html><html><head><title>Telegram</title><style>body{font-family:Inter,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#F3EDF7;color:#1D1B20}h2{margin-bottom:24px;font-weight:600}</style></head><body><h2>Вход через Telegram</h2><div id="w"></div><script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="VriskasRobot" data-size="large" data-radius="20" data-onauth="onTgAuth(user)" data-request-access="write"><\/script><script>function onTgAuth(u){if(window.opener&&window.opener.'+cbName+'){window.opener.'+cbName+'(u);window.close()}}<\/script></body></html>');
   p.document.close();
 }
 
+/* ===== AUTH UI ===== */
 function updateAuthUI(){
   const ai=document.getElementById('avatarIcon'),am=document.getElementById('avatarImg');
   if(currentUser){
@@ -879,10 +1080,17 @@ function updateAuthUI(){
   }
   updateUserMenu();
 }
+
 function updateUserMenu(){
   const c=document.getElementById('userMenuContent');
   if(currentUser){
-    c.innerHTML='<div style="padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--md-outline-variant)"><div style="width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--md-primary-container);display:flex;align-items:center;justify-content:center;flex-shrink:0">'+(currentUser.photo?'<img src="'+currentUser.photo+'" style="width:100%;height:100%;object-fit:cover">':'<span class="material-symbols-rounded">person</span>')+'</div><div style="min-width:0"><div style="font:500 14px/20px \'Inter\',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(currentUser.displayName)+'</div><div style="font:400 12px/16px \'Inter\',sans-serif;color:var(--md-on-surface-variant)">@'+esc(currentUser.username)+'</div></div></div><div class="user-menu-item" onclick="navigate(\'profile\');closeUserMenu()"><span class="material-symbols-rounded">person</span> Профиль</div><div class="user-menu-item" onclick="navigate(\'upload\');closeUserMenu()"><span class="material-symbols-rounded">upload</span> Загрузить</div><div class="user-menu-item" onclick="openSettings();closeUserMenu()"><span class="material-symbols-rounded">settings</span> Настройки</div><div class="user-menu-item" onclick="signOutUser();closeUserMenu()"><span class="material-symbols-rounded">logout</span> Выйти</div>';
+    c.innerHTML='<div style="padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--md-outline-variant)"><div style="width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--md-primary-container);display:flex;align-items:center;justify-content:center;flex-shrink:0">'+(currentUser.photo?'<img src="'+currentUser.photo+'" style="width:100%;height:100%;object-fit:cover">':'<span class="material-symbols-rounded">person</span>')+'</div><div style="min-width:0"><div style="font:500 14px/20px \'Inter\',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(currentUser.displayName)+'</div><div style="font:400 12px/16px \'Inter\',sans-serif;color:var(--md-on-surface-variant)">@'+esc(currentUser.username)+'</div></div></div>'+
+    '<div class="user-menu-item" onclick="navigate(\'profile\');closeUserMenu()"><span class="material-symbols-rounded">person</span> Профиль</div>'+
+    '<div class="user-menu-item" onclick="navigate(\'upload\');closeUserMenu()"><span class="material-symbols-rounded">upload</span> Загрузить</div>'+
+    '<div class="user-menu-item" onclick="navigate(\'history\');closeUserMenu()"><span class="material-symbols-rounded">history</span> История</div>'+
+    '<div class="user-menu-item" onclick="openSleepTimer();closeUserMenu()"><span class="material-symbols-rounded">bedtime</span> Таймер сна</div>'+
+    '<div class="user-menu-item" onclick="openSettings();closeUserMenu()"><span class="material-symbols-rounded">settings</span> Настройки</div>'+
+    '<div class="user-menu-item" onclick="signOutUser();closeUserMenu()"><span class="material-symbols-rounded">logout</span> Выйти</div>';
   }else{
     c.innerHTML='<div class="user-menu-item" onclick="navigate(\'profile\');closeUserMenu()"><span class="material-symbols-rounded">login</span> Войти / Регистрация</div>';
   }
@@ -891,44 +1099,48 @@ function toggleUserMenu(){document.getElementById('userMenu').classList.toggle('
 function closeUserMenu(){document.getElementById('userMenu').classList.remove('open')}
 document.addEventListener('click',e=>{if(!e.target.closest('#userMenu')&&!e.target.closest('#userAvatarBtn'))closeUserMenu()});
 
+/* ===== SETTINGS ===== */
 function openSettings(){
   if(!currentUser){showSnackbar('Войдите в аккаунт');return}
   db.ref('users/'+currentUser.uid).once('value').then(s=>{
     const u=s.val()||{},hasTg=!!u.telegramId,hasEmail=!!u.email&&!!u.passwordHash;
-    const c=document.getElementById('settingsContent');
-    c.innerHTML=
-      '<div class="settings-item" onclick="openEditProfile()"><span class="material-symbols-rounded">edit</span><div class="settings-item-info"><div class="settings-item-title">Редактировать профиль</div><div class="settings-item-sub">Имя, аватар</div></div><span class="material-symbols-rounded" style="color:var(--md-outline)">chevron_right</span></div>'+
+    document.getElementById('settingsContent').innerHTML=
+      '<div class="settings-item" onclick="openEditProfile()"><span class="material-symbols-rounded">edit</span><div class="settings-item-info"><div class="settings-item-title">Редактировать профиль</div><div class="settings-item-sub">Имя, аватар, био</div></div><span class="material-symbols-rounded" style="color:var(--md-outline)">chevron_right</span></div>'+
       '<div class="settings-item" onclick="'+(hasEmail?'showSnackbar(\'Email уже привязан\')':'openLinkEmail()')+'" ><span class="material-symbols-rounded">mail</span><div class="settings-item-info"><div class="settings-item-title">Email и пароль</div><div class="settings-item-sub">'+(hasEmail?(u.email||'Привязан'):'Не привязан')+'</div></div>'+(hasEmail?'<span class="material-symbols-rounded" style="color:var(--md-primary)">check_circle</span>':'<span class="material-symbols-rounded" style="color:var(--md-outline)">chevron_right</span>')+'</div>'+
       '<div class="settings-item" onclick="'+(hasTg?'showSnackbar(\'Telegram уже привязан\')':'openLinkTelegram()')+'" ><span class="material-symbols-rounded">send</span><div class="settings-item-info"><div class="settings-item-title">Telegram</div><div class="settings-item-sub">'+(hasTg?('@'+(u.telegramUsername||'Привязан')):'Не привязан')+'</div></div>'+(hasTg?'<span class="material-symbols-rounded" style="color:var(--md-primary)">check_circle</span>':'<span class="material-symbols-rounded" style="color:var(--md-outline)">chevron_right</span>')+'</div>'+
       '<div style="margin:16px 0;height:1px;background:var(--md-outline-variant)"></div>'+
       '<div class="settings-item" onclick="toggleTheme();openSettings()"><span class="material-symbols-rounded">'+((document.body.getAttribute('data-theme')==='dark')?'light_mode':'dark_mode')+'</span><div class="settings-item-info"><div class="settings-item-title">Тема</div><div class="settings-item-sub">'+((document.body.getAttribute('data-theme')==='dark')?'Тёмная':'Светлая')+'</div></div></div>'+
+      '<div class="settings-item" onclick="openSleepTimer()"><span class="material-symbols-rounded">bedtime</span><div class="settings-item-info"><div class="settings-item-title">Таймер сна</div><div class="settings-item-sub">'+(sleepTimerId?'Активен':'Не установлен')+'</div></div></div>'+
+      '<div style="margin:16px 0;height:1px;background:var(--md-outline-variant)"></div>'+
       '<div class="settings-item" onclick="signOutUser();closeModal(\'settingsModal\')"><span class="material-symbols-rounded" style="color:var(--md-error)">logout</span><div class="settings-item-info"><div class="settings-item-title" style="color:var(--md-error)">Выйти из аккаунта</div></div></div>';
     document.getElementById('settingsModal').classList.add('open');
   });
 }
+
 function openEditProfile(){
   closeModal('settingsModal');
   document.getElementById('editDisplayName').value=currentUser.displayName||'';
   document.getElementById('editAvatarUrl').value=currentUser.photo||'';
+  document.getElementById('editBio').value=currentUser.bio||'';
   const zone=document.getElementById('editAvatarZone');
-  zone.innerHTML=currentUser.photo?'<img src="'+currentUser.photo+'" alt="">':'<span class="material-symbols-rounded">add_a_photo</span>';
+  zone.innerHTML=currentUser.photo?'<img src="'+currentUser.photo+'" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">':'<span class="material-symbols-rounded">add_a_photo</span>';
   document.getElementById('editProfileModal').classList.add('open');
 }
 function handleAvatarSelect(e){
   const f=e.target.files[0];if(!f||!f.type.startsWith('image/'))return;
   if(f.size>2*1024*1024){showSnackbar('Аватар макс. 2 МБ');return}
-  const r=new FileReader();r.onload=ev=>{document.getElementById('editAvatarZone').innerHTML='<img src="'+ev.target.result+'" alt="">';document.getElementById('editAvatarUrl').value=ev.target.result};r.readAsDataURL(f);
+  const r=new FileReader();r.onload=ev=>{document.getElementById('editAvatarZone').innerHTML='<img src="'+ev.target.result+'" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">';document.getElementById('editAvatarUrl').value=ev.target.result};r.readAsDataURL(f);
 }
 async function saveProfileEdits(){
   if(!currentUser)return;
-  const dn=document.getElementById('editDisplayName').value.trim(),photo=document.getElementById('editAvatarUrl').value.trim();
+  const dn=document.getElementById('editDisplayName').value.trim(),photo=document.getElementById('editAvatarUrl').value.trim(),bio=document.getElementById('editBio').value.trim();
   if(!dn){showSnackbar('Введите имя');return}
-  await db.ref('users/'+currentUser.uid).update({displayName:dn,photo});
+  await db.ref('users/'+currentUser.uid).update({displayName:dn,photo,bio});
   const snap=await db.ref('tracks').orderByChild('artistId').equalTo(currentUser.uid).once('value');
   const tracks=snap.val()||{},u={};
   Object.keys(tracks).forEach(tid=>{u[tid+'/artistName']=dn;u[tid+'/artistPhoto']=photo});
   if(Object.keys(u).length)await db.ref('tracks').update(u);
-  currentUser.displayName=dn;currentUser.photo=photo;
+  currentUser.displayName=dn;currentUser.photo=photo;currentUser.bio=bio;
   localStorage.setItem('mp_user',JSON.stringify(currentUser));
   updateAuthUI();closeModal('editProfileModal');showSnackbar('Профиль обновлён');
 }
@@ -947,11 +1159,25 @@ async function saveLinkEmail(){
   closeModal('linkEmailModal');showSnackbar('Email привязан!');openSettings();
 }
 
+/* ===== SLEEP TIMER ===== */
+function openSleepTimer(){document.getElementById('sleepTimerModal').classList.add('open')}
+function setSleepTimer(mins){
+  closeModal('sleepTimerModal');
+  if(sleepTimerId){clearTimeout(sleepTimerId);sleepTimerId=null}
+  if(mins===0){showSnackbar('Таймер сна отключён');return}
+  sleepTimerId=setTimeout(()=>{if(isPlaying)togglePlay();sleepTimerId=null;showSnackbar('Таймер сна сработал 💤')},mins*60*1000);
+  showSnackbar('Таймер сна: '+mins+' мин');
+}
+
+/* ===== USER DATA ===== */
 function loadUserData(){
   if(!currentUser)return;const uid=currentUser.uid;
   db.ref('favorites/'+uid).on('value',s=>{favorites=s.val()||{};renderFavorites();updateFsLike()});
   db.ref('subscriptions/'+uid).on('value',s=>{subscriptions=s.val()||{};renderSubscriptions()});
   db.ref('playlists/'+uid).on('value',s=>{userPlaylists=s.val()||{};renderPlaylists()});
+  db.ref('history/'+uid).orderByChild('time').limitToLast(100).on('value',s=>{
+    listeningHistory=[];s.forEach(c=>{listeningHistory.unshift({id:c.key,...c.val()})});renderHistory();
+  });
   loadMyTracks();loadProfileStats();
 }
 function loadMyTracks(){
@@ -964,132 +1190,114 @@ function loadMyTracks(){
       else el.innerHTML=arr.map(([id,t],i)=>renderTrackItem(id,t,i+1,true)).join('');
     });
     document.getElementById('profileTracks').textContent=arr.length;
+    // Stats grid
+    const totalPlays=arr.reduce((s,[id,t])=>s+(t.plays||0),0);
+    const totalLikes=arr.reduce((s,[id,t])=>s+(t.likes||0),0);
+    document.getElementById('profileStatsGrid').innerHTML=
+      '<div class="stat-card"><div class="stat-value">'+arr.length+'</div><div class="stat-label">Треков</div></div>'+
+      '<div class="stat-card"><div class="stat-value">'+formatPlays(totalPlays)+'</div><div class="stat-label">Прослушиваний</div></div>'+
+      '<div class="stat-card"><div class="stat-value">'+totalLikes+'</div><div class="stat-label">Лайков</div></div>'+
+      '<div class="stat-card"><div class="stat-value">'+Object.keys(favorites).length+'</div><div class="stat-label">В любимом</div></div>';
   });
 }
 function loadProfileStats(){if(!currentUser)return;db.ref('subscribers/'+currentUser.uid).on('value',s=>{document.getElementById('profileSubs').textContent=Object.keys(s.val()||{}).length})}
 
+/* ===== TRACKS LISTENER ===== */
 db.ref('tracks').on('value',snap=>{
-  allTracks=snap.val()||{};renderHome();renderExplore();
+  allTracks=snap.val()||{};renderHome();renderExplore();renderCharts();renderNewReleases();
   if(document.getElementById('page-search').classList.contains('active'))handleSearch(document.getElementById('searchInput').value);
 });
 
+/* ===== RENDER TRACK ITEM ===== */
 function renderTrackItem(id,track,num,showDel){
   const isExp=track.explicit,isFav=favorites[id],isNP=currentTrackId===id,dur=track.duration?formatTime(track.duration):'—';
   const plays=track.plays||0;
   return '<div class="track-item '+(isNP?'playing':'')+'" data-id="'+id+'" onclick="playTrackById(\''+id+'\')">'+
     '<div class="track-num">'+(isNP?'<span class="material-symbols-rounded filled" style="color:var(--md-primary);font-size:18px">equalizer</span>':num)+'</div>'+
-    '<div class="track-thumb">'+(track.cover?'<img src="'+track.cover+'" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="material-symbols-rounded" style="display:none">music_note</span>':'<span class="material-symbols-rounded">music_note</span>')+'<div class="play-overlay"><span class="material-symbols-rounded" style="color:white;font-size:24px">play_arrow</span></div></div>'+
+    '<div class="track-thumb">'+(track.cover?'<img src="'+track.cover+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">':'')+'<span class="material-symbols-rounded" style="'+(track.cover?'display:none':'')+'">music_note</span><div class="play-overlay"><span class="material-symbols-rounded" style="color:white;font-size:24px">play_arrow</span></div></div>'+
     '<div class="track-info"><div class="track-title-row"><span class="track-name">'+esc(track.title||'Без названия')+'</span>'+(isExp?'<span class="explicit-badge" title="Explicit">!</span>':'')+'</div>'+
-    '<div class="track-artist" onclick="event.stopPropagation();viewArtist(\''+track.artistId+'\')" style="cursor:pointer">'+esc(track.artistName||'Неизвестен')+'</div></div>'+
+    '<div class="track-artist" onclick="event.stopPropagation();viewArtist(\''+track.artistId+'\')">'+esc(track.artistName||'Неизвестен')+'</div></div>'+
     '<div class="track-plays"><span class="material-symbols-rounded">play_arrow</span>'+formatPlays(plays)+'</div>'+
     '<div class="track-actions">'+
     '<button class="btn-icon '+(isFav?'active':'')+'" onclick="event.stopPropagation();toggleFavorite(\''+id+'\')" title="Нравится"><span class="material-symbols-rounded '+(isFav?'filled':'')+'">favorite</span></button>'+
-    '<button class="btn-icon" onclick="event.stopPropagation();openTrackContextMenu(event,\''+id+'\')" title="Меню"><span class="material-symbols-rounded">more_vert</span></button>'+
+    '<button class="btn-icon" onclick="event.stopPropagation();openTrackContextMenu(event,\''+id+'\')" title="Ещё"><span class="material-symbols-rounded">more_vert</span></button>'+
     (showDel?'<button class="btn-icon" onclick="event.stopPropagation();deleteTrack(\''+id+'\')" title="Удалить"><span class="material-symbols-rounded">delete</span></button>':'')+
     '</div><div class="track-duration">'+dur+'</div></div>';
 }
 
 function formatPlays(n){if(n>=1000000)return(n/1000000).toFixed(1)+'M';if(n>=1000)return(n/1000).toFixed(1)+'K';return n.toString()}
 
+/* ===== CONTEXT MENU ===== */
 function openTrackContextMenu(e,tid){
   e.stopPropagation();
-  const existing=document.querySelector('.track-context-menu');if(existing)existing.remove();
-  contextTrackId=tid;
-  const track=allTracks[tid];if(!track)return;
-  const isFav=favorites[tid];
-  const isOwner=currentUser&&track.artistId===currentUser.uid;
+  document.querySelectorAll('.track-context-menu').forEach(m=>m.remove());
+  contextTrackId=tid;const track=allTracks[tid];if(!track)return;
+  const isFav=favorites[tid],isOwner=currentUser&&track.artistId===currentUser.uid;
   const menu=document.createElement('div');menu.className='track-context-menu';
   let items='';
   items+='<div class="track-context-item" onclick="togglePlayNext(\''+tid+'\');this.parentElement.remove()"><span class="material-symbols-rounded">queue_play_next</span>Воспроизвести следующим</div>';
-  items+='<div class="track-context-item" onclick="addToQueue(\''+tid+'\');this.parentElement.remove()"><span class="material-symbols-rounded">add_to_queue</span>Добавить в очередь</div>';
+  items+='<div class="track-context-item" onclick="addToQueue(\''+tid+'\');this.parentElement.remove()"><span class="material-symbols-rounded">add_to_queue</span>В очередь</div>';
   if(currentUser){
     items+='<div class="track-context-item" onclick="toggleFavorite(\''+tid+'\');this.parentElement.remove()"><span class="material-symbols-rounded">'+(isFav?'heart_broken':'favorite')+'</span>'+(isFav?'Убрать из любимого':'В любимое')+'</div>';
     items+='<div class="track-context-item" onclick="openAddToPlaylist(\''+tid+'\');this.parentElement.remove()"><span class="material-symbols-rounded">playlist_add</span>В плейлист</div>';
   }
   items+='<div class="track-context-item" onclick="viewArtist(\''+track.artistId+'\');this.parentElement.remove()"><span class="material-symbols-rounded">person</span>Профиль артиста</div>';
   items+='<div class="track-context-item" onclick="shareTrackById(\''+tid+'\');this.parentElement.remove()"><span class="material-symbols-rounded">share</span>Поделиться</div>';
-  if(currentUser&&!isOwner){
+  if(isOwner){
+    items+='<div class="track-context-item" onclick="openEditTrack(\''+tid+'\');this.parentElement.remove()"><span class="material-symbols-rounded">edit</span>Редактировать</div>';
+    items+='<div class="track-context-item danger" onclick="deleteTrack(\''+tid+'\');this.parentElement.remove()"><span class="material-symbols-rounded">delete</span>Удалить</div>';
+  }else if(currentUser){
     items+='<div class="track-context-item danger" onclick="openReport(\''+tid+'\');this.parentElement.remove()"><span class="material-symbols-rounded">flag</span>Пожаловаться</div>';
   }
-  if(isOwner){
-    items+='<div class="track-context-item danger" onclick="deleteTrack(\''+tid+'\');this.parentElement.remove()"><span class="material-symbols-rounded">delete</span>Удалить трек</div>';
-  }
   menu.innerHTML=items;
-  const maxY=window.innerHeight-menu.scrollHeight||300;
-  menu.style.top=Math.min(e.clientY,maxY-50)+'px';
+  menu.style.top=Math.min(e.clientY,window.innerHeight-300)+'px';
   menu.style.right=(window.innerWidth-e.clientX)+'px';
   document.body.appendChild(menu);
-  requestAnimationFrame(()=>{
-    const rect=menu.getBoundingClientRect();
-    if(rect.bottom>window.innerHeight)menu.style.top=(window.innerHeight-rect.height-8)+'px';
-    if(rect.right>window.innerWidth)menu.style.right='8px';
-  });
-  setTimeout(()=>{document.addEventListener('click',()=>{menu.remove()},{once:true})},10);
+  requestAnimationFrame(()=>{const r=menu.getBoundingClientRect();if(r.bottom>window.innerHeight)menu.style.top=(window.innerHeight-r.height-8)+'px';if(r.right>window.innerWidth)menu.style.right='8px'});
+  setTimeout(()=>{document.addEventListener('click',()=>menu.remove(),{once:true})},10);
 }
 
-function togglePlayNext(tid){
-  if(!playlist.length){playlist=[tid];playlistIndex=0;return}
-  const idx=playlist.indexOf(tid);
-  if(idx>-1)playlist.splice(idx,1);
-  playlist.splice(playlistIndex+1,0,tid);
-  showSnackbar('Будет воспроизведён следующим');
-}
-function addToQueue(tid){
-  if(!playlist.length){playlist=[tid];playlistIndex=0;return}
-  const idx=playlist.indexOf(tid);
-  if(idx===-1)playlist.push(tid);
-  showSnackbar('Добавлен в очередь');
-}
+function togglePlayNext(tid){if(!playlist.length){playlist=[tid];playlistIndex=0;return}playlist.splice(playlistIndex+1,0,tid);showSnackbar('Будет следующим')}
+function addToQueue(tid){if(!playlist.length){playlist=[tid];playlistIndex=0;return}if(!playlist.includes(tid))playlist.push(tid);showSnackbar('Добавлен в очередь');renderQueue()}
 function openAddToPlaylist(tid){
-  contextTrackId=tid;
-  const list=document.getElementById('addToPlaylistList');
+  contextTrackId=tid;const list=document.getElementById('addToPlaylistList');
   const entries=Object.entries(userPlaylists);
-  if(entries.length===0){
-    list.innerHTML='<div class="empty-state" style="padding:20px"><span class="material-symbols-rounded">queue_music</span><h3>Нет плейлистов</h3><p>Сначала создайте плейлист</p></div>';
-  }else{
-    list.innerHTML=entries.map(([id,pl])=>'<div class="settings-item" onclick="addTrackToPlaylist(\''+id+'\')"><span class="material-symbols-rounded">queue_music</span><div class="settings-item-info"><div class="settings-item-title">'+esc(pl.name)+'</div><div class="settings-item-sub">'+(pl.tracks?Object.keys(pl.tracks).length:0)+' треков</div></div></div>').join('');
-  }
+  if(entries.length===0){list.innerHTML='<div class="empty-state" style="padding:20px"><span class="material-symbols-rounded">queue_music</span><h3>Нет плейлистов</h3><p>Сначала создайте плейлист</p></div>'}
+  else{list.innerHTML=entries.map(([id,pl])=>'<div class="settings-item" onclick="addTrackToPlaylist(\''+id+'\')"><span class="material-symbols-rounded">queue_music</span><div class="settings-item-info"><div class="settings-item-title">'+esc(pl.name)+'</div><div class="settings-item-sub">'+(pl.tracks?Object.keys(pl.tracks).length:0)+' треков</div></div></div>').join('')}
   document.getElementById('addToPlaylistModal').classList.add('open');
 }
-function addTrackToPlaylist(plId){
-  if(!currentUser||!contextTrackId)return;
-  db.ref('playlists/'+currentUser.uid+'/'+plId+'/tracks/'+contextTrackId).set(true);
-  closeModal('addToPlaylistModal');showSnackbar('Добавлен в плейлист');
+function addTrackToPlaylist(plId){if(!currentUser||!contextTrackId)return;db.ref('playlists/'+currentUser.uid+'/'+plId+'/tracks/'+contextTrackId).set(true);closeModal('addToPlaylistModal');showSnackbar('Добавлен в плейлист')}
+function addToPlaylistPrompt(){if(!currentUser){showSnackbar('Войдите');return}if(!currentTrackId)return;openAddToPlaylist(currentTrackId)}
+
+function openReport(tid){reportTrackId=tid;document.getElementById('reportModal').classList.add('open')}
+function submitReport(reason){if(!currentUser||!reportTrackId)return;db.ref('reports').push({trackId:reportTrackId,userId:currentUser.uid,reason,timestamp:Date.now()});closeModal('reportModal');showSnackbar('Жалоба отправлена');reportTrackId=null}
+
+function openEditTrack(tid){
+  editTrackId=tid;const t=allTracks[tid];if(!t)return;
+  document.getElementById('editTrackTitle').value=t.title||'';
+  document.getElementById('editTrackGenre').value=t.genre||'';
+  document.getElementById('editTrackLyrics').value=t.lyrics||'';
+  document.getElementById('editTrackModal').classList.add('open');
 }
-function addToPlaylistPrompt(){
-  if(!currentUser){showSnackbar('Войдите');return}
-  if(!currentTrackId)return;
-  openAddToPlaylist(currentTrackId);
+function saveTrackEdits(){
+  if(!editTrackId||!currentUser)return;
+  const title=document.getElementById('editTrackTitle').value.trim(),genre=document.getElementById('editTrackGenre').value.trim(),lyrics=document.getElementById('editTrackLyrics').value.trim();
+  if(!title){showSnackbar('Введите название');return}
+  const isExp=checkExplicit(title)||checkExplicit(lyrics);
+  db.ref('tracks/'+editTrackId).update({title,genre,lyrics,explicit:isExp});
+  closeModal('editTrackModal');showSnackbar('Трек обновлён');editTrackId=null;
 }
 
-function openReport(tid){
-  reportTrackId=tid;
-  document.getElementById('reportModal').classList.add('open');
-}
-function submitReport(reason){
-  if(!currentUser||!reportTrackId)return;
-  db.ref('reports').push({trackId:reportTrackId,userId:currentUser.uid,reason,timestamp:Date.now()});
-  closeModal('reportModal');showSnackbar('Жалоба отправлена. Спасибо!');reportTrackId=null;
-}
+function shareTrackById(tid){const t=allTracks[tid];if(!t)return;if(navigator.share){navigator.share({title:t.title,text:t.title+' — '+t.artistName,url:location.href}).catch(()=>{})}else{navigator.clipboard.writeText(t.title+' — '+t.artistName+' | MusicPlatforme').then(()=>showSnackbar('Скопировано'))}}
+function showContextMenuForCurrent(e){if(currentTrackId)openTrackContextMenu(e,currentTrackId)}
 
-function shareTrackById(tid){
-  const t=allTracks[tid];if(!t)return;
-  if(navigator.share){navigator.share({title:t.title,text:t.title+' — '+t.artistName,url:location.href}).catch(()=>{})}
-  else{navigator.clipboard.writeText(t.title+' — '+t.artistName+' | MusicPlatforme').then(()=>showSnackbar('Скопировано')).catch(()=>showSnackbar('Не удалось'))}
-}
-
-function showContextMenuForCurrent(e){
-  if(!currentTrackId)return;
-  openTrackContextMenu(e,currentTrackId);
-}
-
+/* ===== RENDER PAGES ===== */
 function renderHome(){
   const entries=Object.entries(allTracks);
   const sorted=[...entries].sort((a,b)=>(b[1].timestamp||0)-(a[1].timestamp||0));
-  const newTr=sorted.slice(0,10);
-  document.getElementById('homeNewTracks').innerHTML=newTr.length===0?'<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Пока нет треков</h3><p>Будьте первым!</p></div>':newTr.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
+  document.getElementById('homeNewTracks').innerHTML=sorted.length===0?'<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Пока нет треков</h3><p>Будьте первым!</p></div>':sorted.slice(0,10).map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
   const popular=[...entries].sort((a,b)=>(b[1].plays||0)-(a[1].plays||0)).slice(0,8);
-  document.getElementById('homePopular').innerHTML=popular.length===0?'':popular.map(([id,t])=>'<div class="md-card" onclick="playTrackById(\''+id+'\')"><div class="card-img">'+(t.cover?'<img src="'+t.cover+'" alt="" loading="lazy">':'<span class="material-symbols-rounded">music_note</span>')+'<div class="card-play-fab"><span class="material-symbols-rounded filled">play_arrow</span></div></div><div class="card-body"><div class="card-title" style="display:flex;align-items:center;gap:4px">'+esc(t.title||'')+(t.explicit?'<span class="explicit-badge" style="font-size:10px;width:16px;height:16px">!</span>':'')+'</div><div class="card-sub">'+esc(t.artistName||'')+'</div><div class="card-sub" style="display:flex;align-items:center;gap:4px;margin-top:4px"><span class="material-symbols-rounded" style="font-size:14px">favorite</span> '+(t.likes||0)+' · <span class="material-symbols-rounded" style="font-size:14px">play_arrow</span> '+formatPlays(t.plays||0)+'</div></div></div>').join('');
+  document.getElementById('homePopular').innerHTML=popular.length===0?'':popular.map(([id,t])=>'<div class="md-card" onclick="playTrackById(\''+id+'\')"><div class="card-img">'+(t.cover?'<img src="'+t.cover+'" alt="" loading="lazy">':'<span class="material-symbols-rounded">music_note</span>')+'<div class="card-play-fab"><span class="material-symbols-rounded filled">play_arrow</span></div></div><div class="card-body"><div class="card-title" style="display:flex;align-items:center;gap:4px">'+esc(t.title||'')+(t.explicit?'<span class="explicit-badge" style="font-size:10px;width:16px;height:16px">!</span>':'')+'</div><div class="card-sub">'+esc(t.artistName||'')+'</div><div class="card-sub" style="display:flex;align-items:center;gap:4px;margin-top:2px"><span class="material-symbols-rounded" style="font-size:14px">play_arrow</span>'+formatPlays(t.plays||0)+'</div></div></div>').join('');
   const am={};entries.forEach(([id,t])=>{if(t.artistId&&!am[t.artistId])am[t.artistId]={name:t.artistName,photo:t.artistPhoto||'',id:t.artistId}});
   document.getElementById('homeArtists').innerHTML=Object.values(am).slice(0,12).map(a=>'<div class="artist-card" onclick="viewArtist(\''+a.id+'\')"><div class="artist-img">'+(a.photo?'<img src="'+a.photo+'" alt="" loading="lazy">':'<span class="material-symbols-rounded" style="font-size:40px;color:var(--md-outline)">person</span>')+'</div><div class="card-title" style="font-size:13px">'+esc(a.name||'Артист')+'</div></div>').join('');
 }
@@ -1106,46 +1314,53 @@ function renderExplore(){
 }
 function filterGenre(g){currentGenre=g;renderExplore()}
 
+function renderCharts(){
+  const entries=Object.entries(allTracks).sort((a,b)=>(b[1].plays||0)-(a[1].plays||0)).slice(0,50);
+  document.getElementById('chartsTracks').innerHTML=entries.length===0?'<div class="empty-state"><span class="material-symbols-rounded">trending_up</span><h3>Нет данных</h3></div>':entries.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
+}
+
+function renderNewReleases(){
+  const weekAgo=Date.now()-7*24*60*60*1000;
+  const entries=Object.entries(allTracks).filter(([id,t])=>(t.timestamp||0)>weekAgo).sort((a,b)=>(b[1].timestamp||0)-(a[1].timestamp||0));
+  document.getElementById('newReleasesTracks').innerHTML=entries.length===0?'<div class="empty-state"><span class="material-symbols-rounded">new_releases</span><h3>Нет новинок за последнюю неделю</h3></div>':entries.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
+}
+
+function renderHistory(){
+  const el=document.getElementById('historyTracks'),c=document.getElementById('historyContent');
+  if(!listeningHistory.length){c.style.display='';el.innerHTML='';return}
+  c.style.display='none';
+  el.innerHTML=listeningHistory.filter(h=>allTracks[h.trackId]).map((h,i)=>{const t=allTracks[h.trackId];return renderTrackItem(h.trackId,t,i+1)}).join('');
+}
+function clearHistory(){if(!currentUser)return;db.ref('history/'+currentUser.uid).remove();listeningHistory=[];renderHistory();showSnackbar('История очищена')}
+
+/* ===== SEARCH ===== */
 function handleSearch(q){
   if(!q||q.trim().length<2){if(document.getElementById('page-search').classList.contains('active'))navigate('home');return}
-  navigate('search');
-  const query=q.toLowerCase().trim();
+  navigate('search');const query=q.toLowerCase().trim();
   const trackResults=Object.entries(allTracks).filter(([id,t])=>(t.title||'').toLowerCase().includes(query)||(t.artistName||'').toLowerCase().includes(query)||(t.genre||'').toLowerCase().includes(query));
   const artistMap={};
-  Object.entries(allTracks).forEach(([id,t])=>{
-    if(t.artistId){
-      if(!artistMap[t.artistId])artistMap[t.artistId]={name:t.artistName||'',photo:t.artistPhoto||'',id:t.artistId,tracks:0};
-      artistMap[t.artistId].tracks++;
-      if(t.artistPhoto&&!artistMap[t.artistId].photo)artistMap[t.artistId].photo=t.artistPhoto;
-    }
-  });
+  Object.entries(allTracks).forEach(([id,t])=>{if(t.artistId){if(!artistMap[t.artistId])artistMap[t.artistId]={name:t.artistName||'',photo:t.artistPhoto||'',id:t.artistId,tracks:0};artistMap[t.artistId].tracks++;if(t.artistPhoto)artistMap[t.artistId].photo=t.artistPhoto}});
   const artistResults=Object.values(artistMap).filter(a=>(a.name||'').toLowerCase().includes(query));
   document.getElementById('searchTitle').textContent='Результаты: «'+q+'»';
   const as=document.getElementById('searchArtistsSection'),ag=document.getElementById('searchArtists');
-  if(artistResults.length>0){
-    as.style.display='';
-    ag.innerHTML=artistResults.map(a=>'<div class="artist-card" onclick="viewArtist(\''+a.id+'\')"><div class="artist-img">'+(a.photo?'<img src="'+a.photo+'" alt="" loading="lazy">':'<span class="material-symbols-rounded" style="font-size:40px;color:var(--md-outline)">person</span>')+'</div><div class="card-title" style="font-size:13px">'+esc(a.name)+'</div><div class="card-sub" style="font-size:11px;color:var(--md-on-surface-variant)">'+a.tracks+' треков</div></div>').join('');
-  }else as.style.display='none';
-  document.getElementById('searchResults').innerHTML=trackResults.length===0?'<div class="empty-state"><span class="material-symbols-rounded">search_off</span><h3>Треков не найдено</h3></div>':trackResults.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
+  if(artistResults.length>0){as.style.display='';ag.innerHTML=artistResults.map(a=>'<div class="artist-card" onclick="viewArtist(\''+a.id+'\')"><div class="artist-img">'+(a.photo?'<img src="'+a.photo+'" alt="" loading="lazy">':'<span class="material-symbols-rounded" style="font-size:40px;color:var(--md-outline)">person</span>')+'</div><div class="card-title" style="font-size:13px">'+esc(a.name)+'</div><div class="card-sub">'+a.tracks+' треков</div></div>').join('')}else as.style.display='none';
+  document.getElementById('searchResults').innerHTML=trackResults.length===0?'<div class="empty-state"><span class="material-symbols-rounded">search_off</span><h3>Не найдено</h3></div>':trackResults.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
 }
 
+/* ===== PLAYER ===== */
 function showPlayer(){if(!playerVisible){playerVisible=true;document.getElementById('playerBar').classList.add('visible')}}
 
 function playTrackById(id){
   const track=allTracks[id];if(!track||!track.audioData){showSnackbar('Аудио недоступно');return}
-  if(currentTrackId===id&&isPlaying){togglePlay();return}
-  if(currentTrackId===id&&!isPlaying){togglePlay();return}
+  if(currentTrackId===id){togglePlay();return}
   currentTrackId=id;
   const ap=document.querySelector('.page.active'),items=ap?ap.querySelectorAll('.track-item'):[];
-  playlist=[];items.forEach(it=>{const tid=it.dataset.id;if(tid)playlist.push(tid)});
+  playlist=[];items.forEach(it=>{const tid=it.dataset.id;if(tid&&allTracks[tid])playlist.push(tid)});
   playlistIndex=playlist.indexOf(id);if(playlistIndex===-1){playlist=[id];playlistIndex=0}
   loadAndPlay(track);
-  // Play count with cooldown: 1 play per track per 60 seconds
   const now=Date.now();
-  if(!playCountCooldowns[id]||now-playCountCooldowns[id]>60000){
-    playCountCooldowns[id]=now;
-    db.ref('tracks/'+id+'/plays').transaction(p=>(p||0)+1);
-  }
+  if(!playCountCooldowns[id]||now-playCountCooldowns[id]>60000){playCountCooldowns[id]=now;db.ref('tracks/'+id+'/plays').transaction(p=>(p||0)+1)}
+  if(currentUser)db.ref('history/'+currentUser.uid).push({trackId:id,time:Date.now()});
 }
 
 function loadAndPlay(track){
@@ -1153,131 +1368,100 @@ function loadAndPlay(track){
   document.getElementById('playerSong').textContent=track.title||'Без названия';
   document.getElementById('playerArtist').textContent=track.artistName||'Неизвестен';
   document.getElementById('playerExplicit').style.display=track.explicit?'inline-flex':'none';
-  const thumb=document.getElementById('playerThumb');
-  thumb.innerHTML=track.cover?'<img src="'+track.cover+'" alt="">':'<span class="material-symbols-rounded">music_note</span>';
+  document.getElementById('playerThumb').innerHTML=track.cover?'<img src="'+track.cover+'" alt="">':'<span class="material-symbols-rounded">music_note</span>';
   document.getElementById('fsCover').innerHTML=track.cover?'<img src="'+track.cover+'" alt="">':'<span class="material-symbols-rounded">music_note</span>';
-  document.getElementById('fsTitle').innerHTML=esc(track.title||'Без названия')+(track.explicit?' <span class="explicit-badge">!</span>':'');
+  document.getElementById('fsTitle').innerHTML=esc(track.title||'')+(track.explicit?' <span class="explicit-badge">!</span>':'');
   document.getElementById('fsArtist').textContent=track.artistName||'Неизвестен';
-  updateFsLike();
+  updateFsLike();renderQueue();
   if(audio.src&&!audio.paused){
     const origVol=audio.volume;
-    const fadeOut=setInterval(()=>{if(audio.volume>0.05){audio.volume=Math.max(0,audio.volume-0.1)}else{clearInterval(fadeOut);audio.volume=origVol;doLoadAndPlay(track)}},30);
-  }else{doLoadAndPlay(track)}
-  document.querySelectorAll('.track-item').forEach(el=>{
-    el.classList.toggle('playing',el.dataset.id===currentTrackId);
-    const numEl=el.querySelector('.track-num');
-    if(el.dataset.id===currentTrackId&&numEl)numEl.innerHTML='<span class="material-symbols-rounded filled" style="color:var(--md-primary);font-size:18px">equalizer</span>';
-  });
-  if('mediaSession' in navigator){
-    navigator.mediaSession.metadata=new MediaMetadata({title:track.title||'',artist:track.artistName||'',artwork:track.cover?[{src:track.cover}]:[]});
-    navigator.mediaSession.setActionHandler('play',()=>togglePlay());navigator.mediaSession.setActionHandler('pause',()=>togglePlay());
-    navigator.mediaSession.setActionHandler('previoustrack',()=>prevTrack());navigator.mediaSession.setActionHandler('nexttrack',()=>nextTrack());
-  }
+    const fadeOut=setInterval(()=>{if(audio.volume>0.05){audio.volume=Math.max(0,audio.volume-0.1)}else{clearInterval(fadeOut);audio.volume=origVol;doLoad(track)}},30);
+  }else doLoad(track);
+  document.querySelectorAll('.track-item').forEach(el=>{el.classList.toggle('playing',el.dataset.id===currentTrackId);const n=el.querySelector('.track-num');if(el.dataset.id===currentTrackId&&n)n.innerHTML='<span class="material-symbols-rounded filled" style="color:var(--md-primary);font-size:18px">equalizer</span>'});
+  if('mediaSession' in navigator){navigator.mediaSession.metadata=new MediaMetadata({title:track.title||'',artist:track.artistName||'',artwork:track.cover?[{src:track.cover}]:[]});navigator.mediaSession.setActionHandler('play',()=>togglePlay());navigator.mediaSession.setActionHandler('pause',()=>togglePlay());navigator.mediaSession.setActionHandler('previoustrack',()=>prevTrack());navigator.mediaSession.setActionHandler('nexttrack',()=>nextTrack())}
 }
-function doLoadAndPlay(track){
-  audio.src=track.audioData;
-  audio.play().then(()=>{isPlaying=true;updatePlayButton();document.getElementById('fsCover').classList.add('playing')}).catch(err=>{console.error(err);showSnackbar('Ошибка воспроизведения')});
-}
+function doLoad(track){audio.src=track.audioData;audio.play().then(()=>{isPlaying=true;updatePlayButton();document.getElementById('fsCover').classList.add('playing')}).catch(err=>{showSnackbar('Ошибка воспроизведения')})}
 
-function togglePlay(){
-  if(!audio.src)return;
-  if(isPlaying){audio.pause();document.getElementById('fsCover').classList.remove('playing')}
-  else{audio.play();document.getElementById('fsCover').classList.add('playing')}
-  isPlaying=!isPlaying;updatePlayButton();
-}
-function updatePlayButton(){
-  const ic=isPlaying?'pause':'play_arrow';
-  document.getElementById('playIcon').textContent=ic;
-  document.getElementById('fsPlayIcon').textContent=ic;
-  document.getElementById('waveCircle').classList.toggle('playing-anim',isPlaying);
-}
+function togglePlay(){if(!audio.src)return;if(isPlaying){audio.pause();document.getElementById('fsCover').classList.remove('playing')}else{audio.play();document.getElementById('fsCover').classList.add('playing')}isPlaying=!isPlaying;updatePlayButton()}
+function updatePlayButton(){const ic=isPlaying?'pause':'play_arrow';document.getElementById('playIcon').textContent=ic;document.getElementById('fsPlayIcon').textContent=ic;document.getElementById('waveCircle').classList.toggle('playing-anim',isPlaying)}
 function prevTrack(){if(!playlist.length)return;if(audio.currentTime>3){audio.currentTime=0;return}playlistIndex=(playlistIndex-1+playlist.length)%playlist.length;currentTrackId=playlist[playlistIndex];loadAndPlay(allTracks[currentTrackId])}
 function nextTrack(){if(!playlist.length)return;if(isShuffle)playlistIndex=Math.floor(Math.random()*playlist.length);else playlistIndex=(playlistIndex+1)%playlist.length;currentTrackId=playlist[playlistIndex];loadAndPlay(allTracks[currentTrackId])}
 function toggleShuffle(){isShuffle=!isShuffle;document.getElementById('shuffleBtn').classList.toggle('active',isShuffle);document.getElementById('fsShuffleBtn').classList.toggle('active',isShuffle);showSnackbar(isShuffle?'Перемешивание вкл':'Перемешивание выкл')}
-function toggleRepeat(){
-  repeatMode=(repeatMode+1)%3;
-  ['repeatBtn','fsRepeatBtn'].forEach(id=>{const b=document.getElementById(id);b.classList.toggle('active',repeatMode>0);b.querySelector('.material-symbols-rounded').textContent=repeatMode===2?'repeat_one':'repeat'});
-  showSnackbar(['Повтор выкл','Повтор плейлиста','Повтор трека'][repeatMode]);
-}
+function toggleRepeat(){repeatMode=(repeatMode+1)%3;['repeatBtn','fsRepeatBtn'].forEach(id=>{const b=document.getElementById(id);b.classList.toggle('active',repeatMode>0);b.querySelector('.material-symbols-rounded').textContent=repeatMode===2?'repeat_one':'repeat'});showSnackbar(['Повтор выкл','Повтор плейлиста','Повтор трека'][repeatMode])}
 
+/* ===== AUDIO EVENTS ===== */
 audio.addEventListener('timeupdate',()=>{
   if(!audio.duration)return;
   const pct=(audio.currentTime/audio.duration*100)+'%';
-  document.getElementById('progressFill').style.width=pct;
-  document.getElementById('fsProgressFill').style.width=pct;
+  document.getElementById('progressFill').style.width=pct;document.getElementById('fsProgressFill').style.width=pct;
   const ct=formatTime(audio.currentTime),tt=formatTime(audio.duration);
   document.getElementById('currentTime').textContent=ct;document.getElementById('totalTime').textContent=tt;
   document.getElementById('fsCurrentTime').textContent=ct;document.getElementById('fsTotalTime').textContent=tt;
 });
-audio.addEventListener('progress',()=>{
-  if(audio.buffered.length>0&&audio.duration){
-    const buffered=(audio.buffered.end(audio.buffered.length-1)/audio.duration*100)+'%';
-    document.getElementById('progressBuffered').style.width=buffered;
-  }
-});
-audio.addEventListener('ended',()=>{
-  document.getElementById('fsCover').classList.remove('playing');
-  if(repeatMode===2){audio.currentTime=0;audio.play();document.getElementById('fsCover').classList.add('playing')}
-  else if(repeatMode===1||playlistIndex<playlist.length-1)nextTrack();
-  else{isPlaying=false;updatePlayButton()}
-});
+audio.addEventListener('progress',()=>{if(audio.buffered.length>0&&audio.duration){document.getElementById('progressBuffered').style.width=(audio.buffered.end(audio.buffered.length-1)/audio.duration*100)+'%'}});
+audio.addEventListener('ended',()=>{document.getElementById('fsCover').classList.remove('playing');if(repeatMode===2){audio.currentTime=0;audio.play();document.getElementById('fsCover').classList.add('playing')}else if(repeatMode===1||playlistIndex<playlist.length-1)nextTrack();else{isPlaying=false;updatePlayButton()}});
 
-function initProgressDrag(trackEl){
-  let dragging=false;
-  const seek=e=>{const r=trackEl.getBoundingClientRect();if(audio.duration){const pct=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));audio.currentTime=pct*audio.duration}};
-  trackEl.addEventListener('mousedown',e=>{dragging=true;seek(e)});
-  document.addEventListener('mousemove',e=>{if(dragging)seek(e)});
-  document.addEventListener('mouseup',()=>{dragging=false});
-  trackEl.addEventListener('touchstart',e=>{dragging=true;seek(e.touches[0])},{passive:true});
-  document.addEventListener('touchmove',e=>{if(dragging)seek(e.touches[0])},{passive:true});
-  document.addEventListener('touchend',()=>{dragging=false});
+/* ===== PROGRESS & VOLUME DRAG ===== */
+function initDrag(el,cb){
+  let drag=false;
+  const h=e=>{const r=el.getBoundingClientRect();cb(Math.max(0,Math.min(1,((e.clientX||e.touches?.[0]?.clientX||0)-r.left)/r.width)))};
+  el.addEventListener('mousedown',e=>{drag=true;h(e)});
+  el.addEventListener('touchstart',e=>{drag=true;h(e)},{passive:true});
+  document.addEventListener('mousemove',e=>{if(drag)h(e)});
+  document.addEventListener('touchmove',e=>{if(drag)h(e)},{passive:true});
+  document.addEventListener('mouseup',()=>{drag=false});
+  document.addEventListener('touchend',()=>{drag=false});
 }
-initProgressDrag(document.getElementById('progressTrack'));
-initProgressDrag(document.getElementById('fsProgressTrack'));
-
-function initVolumeDrag(sliderEl){
-  let dragging=false;
-  const setV=e=>{const r=sliderEl.getBoundingClientRect();volume=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));audio.volume=volume;document.getElementById('volumeFill').style.width=(volume*100)+'%';updateVolumeIcon()};
-  sliderEl.addEventListener('mousedown',e=>{dragging=true;setV(e)});
-  document.addEventListener('mousemove',e=>{if(dragging)setV(e)});
-  document.addEventListener('mouseup',()=>{dragging=false});
-}
-initVolumeDrag(document.getElementById('volumeSlider'));
-
+initDrag(document.getElementById('progressTrack'),p=>{if(audio.duration)audio.currentTime=p*audio.duration});
+initDrag(document.getElementById('fsProgressTrack'),p=>{if(audio.duration)audio.currentTime=p*audio.duration});
 let volume=0.8;audio.volume=volume;
+initDrag(document.getElementById('volumeSlider'),v=>{volume=v;audio.volume=v;document.getElementById('volumeFill').style.width=(v*100)+'%';updateVolumeIcon()});
 function toggleMute(){audio.muted=!audio.muted;updateVolumeIcon()}
-function updateVolumeIcon(){const i=document.getElementById('volumeBtn').querySelector('.material-symbols-rounded');i.textContent=audio.muted||volume===0?'volume_off':volume<.5?'volume_down':'volume_up'}
+function updateVolumeIcon(){document.getElementById('volumeBtn').querySelector('.material-symbols-rounded').textContent=audio.muted||volume===0?'volume_off':volume<.5?'volume_down':'volume_up'}
 function formatTime(s){const m=Math.floor(s/60),sec=Math.floor(s%60);return m+':'+(sec<10?'0':'')+sec}
 
+/* ===== FULLSCREEN PLAYER ===== */
 function openFullscreenPlayer(){if(!currentTrackId)return;document.getElementById('fsPlayer').classList.add('open');updateFsLike();if(isPlaying)document.getElementById('fsCover').classList.add('playing')}
 function closeFullscreenPlayer(){document.getElementById('fsPlayer').classList.remove('open')}
-function updateFsLike(){
-  const btn=document.getElementById('fsLikeBtn');if(!btn)return;
-  const liked=currentTrackId&&favorites[currentTrackId];
-  btn.classList.toggle('active',!!liked);btn.querySelector('.material-symbols-rounded').classList.toggle('filled',!!liked);
-}
+function updateFsLike(){const btn=document.getElementById('fsLikeBtn');if(!btn)return;const liked=currentTrackId&&favorites[currentTrackId];btn.classList.toggle('active',!!liked);btn.querySelector('.material-symbols-rounded').classList.toggle('filled',!!liked)}
 function fsGoToArtist(){if(!currentTrackId||!allTracks[currentTrackId])return;closeFullscreenPlayer();viewArtist(allTracks[currentTrackId].artistId)}
-function shareTrack(){if(!currentTrackId)return;shareTrackById(currentTrackId)}
+function shareTrack(){if(currentTrackId)shareTrackById(currentTrackId)}
+function toggleLyrics(){
+  lyricsOpen=!lyricsOpen;const el=document.getElementById('fsLyrics');
+  if(lyricsOpen){const t=allTracks[currentTrackId];el.style.display='block';el.textContent=t&&t.lyrics?t.lyrics:'Текст песни не добавлен'}
+  else el.style.display='none';
+}
 
+/* ===== QUEUE ===== */
+function toggleQueue(){queueOpen=!queueOpen;document.getElementById('queuePanel').classList.toggle('open',queueOpen);if(queueOpen)renderQueue()}
+function renderQueue(){
+  const body=document.getElementById('queueBody');
+  if(!playlist.length){body.innerHTML='<div class="empty-state" style="padding:20px"><span class="material-symbols-rounded">queue_music</span><h3>Очередь пуста</h3></div>';return}
+  body.innerHTML=playlist.map((tid,i)=>{const t=allTracks[tid];if(!t)return'';
+    return'<div class="queue-track '+(tid===currentTrackId?'active':'')+'" onclick="playFromQueue('+i+')"><div class="queue-track-thumb">'+(t.cover?'<img src="'+t.cover+'" alt="">':'<span class="material-symbols-rounded" style="font-size:20px;color:var(--md-outline)">music_note</span>')+'</div><div class="queue-track-info"><div class="queue-track-name">'+esc(t.title||'')+'</div><div class="queue-track-artist">'+esc(t.artistName||'')+'</div></div><button class="btn-icon" onclick="event.stopPropagation();removeFromQueue('+i+')" style="width:32px;height:32px"><span class="material-symbols-rounded" style="font-size:18px">close</span></button></div>'
+  }).join('');
+}
+function playFromQueue(i){playlistIndex=i;currentTrackId=playlist[i];loadAndPlay(allTracks[currentTrackId])}
+function removeFromQueue(i){if(i===playlistIndex)return;playlist.splice(i,1);if(i<playlistIndex)playlistIndex--;renderQueue();showSnackbar('Удалён из очереди')}
+function clearQueue(){if(!playlist.length)return;const cur=currentTrackId;playlist=[cur];playlistIndex=0;renderQueue();showSnackbar('Очередь очищена')}
+
+/* ===== FAVORITES ===== */
 function toggleFavorite(tid){
-  if(!currentUser){showSnackbar('Войдите для лайков');return}
-  if(!tid)return;
+  if(!currentUser){showSnackbar('Войдите для лайков');return}if(!tid)return;
   if(favorites[tid]){db.ref('favorites/'+currentUser.uid+'/'+tid).remove();db.ref('tracks/'+tid+'/likes').transaction(l=>Math.max(0,(l||1)-1));showSnackbar('Удалено из любимого')}
   else{db.ref('favorites/'+currentUser.uid+'/'+tid).set(true);db.ref('tracks/'+tid+'/likes').transaction(l=>(l||0)+1);showSnackbar('Добавлено в любимое')}
 }
 function renderFavorites(){
-  const fids=Object.keys(favorites),em=document.getElementById('favEmpty'),list=document.getElementById('favTracks'),btn=document.getElementById('playAllFavBtn');
-  if(fids.length===0){em.style.display='';list.innerHTML='';btn.style.display='none';return}
-  em.style.display='none';btn.style.display='';
+  const fids=Object.keys(favorites),em=document.getElementById('favEmpty'),list=document.getElementById('favTracks'),btn=document.getElementById('playAllFavBtn'),sbtn=document.getElementById('shuffleFavBtn');
+  if(fids.length===0){em.style.display='';list.innerHTML='';btn.style.display='none';sbtn.style.display='none';return}
+  em.style.display='none';btn.style.display='';sbtn.style.display='';
   list.innerHTML=fids.map(id=>[id,allTracks[id]]).filter(([id,t])=>t).map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
   document.getElementById('profileLikes').textContent=fids.length;
 }
-function playAllFavorites(){
-  const fids=Object.keys(favorites).filter(id=>allTracks[id]);
-  if(!fids.length){showSnackbar('Нет треков');return}
-  playlist=fids;playlistIndex=0;currentTrackId=playlist[0];loadAndPlay(allTracks[currentTrackId]);showSnackbar('Воспроизведение любимого');
-}
+function playAllFavorites(){const f=Object.keys(favorites).filter(id=>allTracks[id]);if(!f.length)return;playlist=f;playlistIndex=0;currentTrackId=playlist[0];loadAndPlay(allTracks[currentTrackId])}
+function shuffleFavorites(){const f=Object.keys(favorites).filter(id=>allTracks[id]);if(!f.length)return;shuffleArr(f);playlist=f;playlistIndex=0;currentTrackId=playlist[0];loadAndPlay(allTracks[currentTrackId]);showSnackbar('Перемешано')}
 
+/* ===== SUBSCRIPTIONS ===== */
 function toggleSubscription(aid){
   if(!currentUser){showSnackbar('Войдите для подписки');return}
   if(aid===currentUser.uid){showSnackbar('Нельзя подписаться на себя');return}
@@ -1286,61 +1470,76 @@ function toggleSubscription(aid){
 }
 function renderSubscriptions(){
   const sids=Object.keys(subscriptions),em=document.getElementById('subsEmpty'),grid=document.getElementById('subsGrid');
-  if(sids.length===0){em.style.display='';grid.innerHTML='';return}
+  if(sids.length===0){em.style.display='';grid.innerHTML='';document.getElementById('subsFeedTitle').style.display='none';document.getElementById('subsFeedTracks').innerHTML='';return}
   em.style.display='none';
   Promise.all(sids.map(id=>db.ref('users/'+id).once('value'))).then(snaps=>{
     grid.innerHTML=snaps.map((s,i)=>{const u=s.val()||{};return'<div class="artist-card" onclick="viewArtist(\''+sids[i]+'\')"><div class="artist-img">'+(u.photo?'<img src="'+u.photo+'" alt="">':'<span class="material-symbols-rounded" style="font-size:40px;color:var(--md-outline)">person</span>')+'</div><div class="card-title" style="font-size:13px">'+esc(u.displayName||'Артист')+'</div></div>'}).join('');
   });
+  // Feed
+  const feedTracks=Object.entries(allTracks).filter(([id,t])=>sids.includes(t.artistId)).sort((a,b)=>(b[1].timestamp||0)-(a[1].timestamp||0)).slice(0,20);
+  if(feedTracks.length>0){document.getElementById('subsFeedTitle').style.display='';document.getElementById('subsFeedTracks').innerHTML=feedTracks.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('')}
 }
 
-function createPlaylist(){if(!currentUser){showSnackbar('Войдите');return}document.getElementById('playlistModal').classList.add('open');document.getElementById('playlistNameInput').value='';setTimeout(()=>document.getElementById('playlistNameInput').focus(),100)}
-function savePlaylist(){const n=document.getElementById('playlistNameInput').value.trim();if(!n){showSnackbar('Введите название');return}if(!currentUser)return;db.ref('playlists/'+currentUser.uid).push({name:n,tracks:{},created:Date.now()});closeModal('playlistModal');showSnackbar('Плейлист создан')}
+/* ===== PLAYLISTS ===== */
+function createPlaylist(){if(!currentUser){showSnackbar('Войдите');return}document.getElementById('playlistModal').classList.add('open');document.getElementById('playlistNameInput').value='';document.getElementById('playlistDescInput').value=''}
+function savePlaylist(){const n=document.getElementById('playlistNameInput').value.trim();if(!n){showSnackbar('Введите название');return}if(!currentUser)return;db.ref('playlists/'+currentUser.uid).push({name:n,description:document.getElementById('playlistDescInput').value.trim(),tracks:{},created:Date.now()});closeModal('playlistModal');showSnackbar('Плейлист создан')}
 function renderPlaylists(){
   const entries=Object.entries(userPlaylists),c=document.getElementById('playlistsContent'),g=document.getElementById('playlistsGrid');
   if(entries.length===0){c.style.display='';g.innerHTML='';return}
   c.style.display='none';
-  g.innerHTML=entries.map(([id,pl])=>{const tc=pl.tracks?Object.keys(pl.tracks).length:0;return'<div class="md-card" onclick="openPlaylist(\''+id+'\')"><div class="card-img"><span class="material-symbols-rounded">queue_music</span></div><div class="card-body"><div class="card-title">'+esc(pl.name)+'</div><div class="card-sub">'+tc+' треков</div></div></div>'}).join('');
+  g.innerHTML=entries.map(([id,pl])=>{const tc=pl.tracks?Object.keys(pl.tracks).length:0;return'<div class="md-card" onclick="viewPlaylist(\''+id+'\')"><div class="card-img"><span class="material-symbols-rounded">queue_music</span></div><div class="card-body"><div class="card-title">'+esc(pl.name)+'</div><div class="card-sub">'+tc+' треков</div></div></div>'}).join('');
 }
-function openPlaylist(plId){
+function viewPlaylist(plId){
   const pl=userPlaylists[plId];if(!pl)return;
+  navigate('playlist-view');
   const tids=pl.tracks?Object.keys(pl.tracks):[];
   const tracks=tids.map(id=>[id,allTracks[id]]).filter(([id,t])=>t);
-  if(!tracks.length){showSnackbar('Плейлист пуст');return}
-  playlist=tracks.map(([id])=>id);playlistIndex=0;currentTrackId=playlist[0];
-  loadAndPlay(allTracks[currentTrackId]);showSnackbar('Воспроизведение: '+pl.name);
+  document.getElementById('playlistViewHeader').innerHTML='<div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap"><div style="width:120px;height:120px;border-radius:var(--md-shape-lg);background:var(--md-primary-container);display:flex;align-items:center;justify-content:center"><span class="material-symbols-rounded" style="font-size:48px;color:var(--md-primary)">queue_music</span></div><div><div class="section-title" style="margin:0">'+esc(pl.name)+'</div>'+(pl.description?'<div class="section-sub" style="margin:4px 0 0">'+esc(pl.description)+'</div>':'')+'<div style="font:400 13px/18px \'Inter\',sans-serif;color:var(--md-on-surface-variant);margin-top:4px">'+tracks.length+' треков</div><div style="display:flex;gap:8px;margin-top:12px">'+(tracks.length?'<button class="btn-primary" onclick="playPlaylist(\''+plId+'\')"><span class="material-symbols-rounded">play_arrow</span> Слушать</button><button class="btn-tonal" onclick="shufflePlaylist(\''+plId+'\')"><span class="material-symbols-rounded">shuffle</span> Перемешать</button>':'')+'<button class="btn-outlined" onclick="deletePlaylist(\''+plId+'\')"><span class="material-symbols-rounded">delete</span> Удалить</button></div></div></div>';
+  document.getElementById('playlistViewTracks').innerHTML=tracks.length===0?'<div class="empty-state"><span class="material-symbols-rounded">queue_music</span><h3>Плейлист пуст</h3></div>':tracks.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
 }
+function playPlaylist(plId){const pl=userPlaylists[plId];if(!pl)return;const tids=Object.keys(pl.tracks||{}).filter(id=>allTracks[id]);if(!tids.length){showSnackbar('Плейлист пуст');return}playlist=tids;playlistIndex=0;currentTrackId=playlist[0];loadAndPlay(allTracks[currentTrackId])}
+function shufflePlaylist(plId){const pl=userPlaylists[plId];if(!pl)return;const tids=Object.keys(pl.tracks||{}).filter(id=>allTracks[id]);if(!tids.length)return;shuffleArr(tids);playlist=tids;playlistIndex=0;currentTrackId=playlist[0];loadAndPlay(allTracks[currentTrackId]);showSnackbar('Перемешано')}
+function deletePlaylist(plId){if(!currentUser)return;db.ref('playlists/'+currentUser.uid+'/'+plId).remove();navigate('playlists');showSnackbar('Плейлист удалён')}
 
+/* ===== VIEW ARTIST ===== */
 function viewArtist(aid){
-  navigate('artist');const h=document.getElementById('artistHeader'),tl=document.getElementById('artistTracks');
+  navigate('artist');currentArtistId=aid;
+  const h=document.getElementById('artistHeader'),tl=document.getElementById('artistTracks');
   h.innerHTML='<div class="loading-spinner"></div>';tl.innerHTML='';
+  document.getElementById('artistTabs').style.display='none';
   db.ref('users/'+aid).once('value').then(s=>{
     const u=s.val()||{};const isSub=subscriptions[aid];
     db.ref('subscribers/'+aid).once('value').then(ss=>{
-      const sc=ss.val()?Object.keys(ss.val()).length:0;
-      const at=Object.entries(allTracks).filter(([id,t])=>t.artistId===aid).sort((a,b)=>(b[1].timestamp||0)-(a[1].timestamp||0));
-      const totalPlays=at.reduce((sum,[id,t])=>sum+(t.plays||0),0);
-      h.innerHTML='<div class="artist-page-avatar">'+(u.photo?'<img src="'+u.photo+'" alt="">':'<span class="material-symbols-rounded" style="font-size:64px;color:var(--md-primary)">person</span>')+'</div><div style="flex:1"><div style="font:800 28px/36px \'Inter\',sans-serif;color:var(--md-on-surface);margin-bottom:4px">'+esc(u.displayName||'Артист')+'</div>'+(u.username?'<div style="font:400 14px/20px \'Inter\',sans-serif;color:var(--md-on-surface-variant);margin-bottom:4px">@'+esc(u.username)+'</div>':'')+'<div style="font:400 14px/20px \'Inter\',sans-serif;color:var(--md-on-surface-variant);margin-bottom:4px;display:flex;gap:16px;flex-wrap:wrap"><span>'+at.length+' треков</span><span>'+sc+' подписчиков</span><span>'+formatPlays(totalPlays)+' прослушиваний</span></div><div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">'+(at.length>0?'<button class="btn-primary" onclick="playArtistAll(\''+aid+'\')"><span class="material-symbols-rounded">play_arrow</span> Слушать</button>':'')+(currentUser&&currentUser.uid!==aid?'<button class="'+(isSub?'btn-outlined':'btn-tonal')+'" onclick="toggleSubscription(\''+aid+'\');setTimeout(function(){viewArtist(\''+aid+'\')},500)"><span class="material-symbols-rounded">'+(isSub?'person_remove':'person_add')+'</span>'+(isSub?' Отписаться':' Подписаться')+'</button>':'')+'</div></div>';
-      tl.innerHTML=at.length===0?'<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Нет треков</h3></div>':at.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
+      const sc=Object.keys(ss.val()||{}).length;
+      currentArtistTracks=Object.entries(allTracks).filter(([id,t])=>t.artistId===aid).sort((a,b)=>(b[1].timestamp||0)-(a[1].timestamp||0));
+      const totalPlays=currentArtistTracks.reduce((s,[id,t])=>s+(t.plays||0),0);
+      h.innerHTML='<div class="artist-page-avatar">'+(u.photo?'<img src="'+u.photo+'" alt="">':'<span class="material-symbols-rounded" style="font-size:64px;color:var(--md-primary)">person</span>')+'</div><div style="flex:1"><div style="font:800 28px/36px \'Inter\',sans-serif;color:var(--md-on-surface)">'+esc(u.displayName||'Артист')+'</div>'+(u.username?'<div style="font:400 14px/20px \'Inter\',sans-serif;color:var(--md-on-surface-variant);margin:4px 0">@'+esc(u.username)+'</div>':'')+(u.bio?'<div style="font:400 14px/20px \'Inter\',sans-serif;color:var(--md-on-surface-variant);margin:4px 0">'+esc(u.bio)+'</div>':'')+'<div style="font:400 14px/20px \'Inter\',sans-serif;color:var(--md-on-surface-variant);display:flex;gap:16px;flex-wrap:wrap"><span>'+currentArtistTracks.length+' треков</span><span>'+sc+' подписчиков</span><span>'+formatPlays(totalPlays)+' прослушиваний</span></div><div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">'+(currentArtistTracks.length?'<button class="btn-primary" onclick="playArtistAll()"><span class="material-symbols-rounded">play_arrow</span> Слушать</button>':'')+(currentUser&&currentUser.uid!==aid?'<button class="'+(isSub?'btn-outlined':'btn-tonal')+'" onclick="toggleSubscription(\''+aid+'\');setTimeout(function(){viewArtist(\''+aid+'\')},500)"><span class="material-symbols-rounded">'+(isSub?'person_remove':'person_add')+'</span>'+(isSub?' Отписаться':' Подписаться')+'</button>':'')+'</div></div>';
+      document.getElementById('artistTabs').style.display='flex';
+      tl.innerHTML=currentArtistTracks.length===0?'<div class="empty-state"><span class="material-symbols-rounded">library_music</span><h3>Нет треков</h3></div>':currentArtistTracks.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
     });
   });
 }
-function playArtistAll(aid){
-  const at=Object.entries(allTracks).filter(([id,t])=>t.artistId===aid);
-  if(!at.length)return;
-  playlist=at.map(([id])=>id);playlistIndex=0;currentTrackId=playlist[0];loadAndPlay(allTracks[currentTrackId]);
+function switchArtistTab(tab,el){
+  document.querySelectorAll('#artistTabs .tab-item').forEach(t=>t.classList.remove('active'));el.classList.add('active');
+  const tl=document.getElementById('artistTracks');
+  if(tab==='tracks')tl.innerHTML=currentArtistTracks.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
+  else if(tab==='popular'){const sorted=[...currentArtistTracks].sort((a,b)=>(b[1].plays||0)-(a[1].plays||0));tl.innerHTML=sorted.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('')}
 }
+function playArtistAll(){if(!currentArtistTracks.length)return;playlist=currentArtistTracks.map(([id])=>id);playlistIndex=0;currentTrackId=playlist[0];loadAndPlay(allTracks[currentTrackId])}
 
+/* ===== WAVE ===== */
 function startWave(){
   const entries=Object.entries(allTracks);if(!entries.length){showSnackbar('Нет треков');return}
   const fids=Object.keys(favorites),fe=entries.filter(([id])=>fids.includes(id)),nfe=entries.filter(([id])=>!fids.includes(id));
-  shuffle(fe);shuffle(nfe);let wt=fe.length?[...fe,...nfe]:[...entries];if(!fe.length)shuffle(wt);
+  shuffleArr(fe);shuffleArr(nfe);let wt=fe.length?[...fe,...nfe]:[...entries];if(!fe.length)shuffleArr(wt);
   document.getElementById('waveTracks').innerHTML=wt.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('');
   playlist=wt.map(([id])=>id);playlistIndex=0;currentTrackId=playlist[0];loadAndPlay(allTracks[currentTrackId]);
   isShuffle=true;document.getElementById('shuffleBtn').classList.add('active');document.getElementById('fsShuffleBtn').classList.add('active');
   document.getElementById('waveBtn').innerHTML='<span class="material-symbols-rounded">refresh</span> Обновить волну';showSnackbar('Волна запущена!');
 }
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}
+function shuffleArr(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}}
 
+/* ===== UPLOAD ===== */
 function handleAudioDrop(e){e.preventDefault();e.currentTarget.classList.remove('dragover');if(e.dataTransfer.files[0])processAudioFile(e.dataTransfer.files[0])}
 function handleAudioSelect(e){if(e.target.files[0])processAudioFile(e.target.files[0])}
 async function processAudioFile(f){
@@ -1350,13 +1549,8 @@ async function processAudioFile(f){
   document.getElementById('selectedFileInfo').style.display='block';
   document.getElementById('selectedFileName').textContent=f.name+' ('+(f.size/1024/1024).toFixed(1)+' МБ)';
   if(!document.getElementById('uploadTitle').value)document.getElementById('uploadTitle').value=f.name.replace(/\.[^/.]+$/,'');
-  // Extract embedded cover art from ID3 tags
-  const embeddedCover=await extractEmbeddedCover(f);
-  if(embeddedCover&&!selectedCoverDataURL&&!document.getElementById('uploadCover').value){
-    selectedCoverDataURL=embeddedCover;
-    document.getElementById('coverUploadZone').innerHTML='<img src="'+embeddedCover+'" alt="">';
-    showSnackbar('Обложка извлечена из файла');
-  }
+  const cover=await extractEmbeddedCover(f);
+  if(cover&&!selectedCoverDataURL&&!document.getElementById('uploadCover').value){selectedCoverDataURL=cover;document.getElementById('coverUploadZone').innerHTML='<img src="'+cover+'" alt="">';showSnackbar('Обложка извлечена из файла')}
   const r=new FileReader();r.onload=e=>{selectedAudioDataURL=e.target.result};r.readAsDataURL(f);
 }
 function clearSelectedFile(){selectedAudioFile=null;selectedAudioDataURL=null;document.getElementById('selectedFileInfo').style.display='none';document.getElementById('audioFileInput').value=''}
@@ -1368,49 +1562,27 @@ async function publishTrack(){
   if(genre==='custom')genre=document.getElementById('uploadCustomGenre').value.trim().toLowerCase()||'other';
   let cover=document.getElementById('uploadCover').value.trim();
   if(selectedCoverDataURL)cover=selectedCoverDataURL;
+  const lyrics=document.getElementById('uploadLyrics').value.trim();
   if(!title){showSnackbar('Введите название');return}
   if(!selectedAudioDataURL){showSnackbar('Выберите аудиофайл');return}
-
   const pe=document.getElementById('uploadProgress'),pb=document.getElementById('uploadProgressBar'),st=document.getElementById('uploadStatusText'),btn=document.getElementById('publishBtn');
-  pe.style.display='block';btn.disabled=true;st.textContent='Проверка аудио...';pb.style.width='10%';
-
-  const duration=await new Promise(res=>{
-    const ta=new Audio(selectedAudioDataURL);
-    ta.addEventListener('loadedmetadata',()=>{if(ta.duration<15){showSnackbar('Трек мин. 15 сек');pe.style.display='none';btn.disabled=false;res(false);return}res(ta.duration)});
-    ta.addEventListener('error',()=>{showSnackbar('Ошибка чтения аудио');pe.style.display='none';btn.disabled=false;res(false)});
-  });
+  pe.style.display='block';btn.disabled=true;
+  st.textContent='Проверка аудио...';pb.style.width='10%';
+  const duration=await new Promise(res=>{const ta=new Audio(selectedAudioDataURL);ta.addEventListener('loadedmetadata',()=>{if(ta.duration<15){showSnackbar('Трек мин. 15 сек');pe.style.display='none';btn.disabled=false;res(false);return}res(ta.duration)});ta.addEventListener('error',()=>{showSnackbar('Ошибка чтения аудио');pe.style.display='none';btn.disabled=false;res(false)})});
   if(duration===false)return;
-
-  st.textContent='Проверка авторских прав...';pb.style.width='25%';
+  st.textContent='ИИ-модерация контента...';pb.style.width='40%';
   await new Promise(r=>setTimeout(r,500));
-  if(checkCopyright(title,currentUser.displayName)){
-    showSnackbar('⚠️ Возможное нарушение авторских прав! Публикация отклонена.');
-    pe.style.display='none';btn.disabled=false;return;
-  }
-  pb.style.width='40%';
-
-  st.textContent='ИИ-модерация контента...';pb.style.width='50%';
-  await new Promise(r=>setTimeout(r,500));
-  const isExp=checkExplicit(title);
-  pb.style.width='65%';
-
-  st.textContent='Подготовка к загрузке...';pb.style.width='75%';
+  const isExp=checkExplicit(title)||checkExplicit(lyrics);pb.style.width='60%';
+  st.textContent='Подготовка...';pb.style.width='75%';
   await new Promise(r=>setTimeout(r,300));
-
   const szMB=(selectedAudioDataURL.length*0.75)/(1024*1024);
-  if(szMB>10){showSnackbar('Файл слишком большой для БД (макс ~10 МБ)');pe.style.display='none';btn.disabled=false;return}
-  if(cover&&cover.startsWith('data:')&&(cover.length*0.75)/(1024*1024)>2){showSnackbar('Обложка слишком большая (макс 2 МБ)');pe.style.display='none';btn.disabled=false;return}
-
-  st.textContent='Публикация трека...';pb.style.width='90%';
+  if(szMB>10){showSnackbar('Файл слишком большой для БД');pe.style.display='none';btn.disabled=false;return}
+  if(cover&&cover.startsWith('data:')&&(cover.length*0.75)/(1024*1024)>2){showSnackbar('Обложка слишком большая');pe.style.display='none';btn.disabled=false;return}
+  st.textContent='Публикация...';pb.style.width='90%';
   try{
-    await db.ref('tracks').push({title,genre:genre||'other',cover,artistId:currentUser.uid,artistName:currentUser.displayName||'Неизвестен',artistPhoto:currentUser.photo||'',audioData:selectedAudioDataURL,duration:Math.round(duration),explicit:isExp,likes:0,plays:0,timestamp:Date.now(),moderated:true});
-    pb.style.width='100%';st.textContent='Трек опубликован!';
-    setTimeout(()=>{pe.style.display='none';btn.disabled=false;pb.style.width='0%';
-      document.getElementById('uploadTitle').value='';document.getElementById('uploadGenre').value='';
-      document.getElementById('uploadCover').value='';document.getElementById('uploadCustomGenre').value='';
-      document.getElementById('uploadCustomGenre').style.display='none';
-      selectedCoverDataURL=null;document.getElementById('coverUploadZone').innerHTML='<span class="material-symbols-rounded">image</span><span style="font:400 11px/14px \'Inter\',sans-serif;color:var(--md-on-surface-variant);text-align:center;padding:0 4px">Загрузить</span>';
-      clearSelectedFile();showSnackbar(isExp?'Опубликован (содержит ненормативную лексику)':'Трек успешно опубликован!')},800);
+    await db.ref('tracks').push({title,genre:genre||'other',cover,lyrics,artistId:currentUser.uid,artistName:currentUser.displayName||'Неизвестен',artistPhoto:currentUser.photo||'',audioData:selectedAudioDataURL,duration:Math.round(duration),explicit:isExp,likes:0,plays:0,timestamp:Date.now(),moderated:true});
+    pb.style.width='100%';st.textContent='Опубликован!';
+    setTimeout(()=>{pe.style.display='none';btn.disabled=false;pb.style.width='0%';document.getElementById('uploadTitle').value='';document.getElementById('uploadGenre').value='';document.getElementById('uploadCover').value='';document.getElementById('uploadLyrics').value='';document.getElementById('uploadCustomGenre').value='';document.getElementById('uploadCustomGenre').style.display='none';selectedCoverDataURL=null;document.getElementById('coverUploadZone').innerHTML='<span class="material-symbols-rounded">image</span><span style="font:400 11px/14px \'Inter\',sans-serif;color:var(--md-on-surface-variant)">Загрузить</span>';clearSelectedFile();showSnackbar(isExp?'Опубликован (ненормативная лексика)':'Трек опубликован!')},800);
   }catch(err){showSnackbar('Ошибка: '+err.message);pe.style.display='none';btn.disabled=false}
 }
 
@@ -1423,16 +1595,28 @@ function confirmDeleteTrack(){
   closeModal('deleteModal');showSnackbar('Трек удалён');deleteTrackId=null;
 }
 
+/* ===== PROFILE TABS ===== */
 function switchProfileTab(tab,el){
   document.querySelectorAll('#page-profile .tab-item').forEach(t=>t.classList.remove('active'));el.classList.add('active');
   const c=document.getElementById('profileTabContent');
   if(tab==='tracks'){c.innerHTML='<div class="track-list" id="profileTrackList"><div class="loading-spinner"></div></div>';loadMyTracks()}
-  else if(tab==='liked'){
-    const fids=Object.keys(favorites),tracks=fids.map(id=>[id,allTracks[id]]).filter(([id,t])=>t);
-    c.innerHTML=tracks.length===0?'<div class="empty-state"><span class="material-symbols-rounded">favorite</span><h3>Нет понравившихся</h3></div>':'<div class="track-list">'+tracks.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('')+'</div>';
+  else if(tab==='liked'){const fids=Object.keys(favorites),tracks=fids.map(id=>[id,allTracks[id]]).filter(([id,t])=>t);c.innerHTML=tracks.length===0?'<div class="empty-state"><span class="material-symbols-rounded">favorite</span><h3>Нет понравившихся</h3></div>':'<div class="track-list">'+tracks.map(([id,t],i)=>renderTrackItem(id,t,i+1)).join('')+'</div>'}
+  else if(tab==='stats'){
+    const myT=Object.entries(allTracks).filter(([id,t])=>t.artistId===currentUser?.uid);
+    const totalP=myT.reduce((s,[id,t])=>s+(t.plays||0),0),totalL=myT.reduce((s,[id,t])=>s+(t.likes||0),0);
+    const topTrack=myT.sort((a,b)=>(b[1].plays||0)-(a[1].plays||0))[0];
+    c.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px">'+
+      '<div class="stat-card"><div class="stat-value">'+myT.length+'</div><div class="stat-label">Всего треков</div></div>'+
+      '<div class="stat-card"><div class="stat-value">'+formatPlays(totalP)+'</div><div class="stat-label">Общее число прослушиваний</div></div>'+
+      '<div class="stat-card"><div class="stat-value">'+totalL+'</div><div class="stat-label">Общее число лайков</div></div>'+
+      '<div class="stat-card"><div class="stat-value">'+Object.keys(favorites).length+'</div><div class="stat-label">Треков в любимом</div></div>'+
+      '<div class="stat-card"><div class="stat-value">'+Object.keys(subscriptions).length+'</div><div class="stat-label">Подписок</div></div>'+
+      '<div class="stat-card"><div class="stat-value">'+Object.keys(userPlaylists).length+'</div><div class="stat-label">Плейлистов</div></div>'+
+      '</div>'+(topTrack?'<div class="section-title" style="margin-top:24px">🏆 Самый популярный трек</div><div class="track-list">'+renderTrackItem(topTrack[0],topTrack[1],1)+'</div>':'');
   }
 }
 
+/* ===== NAVIGATION ===== */
 function navigate(page){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const t=document.getElementById('page-'+page);if(t)t.classList.add('active');
@@ -1440,15 +1624,16 @@ function navigate(page){
   document.querySelectorAll('.bottom-nav .nav-tab').forEach(n=>n.classList.toggle('active',n.dataset.page===page));
   if(window.innerWidth<=1024){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('open')}
   window.scrollTo({top:0,behavior:'smooth'});
-  if(['favorites','subscriptions','playlists'].includes(page)){
-    if(!currentUser)showSnackbar('Войдите для доступа');
-    else{renderFavorites();renderSubscriptions();renderPlaylists()}
-  }
+  if(['favorites','subscriptions','playlists'].includes(page)){if(!currentUser)showSnackbar('Войдите для доступа');else{renderFavorites();renderSubscriptions();renderPlaylists()}}
   if(page==='explore')renderExplore();
   if(page==='profile'&&currentUser)loadMyTracks();
+  if(page==='history')renderHistory();
+  if(page==='charts')renderCharts();
+  if(page==='new-releases')renderNewReleases();
 }
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('open')}
 
+/* ===== THEME ===== */
 function toggleTheme(){
   const d=document.body.hasAttribute('data-theme');
   if(d){document.body.removeAttribute('data-theme');document.getElementById('themeIcon').textContent='dark_mode';localStorage.setItem('theme','light')}
@@ -1456,10 +1641,12 @@ function toggleTheme(){
 }
 if(localStorage.getItem('theme')==='dark'||(!localStorage.getItem('theme')&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.body.setAttribute('data-theme','dark');document.getElementById('themeIcon').textContent='light_mode'}
 
+/* ===== UTILS ===== */
 function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 function showSnackbar(msg){const s=document.getElementById('snackbar');s.textContent=msg;s.classList.remove('show');void s.offsetWidth;s.classList.add('show');clearTimeout(s._t);s._t=setTimeout(()=>s.classList.remove('show'),3000)}
 function closeModal(id){document.getElementById(id).classList.remove('open')}
 
+/* ===== EVENT LISTENERS ===== */
 window.addEventListener('scroll',()=>{document.getElementById('topBar').classList.toggle('scrolled',window.scrollY>10)});
 function checkResponsive(){const b=document.getElementById('sidebarCloseBtn');if(window.innerWidth<=1024)b.style.display='';else{b.style.display='none';document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarOverlay').classList.remove('open')}}
 window.addEventListener('resize',checkResponsive);checkResponsive();
@@ -1468,10 +1655,11 @@ document.addEventListener('keydown',e=>{
   if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
   if(e.code==='Space'){e.preventDefault();togglePlay()}
   if(e.code==='ArrowRight'&&e.ctrlKey)nextTrack();if(e.code==='ArrowLeft'&&e.ctrlKey)prevTrack();
-  if(e.key==='Escape'){closeFullscreenPlayer();document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open'));const cm=document.querySelector('.track-context-menu');if(cm)cm.remove()}
+  if(e.key==='Escape'){closeFullscreenPlayer();if(queueOpen)toggleQueue();document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open'));document.querySelectorAll('.track-context-menu').forEach(m=>m.remove())}
 });
 document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;if(e.target.id==='loginIdentity'||e.target.id==='loginPassword')doLogin();if(e.target.id==='regPassword2')doRegister()});
 
+/* ===== INIT ===== */
 restoreSession();updateUserMenu();
 </script>
 </body>
